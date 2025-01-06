@@ -1,4 +1,5 @@
-﻿using RKAnchor.Server.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using RKAnchor.Server.Domain.Entities;
 using RKAnchor.Server.Domain.Interfaces;
 using RKAnchor.Server.Infrastructure.Data;
 
@@ -13,8 +14,8 @@ public class ProductRepository : IProductRepository
         _anchorDbContext  = anchorDbContext;
     }
 
-    public IEnumerable<Product> GetAllProducts()
+    public async Task<IEnumerable<Product>> GetAllProducts(CancellationToken cancellationToken)
     {
-        return _anchorDbContext.Products;
+        return await _anchorDbContext.Products.ToListAsync(cancellationToken);
     }
 }

@@ -4,5 +4,5 @@ namespace RKAnchor.Server.Domain.Interfaces;
 
 public interface IProductRepository
 {
-    IEnumerable<Product> GetAllProducts();
+    Task<IEnumerable<Product>> GetAllProducts(CancellationToken cancellationToken);
 }

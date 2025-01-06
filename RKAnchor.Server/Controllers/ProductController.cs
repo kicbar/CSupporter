@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using RKAnchor.Server.Application.Product.Queries;
 using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces;
 
 namespace RKAnchor.Server.Controllers;
 
@@ -8,16 +9,16 @@ namespace RKAnchor.Server.Controllers;
 [Route("[controller]")]
 public class ProductController
 {
-    private readonly IProductRepository _productRepository;
+    private readonly IMediator _mediator;
 
-    public ProductController(IProductRepository productRepository)
+    public ProductController(IMediator mediator)
     {
-        _productRepository = productRepository;
+        _mediator = mediator;
     }
 
     [HttpGet]
-    public IEnumerable<Product> GetAllProducts()
+    public async Task<IEnumerable<Product>> GetAllProducts()
     {
-        return _productRepository.GetAllProducts();
+        return await _mediator.Send(new GetProductsQuery());
     }
 }
