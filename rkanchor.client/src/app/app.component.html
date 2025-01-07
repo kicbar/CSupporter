@@ -1,4 +1,18 @@
-﻿<h1 id="tableLabel">Weather forecast</h1>
+﻿<mat-toolbar color="primary">
+  <span>Anchor RK</span>
+</mat-toolbar>
+
+<mat-tab-group
+  [selectedIndex]="selectedTabIndex"
+  (selectedIndexChange)="onTabChange($event)">
+  <mat-tab label="Home"></mat-tab>
+  <mat-tab label="Clients"></mat-tab>
+  <mat-tab label="Products"></mat-tab>
+</mat-tab-group>
+
+<router-outlet></router-outlet>
+
+<h1 id="tableLabel">Weather forecast</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
