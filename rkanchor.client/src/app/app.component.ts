@@ -1,13 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
 
 @Component({
   selector: 'app-root',
@@ -15,13 +7,11 @@ interface WeatherForecast {
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
   selectedTabIndex = 0;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
-    this.getForecasts();
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         switch (event.url) {
@@ -38,19 +28,6 @@ export class AppComponent implements OnInit {
       }
     });    
   }
-
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
-
-  title = 'rkanchor.client';
 
   onTabChange(index: number): void {
     switch (index) {

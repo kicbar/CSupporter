@@ -8,6 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AnchorDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("AnchorDbConnection")));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins", builder =>
+    {
+        builder.WithOrigins("https://127.0.0.1:4200")
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
+
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -27,6 +37,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowSpecificOrigins");
 
 app.UseAuthorization();
 
