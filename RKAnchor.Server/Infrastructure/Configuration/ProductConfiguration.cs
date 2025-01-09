@@ -10,13 +10,33 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     {
         builder.ToTable("Products");
 
-        builder.HasKey(p => p.Id);
+        builder.HasKey(x => x.Id);
         
-        builder.Property(p => p.Name)
+        builder.Property(x => x.ProductCode)
+               .HasMaxLength(16);
+
+        builder.Property(x => x.Name)
                .IsRequired()
                .HasMaxLength(128);
 
-        builder.Property(p => p.Description)
+        builder.Property(x => x.ProductType)
+               .HasMaxLength(32);
+
+        builder.Property(x => x.Description)
             .HasMaxLength(256);
+
+        builder.Property(x => x.InsertDate)
+            .HasDefaultValueSql("GETDATE()");
+
+        builder.Property(x => x.InsertUser)
+            .HasMaxLength(32)
+            .HasDefaultValue("sys_user");
+             
+        builder.Property(x => x.UpdateDate)
+            .HasDefaultValueSql("GETDATE()");
+
+        builder.Property(x => x.UpdateUser)
+            .HasMaxLength(32)
+            .HasDefaultValue("sys_user");
     }
 }
