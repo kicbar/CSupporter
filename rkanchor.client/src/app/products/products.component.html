@@ -1,9 +1,22 @@
 <div class="row">
+    <button mat-button>Dodaj produkt</button>
     <div class="col-md-5">
         <p>Produkty</p>
     </div>
 
+  <div class="row">
     <div class="col-md-7">
         <app-products-list></app-products-list>    
     </div>
+  
+    <div class="col-md-7">
+      <app-product-details *ngIf="selectedProduct; else infoText"
+      [product]="selectedProduct">
+      </app-product-details>
+      <ng-template #infoText>
+        <p>Musisz wybrac klienta</p>
+      </ng-template>      
+    </div>
+  </div>
+  
 </div>

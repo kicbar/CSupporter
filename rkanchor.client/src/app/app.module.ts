@@ -11,14 +11,18 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { ClientsComponent } from './clients/clients.component';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductListItemComponent } from './products/products-list/product-list-item/product-list-item.component';
+import { ProductDetailsComponent } from './products/product-details/product-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     ProductsComponent,
     ProductsListComponent,
+    ProductListItemComponent,
+    ProductDetailsComponent,
     ClientsComponent,
-    HomeComponent
   ],
   imports: [
     BrowserModule, 
