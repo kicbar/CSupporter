@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using RKAnchor.Server.Domain.Interfaces;
 
-namespace RKAnchor.Server.Application.Product.Queries;
+namespace RKAnchor.Server.Application.CQRS.Product.Queries;
 
 public class GetProductsQuery : IRequest<IEnumerable<Domain.Entities.Product>> { }
 
