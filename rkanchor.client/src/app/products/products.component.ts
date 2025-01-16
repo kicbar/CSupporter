@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ProductsComponent {
   selectedProduct!: Product;
+  
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {

@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-products-list',
@@ -11,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class ProductsListComponent {
   products!: Product[];
 
-  constructor(private productService: ProductService, private http: HttpClient) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit() {
     this.productService.getAllProducts().subscribe(
@@ -22,6 +21,10 @@ export class ProductsListComponent {
           console.error(error);
       }
     );
+  }
+
+  onProductSelected(product: Product): void {
+    this.productService.selectProduct(product);
   }
 
 }

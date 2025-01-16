@@ -9,13 +9,18 @@ export class ProductService {
   public products: Product[] = [];
   productSelected = new EventEmitter<Product>();
 
-    constructor(private http: HttpClient) { }
-    
-    getAllProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>('https://localhost:7048/Product');
-    }
-
-    addProduct(product: ProductDto): Observable<Product> {
-      return this.http.post<Product>('https://localhost:7048/Product', product);
+  constructor(private http: HttpClient) { }
+  
+  getAllProducts(): Observable<Product[]> {
+      return this.http.get<Product[]>('https://localhost:7048/Product');
   }
+
+  addProduct(product: ProductDto): Observable<Product> {
+    return this.http.post<Product>('https://localhost:7048/Product', product);
+  }
+
+  selectProduct(product: Product): void {
+    this.productSelected.emit(product);
+  }
+
 }
