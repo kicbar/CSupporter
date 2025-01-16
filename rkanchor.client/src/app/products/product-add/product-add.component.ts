@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class ProductAddComponent {
   productForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router) {}
+  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
@@ -28,11 +29,22 @@ export class ProductAddComponent {
       const product = this.productForm.value;
       this.productService.addProduct(product).subscribe({
         next: (response) => {
-          alert('Produkt dodany poprawnie ' + response.id);
+          this.snackBar.open(`Produkt o nazwie ${response.name} został dodany poprawnie pod identyfikatorem: ${response.id}`, 'Zamknij', {
+            duration: 3000, 
+            horizontalPosition: 'right', 
+            verticalPosition: 'bottom', 
+          });
+
           this.router.navigate(['/products']);
         }, 
         error: (err) => {
-          alert('Wystąpił bład podczas dodawania nowego produktu: ' + err);
+          this.snackBar.open(`Podczas dodawania produktu o nazwie ${product.name} wystąpił błąd!`, 'Zamknij', {
+            duration: 3000, 
+            horizontalPosition: 'right', 
+            verticalPosition: 'bottom', 
+            panelClass: ['custom-snackbar-error']
+          });
+          console.log('Bład podczas dodawania prduktu: ' + product.name + ' error: ' + err);
         }
       });
     }
