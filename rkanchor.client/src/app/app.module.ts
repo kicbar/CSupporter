@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductListItemComponent } from './products/products-list/product-list-item/product-list-item.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { ProductAddComponent } from './products/product-add/product-add.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ProductAddComponent } from './products/product-add/product-add.componen
     ProductsListComponent,
     ProductListItemComponent,
     ProductDetailsComponent,
+    ProductAddComponent,
     ClientsComponent,
     ProductAddComponent,
   ],
@@ -42,7 +44,7 @@ import { ProductAddComponent } from './products/product-add/product-add.componen
     MatInputModule,    
     MatButtonModule 
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

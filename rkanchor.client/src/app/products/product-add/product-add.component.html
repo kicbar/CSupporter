@@ -1,5 +1,5 @@
 <div class="form-container">
-    <h2>Edit Product</h2>
+    <h2>Dodawanie produktu</h2>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Name</mat-label>
@@ -45,7 +45,7 @@
         [disabled]="productForm.invalid"
         class="full-width"
       >
-        Save Changes
+        Zapisz
       </button>
     </form>
   </div>

@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ProductService } from '../../services/product.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-product-add',
@@ -9,7 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ProductAddComponent {
   productForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     this.productForm = this.fb.group({
@@ -22,8 +25,16 @@ export class ProductAddComponent {
 
   onSubmit(): void {
     if (this.productForm.valid) {
-      console.log('Form Submitted:', this.productForm.value);
-      alert('Product updated successfully!');
+      const product = this.productForm.value;
+      this.productService.addProduct(product).subscribe({
+        next: (response) => {
+          alert('Produkt dodany poprawnie ' + response.id);
+          this.router.navigate(['/products']);
+        }, 
+        error: (err) => {
+          alert('Wystąpił bład podczas dodawania nowego produktu: ' + err);
+        }
+      });
     }
   }
 }
