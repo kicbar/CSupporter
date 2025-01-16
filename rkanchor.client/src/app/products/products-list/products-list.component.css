@@ -1,16 +1,13 @@
-table {
-    margin: 0 auto;
+.product-list-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
-td, th {
-    padding: 8px;
-    text-align: center; 
+.product-list-item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-
-body {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100vh; 
-    margin: 0;
-}
+  

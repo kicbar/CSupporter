@@ -1,22 +1,63 @@
-::ng-deep .custom-mat-button {
-    background-color: #424242 !important;
-    color: #ffffff !important;
-    border-radius: 8px;
-    padding: 10px 20px;
-    font-weight: bold;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-  }
-  
-  ::ng-deep .custom-mat-button:hover {
-    background-color: #e0e0e0 !important;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
-  }
-  
-  ::ng-deep .custom-mat-button:active {
-    background-color: #9e9e9e !important;
-    color: #ffffff !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    transform: scale(0.98);
-  }
-  
+::ng-deep .add-product-button {
+  background-color: #424242 !important;
+  color: #ffffff !important;
+  width: 160px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+::ng-deep .add-product-button:hover {
+  background-color: #e0e0e0 !important;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+::ng-deep .add-product-button:active {
+  background-color: #9e9e9e !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  transform: scale(0.98);
+}
+
+.product-page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+}
+
+.products-list {
+  flex: 1; 
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 500px;
+}
+
+.product-details {
+  flex: 1; 
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

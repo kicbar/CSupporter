@@ -1,9 +1,17 @@
-<h4>Szczegóły produktu</h4>
-<p *ngIf="!product">Wybierz produkt z listy aby przeglądać szczegóły</p>
-<div *ngIf="product">
-  <strong>Id:</strong> {{ product.id }}<br />
-  <strong>Name:</strong> {{ product.name }}<br />
-  <strong>Description:</strong> {{ product.description }}<br />
-  <strong>Product Code:</strong> {{ product.productCode }}<br />
-  <strong>Product Type:</strong> {{ product.productType }}
+<div class="product-details-container">
+  <h4 class="details-title">Szczegóły produktu</h4>
+  <p *ngIf="!product" class="no-product-message">
+    Wybierz produkt z listy, aby przeglądać szczegóły
+  </p>
+  <div *ngIf="product" class="details-content">
+    <p><strong>Id:</strong> {{ product.id }}</p>
+    <p><strong>Name:</strong> {{ product.name }}</p>
+    <p><strong>Description:</strong> {{ product.description }}</p>
+    <p><strong>Product Code:</strong> {{ product.productCode }}</p>
+    <p><strong>Product Type:</strong> {{ product.productType }}</p>
+    <div class="button-container">
+      <button mat-button class="update-button">Edytuj produkt</button>
+      <button mat-button class="delete-button">Usuń produkt</button>
+    </div>    
+  </div>
 </div>

@@ -1,17 +1,14 @@
-<div class="row">
-    <button mat-button class="custom-mat-button" (click)="navigateToProductAdd()">Dodaj produkt</button>
-    <div class="col-md-5">
-        <p>Produkty</p>
-    </div>
+<div class="product-page-container">
+  <div class="header">
+    <button mat-button class="add-product-button" (click)="navigateToProductAdd()">Dodaj produkt</button>
+  </div>
 
-  <div class="row">
-    <div class="col-md-7">
-        <app-products-list></app-products-list>    
+  <div class="content">
+    <div class="products-list">
+      <app-products-list></app-products-list>
     </div>
-  
-    <div class="col-md-7">
+    <div class="product-details">
       <app-product-details [product]="selectedProduct"></app-product-details>
     </div>
   </div>
-  
 </div>
