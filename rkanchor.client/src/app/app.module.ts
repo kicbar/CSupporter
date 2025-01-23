@@ -20,6 +20,8 @@ import { ProductListItemComponent } from './products/products-list/product-list-
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { ProductAddComponent } from './products/product-add/product-add.component';
 import { ProductService } from './services/product.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { ProductService } from './services/product.service';
     ProductAddComponent,
     ClientsComponent,
     ProductAddComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule, 
@@ -44,6 +47,7 @@ import { ProductService } from './services/product.service';
     MatFormFieldModule, 
     MatInputModule,    
     MatButtonModule,
+    MatDialogModule,
     MatSnackBarModule,
   ],
   providers: [ProductService],
