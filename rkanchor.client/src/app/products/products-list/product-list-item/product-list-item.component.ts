@@ -19,9 +19,4 @@ export class ProductListItemComponent implements OnInit {
     });
   }
 
-  onSelected(event: Event) {
-    event.preventDefault(); 
-    this.productService.selectProduct(this.product); 
-  }
-
 }
