@@ -4,6 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmation-dialog.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { ConfirmationDialogComponent } from '../../confirmation-dialog/confirmat
 export class ProductDetailsComponent {
   @Input() product!: Product;
  
-  constructor(private productService: ProductService, private snackBar: MatSnackBar, private dialog: MatDialog) {}
+  constructor(private productService: ProductService, private snackBar: MatSnackBar, private dialog: MatDialog, private router: Router) {}
 
   onProductRemove(product: Product) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -53,5 +54,9 @@ export class ProductDetailsComponent {
         });
       }
     });
+  }
+
+  onProductEdit(product: Product) {
+    this.router.navigate(['/product-edit']);
   }
 }

@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
   styleUrl: './products.component.css'
 })
 export class ProductsComponent {
-  selectedProduct!: Product;
+  product!: Product;
   
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.productService.productSelected.subscribe(
-      (product: Product) => {
-        this.selectedProduct = product;
+      (selectedProduct: Product) => {
+        this.product = selectedProduct;
       }
     );
   }

@@ -10,7 +10,7 @@
     <p><strong>Product Code:</strong> {{ product.productCode }}</p>
     <p><strong>Product Type:</strong> {{ product.productType }}</p>
     <div class="button-container">
-      <button mat-button class="update-button">Edytuj produkt</button>
+      <button mat-button class="update-button" (click)="onProductEdit(product)">Edytuj produkt</button>
       <button mat-button class="delete-button" (click)="onProductRemove(product)">Usuń produkt</button>
     </div>    
   </div>
