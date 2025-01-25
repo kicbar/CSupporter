@@ -49,4 +49,8 @@ export class ProductAddComponent {
       });
     }
   }
+
+  onCancel(): void {
+    this.router.navigate(['/products']);
+  }
 }
