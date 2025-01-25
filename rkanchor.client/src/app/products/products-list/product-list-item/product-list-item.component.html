@@ -1,4 +1,6 @@
-<div class="list-group-item" (click)="onSelected($event)">
+<div class="list-group-item" 
+[class.active-item]="isActive"
+(click)="onSelected($event)">
     <div class="item-content">
         <h4 class="item-title">{{ product.id }} - {{ product.name }}</h4>
     </div>

@@ -34,3 +34,11 @@
   color: #333;
   margin: 0 0 5px 0;
 }
+
+
+.list-group-item.active-item {
+  background-color: #a7c7e7 !important;
+  border-color: black;
+  border-width: 0.5px;
+  transform: scale(1.05);
+}

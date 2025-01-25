@@ -9,10 +9,14 @@ import { ProductService } from '../../../services/product.service';
 })
 export class ProductListItemComponent implements OnInit {
   @Input() product!: Product; 
+  isActive: boolean = false; 
 
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.productService.productSelected.subscribe((selectedProduct) => {
+      this.isActive = this.product === selectedProduct; 
+    });
   }
 
   onSelected(event: Event) {
