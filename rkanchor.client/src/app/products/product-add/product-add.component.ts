@@ -37,14 +37,16 @@ export class ProductAddComponent {
 
           this.router.navigate(['/products']);
         }, 
-        error: (err) => {
+        error: (error) => {
           this.snackBar.open(`Podczas dodawania produktu o nazwie ${product.name} wystąpił błąd!`, 'OK', {
             duration: 3000, 
             horizontalPosition: 'center', 
             verticalPosition: 'top', 
             panelClass: ['custom-snackbar-error']
           });
-          console.log('Bład podczas dodawania prduktu: ' + product.name + ' error: ' + err);
+          const status =  error?.status ? error.status : '';
+          const message =  error?.message ? error.message : '';
+          console.log(`Błąd podczas dodawania prduktu: ${product.name} error: ${error}. Details: ${status}-${message}`);
         }
       });
     }

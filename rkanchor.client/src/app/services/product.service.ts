@@ -27,6 +27,10 @@ export class ProductService {
     return this.http.post<Product>('https://localhost:7048/Product', product);
   }
 
+  editProduct(productId: number, product: ProductDto): Observable<Product> {
+    return this.http.put<Product>(`https://localhost:7048/Product/${productId}`, product);
+  }
+
   removeProduct(productId: number): Observable<boolean> {
     return this.http.delete<boolean>(`https://localhost:7048/Product/${productId}`).pipe(
       filter((respone) => respone === true), 

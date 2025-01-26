@@ -3,6 +3,7 @@ import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-product-edit',
@@ -13,7 +14,7 @@ export class ProductEditComponent {
   productForm!: FormGroup;
   product!: Product;
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router) { }
+  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -31,7 +32,32 @@ export class ProductEditComponent {
   }
 
   onSubmit(): void {
+    if (this.productForm.valid) {
+      const product = this.productForm.value;
+      this.productService.editProduct(this.product.id, product).subscribe({
+        next: (response) => {
+          this.snackBar.open(`Produkt o nazwie ${response.name} został poprawnie edytowany.`, 'OK', {
+            duration: 3000, 
+            horizontalPosition: 'center', 
+            verticalPosition: 'top', 
+          });
 
+          this.router.navigate(['/products']);
+        }, 
+        error: (error) => {
+          this.snackBar.open(`Podczas edytowania produktu o nazwie ${product.name} wystąpił błąd!`, 'OK', {
+            duration: 3000, 
+            horizontalPosition: 'center', 
+            verticalPosition: 'top', 
+            panelClass: ['custom-snackbar-error']
+          });
+          const status =  error?.status ? error.status : '';
+          const message =  error?.message ? error.message : '';
+          console.log(`Błąd podczas edytowania prduktu: ${product.name} error: ${error}. Details: ${status}-${message}`);
+          
+        }
+      });
+    }
   }
 
   onCancel(): void {
