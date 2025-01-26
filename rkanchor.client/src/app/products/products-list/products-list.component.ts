@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class ProductsListComponent implements OnInit, OnDestroy {
   products!: Product[];
+  filteredProducts: Product[] = [];
   private refreshProductsSubscription!: Subscription;
 
   constructor(private productService: ProductService) {}
@@ -23,13 +24,25 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   loadProducts(): void {
     this.productService.getAllProducts().subscribe({
-      next: (result) => (this.products = result),
+      next: (result) => {
+        this.products = result;
+        this.filteredProducts = result; 
+      },
       error: (error) => console.error('Błąd podczas pobierania produktów:', error)
     });
   }
 
   onProductSelected(product: Product): void {
     this.productService.selectProduct(product);
+  }
+
+  onSearch(event: Event): void {
+    const searchTerm = (event.target as HTMLInputElement).value.toLowerCase();
+    
+    this.filteredProducts = this.products.filter((product) => 
+      product.name.toLowerCase().includes(searchTerm) || 
+      product.productCode.toLowerCase().includes(searchTerm)
+    );
   }
 
   ngOnDestroy(): void {

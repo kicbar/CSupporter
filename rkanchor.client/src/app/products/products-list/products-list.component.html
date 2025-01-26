@@ -1,9 +1,16 @@
+<div class="search-container">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Wyszukaj produkt</mat-label>
+    <input matInput (input)="onSearch($event)" placeholder="Wpisz nazwę lub kod produktu" />
+  </mat-form-field>
+</div>
+
 <p *ngIf="!products" class="loading-text">Ładowanie produktów...</p>
 
 <div class="product-list-container">
   <div class="product-list-item-container">
     <app-product-list-item
-      *ngFor="let product of products"
+      *ngFor="let product of filteredProducts"
       [product]="product"
       (click)="onProductSelected(product)">
     </app-product-list-item>
