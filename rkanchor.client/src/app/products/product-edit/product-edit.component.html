@@ -1,18 +1,9 @@
-<div class="form-container">
-  <h4 class="details-title">Tryb edycji</h4>
-
-  <div *ngIf="product" class="details-content">
-    <p><strong>Id:</strong> {{ product.id }}</p>
-    <p><strong>Name:</strong> {{ product.name }}</p>
-    <p><strong>Description:</strong> {{ product.description }}</p>
-    <p><strong>Product Code:</strong> {{ product.productCode }}</p>
-    <p><strong>Product Type:</strong> {{ product.productType }}</p>
-    <div class="button-container">
-    </div>    
-  </div>  
-<!--
+<p *ngIf="!product" class="no-product-message">
+  Produkt do edycji nie został wybrany
+</p>
+<div *ngIf="product" class="form-container">
+  <h2>Edytuj produkt</h2>
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Name</mat-label>
       <input matInput placeholder="Enter product name" formControlName="name" />
@@ -48,27 +39,25 @@
       <mat-error *ngIf="productForm.get('productCode')?.invalid && productForm.get('productCode')?.touched">
         Product code is required.
       </mat-error>
-    </mat-form-field>    
+    </mat-form-field>
 
-
-    <div class="button-container">
-      <button
-        mat-raised-button
-        color="primary"
-        type="submit"
-        [disabled]="productForm.invalid"
-      >
-        Zapisz
-      </button>
-      <button
-        mat-raised-button
-        color="warn"
-        type="button"
-        (click)="onCancel()"
-      >
-        Anuluj
-      </button>
-    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="productForm.invalid || !productForm.dirty"
+      class="full-width"
+    >
+      Zapisz
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      class="full-width"
+      (click)="onCancel()"
+    >
+      Anuluj
+    </button>
   </form>
-  -->
 </div>

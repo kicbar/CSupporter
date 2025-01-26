@@ -29,19 +29,19 @@ export class ProductAddComponent {
       const product = this.productForm.value;
       this.productService.addProduct(product).subscribe({
         next: (response) => {
-          this.snackBar.open(`Produkt o nazwie ${response.name} został dodany poprawnie pod identyfikatorem: ${response.id}`, 'Zamknij', {
+          this.snackBar.open(`Produkt o nazwie ${response.name} został dodany poprawnie pod identyfikatorem: ${response.id}`, 'OK', {
             duration: 3000, 
-            horizontalPosition: 'right', 
-            verticalPosition: 'bottom', 
+            horizontalPosition: 'center', 
+            verticalPosition: 'top', 
           });
 
           this.router.navigate(['/products']);
         }, 
         error: (err) => {
-          this.snackBar.open(`Podczas dodawania produktu o nazwie ${product.name} wystąpił błąd!`, 'Zamknij', {
+          this.snackBar.open(`Podczas dodawania produktu o nazwie ${product.name} wystąpił błąd!`, 'OK', {
             duration: 3000, 
-            horizontalPosition: 'right', 
-            verticalPosition: 'bottom', 
+            horizontalPosition: 'center', 
+            verticalPosition: 'top', 
             panelClass: ['custom-snackbar-error']
           });
           console.log('Bład podczas dodawania prduktu: ' + product.name + ' error: ' + err);

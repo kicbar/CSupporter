@@ -14,7 +14,7 @@ export class ProductListItemComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.productService.productSelected.subscribe((selectedProduct) => {
+    this.productService.productSelected$.subscribe((selectedProduct) => {
       this.isActive = this.product === selectedProduct; 
     });
   }

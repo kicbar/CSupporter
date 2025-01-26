@@ -1,18 +1,20 @@
 import { HttpClient } from "@angular/common/http";
 import { Product } from "../models/product.model";
-import { filter, Observable, Subject, tap } from "rxjs";
+import { BehaviorSubject, filter, Observable, Subject, tap } from "rxjs";
 import { EventEmitter, Injectable } from "@angular/core";
 import { ProductDto } from "../models/product.dto";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProductService {
   public products: Product[] = [];
-  productSelected = new EventEmitter<Product>();
+  private productSelectedSubject = new BehaviorSubject<Product | null>(null);
+  productSelected$ = this.productSelectedSubject.asObservable();
   private refreshProductsSubject = new Subject<void>(); 
   refreshProductsSubject$ = this.refreshProductsSubject.asObservable();
 
   constructor(private http: HttpClient) { }
-
   getProduct(productId: number): Observable<Product> {
     return this.http.get<Product>(`https://localhost:7048/Product/${productId}`);
   }
@@ -33,7 +35,7 @@ export class ProductService {
   }
 
   selectProduct(product: Product): void {
-    this.productSelected.emit(product);
+    this.productSelectedSubject.next(product);
   }
 
 }

@@ -43,19 +43,17 @@
         color="primary"
         type="submit"
         [disabled]="productForm.invalid"
-        class="full-width"
-      >
+        class="full-width">
         Zapisz
       </button>
       <button
         mat-raised-button
-        color="primary"
-        type="cancel"
+        color="warn"
+        type="button"
         class="full-width"
-        (click)="onCancel()"
-      >
-        Anuluj
-      </button>      
+        (click)="onCancel()">
+      Anuluj
+    </button> 
     </form>
   </div>
   
