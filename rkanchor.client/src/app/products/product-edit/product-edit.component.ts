@@ -22,6 +22,7 @@ export class ProductEditComponent {
       if (selectedProduct) {
         this.product = selectedProduct;      
           this.productForm = this.fb.group({
+            id: [this.product.id],
             name: [this.product.name || '', Validators.required],
             description: [this.product.description || '', Validators.required],
             productType: [this.product.productType || '', Validators.required],
@@ -41,7 +42,7 @@ export class ProductEditComponent {
             horizontalPosition: 'center', 
             verticalPosition: 'top', 
           });
-
+          this.productService.selectProduct(product);
           this.router.navigate(['/products']);
         }, 
         error: (error) => {
