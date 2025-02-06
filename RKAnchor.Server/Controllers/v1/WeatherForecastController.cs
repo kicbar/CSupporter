@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RKAnchor.Server.Domain.Entities;
 
-namespace RKAnchor.Server.Controllers;
+namespace RKAnchor.Server.Controllers.v1;
 
 [ApiController]
 [Route("[controller]")]
