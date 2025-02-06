@@ -25,8 +25,10 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   loadProducts(): void {
     this.productService.getAllProducts().subscribe({
       next: (result) => {
-        this.products = result;
-        this.filteredProducts = result; 
+        if (result.isSuccess && result.data) {
+          this.products = result.data;
+          this.filteredProducts = result.data;
+        }
       },
       error: (error) => console.error('Błąd podczas pobierania produktów:', error)
     });

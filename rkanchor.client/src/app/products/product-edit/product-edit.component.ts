@@ -37,13 +37,15 @@ export class ProductEditComponent {
       const product = this.productForm.value;
       this.productService.editProduct(this.product.id, product).subscribe({
         next: (response) => {
-          this.snackBar.open(`Produkt o nazwie ${response.name} został poprawnie edytowany.`, 'OK', {
-            duration: 3000, 
-            horizontalPosition: 'center', 
-            verticalPosition: 'top', 
-          });
-          this.productService.selectProduct(product);
-          this.router.navigate(['/products']);
+          if (response.isSuccess && response.data) {
+            this.snackBar.open(`Produkt o nazwie ${response.data.name} został poprawnie edytowany.`, 'OK', {
+              duration: 3000, 
+              horizontalPosition: 'center', 
+              verticalPosition: 'top', 
+            });
+            this.productService.selectProduct(product);
+            this.router.navigate(['/products']);  
+          }
         }, 
         error: (error) => {
           this.snackBar.open(`Podczas edytowania produktu o nazwie ${product.name} wystąpił błąd!`, 'OK', {

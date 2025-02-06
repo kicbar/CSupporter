@@ -26,13 +26,15 @@ export class ProductDetailsComponent {
       if (result) {
         this.productService.removeProduct(product.id).subscribe({
           next: (result) => {
-            if (result === true) {
-              this.snackBar.open(`Product poprawnie usunięty!`, 'OK', {
-                duration: 3000, 
-                horizontalPosition: 'center', 
-                verticalPosition: 'top', 
-                panelClass: ['custom-snackbar-error']
-              });
+            if (result.isSuccess && result.data) {
+              if (result.data === true) {
+                this.snackBar.open(`Product poprawnie usunięty!`, 'OK', {
+                  duration: 3000, 
+                  horizontalPosition: 'center', 
+                  verticalPosition: 'top', 
+                  panelClass: ['custom-snackbar-error']
+                });
+              }
             } else {
               this.snackBar.open(`Podczas usuwania produktu wystąpił błąd!`, 'Zamknij', {
                 duration: 3000, 

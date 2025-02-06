@@ -13,8 +13,8 @@ public class ApiResult<T>
     {
         StatusCode = statusCode;
         IsSuccess = isSuccess;
-        Data = data;
         Message = message;
+        Data = data;
     }
 
     public static ApiResult<T> Success(T data, string? message = null, int statusCode = StatusCodes.Status200OK)

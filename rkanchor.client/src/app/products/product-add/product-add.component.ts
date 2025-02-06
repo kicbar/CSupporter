@@ -29,13 +29,14 @@ export class ProductAddComponent {
       const product = this.productForm.value;
       this.productService.addProduct(product).subscribe({
         next: (response) => {
-          this.snackBar.open(`Produkt o nazwie ${response.name} został dodany poprawnie pod identyfikatorem: ${response.id}`, 'OK', {
-            duration: 3000, 
-            horizontalPosition: 'center', 
-            verticalPosition: 'top', 
-          });
-
-          this.router.navigate(['/products']);
+          if (response.isSuccess && response.data) {
+            this.snackBar.open(`Produkt o nazwie ${response.data.name} został dodany poprawnie pod identyfikatorem: ${response.data.id}`, 'OK', {
+              duration: 3000, 
+              horizontalPosition: 'center', 
+              verticalPosition: 'top', 
+            });
+            this.router.navigate(['/products']);
+          }
         }, 
         error: (error) => {
           this.snackBar.open(`Podczas dodawania produktu o nazwie ${product.name} wystąpił błąd!`, 'OK', {

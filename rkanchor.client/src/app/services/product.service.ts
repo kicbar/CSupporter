@@ -4,6 +4,7 @@ import { BehaviorSubject, filter, Observable, Subject, tap } from "rxjs";
 import { Injectable } from "@angular/core";
 import { ProductDto } from "../models/product.dto";
 import { environment } from "../../envrinments/environments";
+import { ApiResult } from "../models/api.result";
 
 @Injectable({
   providedIn: 'root'
@@ -21,21 +22,21 @@ export class ProductService {
     return this.http.get<Product>(`${this.baseUrl}/Product/${productId}`);
   }
 
-  getAllProducts(): Observable<Product[]> {
-      return this.http.get<Product[]>(`${this.baseUrl}/Product`);
+  getAllProducts(): Observable<ApiResult<Product[]>> {
+      return this.http.get<ApiResult<Product[]>>(`${this.baseUrl}/Product`);
   }
 
-  addProduct(product: ProductDto): Observable<Product> {
-    return this.http.post<Product>(`${this.baseUrl}/Product`, product);
+  addProduct(product: ProductDto): Observable<ApiResult<Product>> {
+    return this.http.post<ApiResult<Product>>(`${this.baseUrl}/Product`, product);
   }
 
-  editProduct(productId: number, product: ProductDto): Observable<Product> {
-    return this.http.put<Product>(`${this.baseUrl}/Product/${productId}`, product);
+  editProduct(productId: number, product: ProductDto): Observable<ApiResult<Product>> {
+    return this.http.put<ApiResult<Product>>(`${this.baseUrl}/Product/${productId}`, product);
   }
 
-  removeProduct(productId: number): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.baseUrl}/Product/${productId}`).pipe(
-      filter((respone) => respone === true), 
+  removeProduct(productId: number): Observable<ApiResult<boolean>> {
+    return this.http.delete<ApiResult<boolean>>(`${this.baseUrl}/Product/${productId}`).pipe(
+      filter((respone) => respone.data === true), 
       tap(() => this.refreshProductsSubject.next())
     );
   }
