@@ -16,12 +16,22 @@ public class AnchorDbContext : DbContext
     public AnchorDbContext(DbContextOptions<AnchorDbContext> options) : base(options) { }
 
     public DbSet<Product> Products { get; set; }
+    public DbSet<Client> Clients { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(modelBuilder);
+        foreach (var entityType in modelBuilder.Model.GetEntityTypes()
+             .Where(t => t.ClrType.IsSubclassOf(typeof(BaseEntity))))
+        {
+            var method = typeof(ModelBuilder)
+                .GetMethods()
+                .First(m => m.Name == nameof(ModelBuilder.ApplyConfiguration) && m.GetParameters()[0].ParameterType.GetGenericTypeDefinition() == typeof(IEntityTypeConfiguration<>));
 
-        modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            var configInstance = Activator.CreateInstance(typeof(BaseEntityConfiguration<>).MakeGenericType(entityType.ClrType));
+            method.MakeGenericMethod(entityType.ClrType).Invoke(modelBuilder, new[] { configInstance });
+        }
+
+        base.OnModelCreating(modelBuilder);
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

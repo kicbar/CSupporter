@@ -1,14 +1,18 @@
-﻿namespace RKAnchor.Server.Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-public class Product
+namespace RKAnchor.Server.Domain.Entities;
+
+public class Product : BaseEntity
 {
-    public int Id { get; set; }
+    [Column(Order = 2)]
     public string ProductCode { get; set; }
+
+    [Column(Order = 3)]
     public string Name { get; set; }
+
+    [Column(Order = 4)]
     public string Description { get; set; }
+
+    [Column(Order = 5)]
     public string ProductType { get; set; }
-    public string InsertUser { get; set; }
-    public DateTime InsertDate { get; set; }
-    public string UpdateUser { get; set; }
-    public DateTime UpdateDate { get; set; }
 }

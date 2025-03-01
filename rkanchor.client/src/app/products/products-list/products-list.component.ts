@@ -25,6 +25,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   loadProducts(): void {
     this.productService.getAllProducts().subscribe({
       next: (result) => {
+        // trzeba poprawic tą obsluge
         if (result.isSuccess && result.data) {
           this.products = result.data;
           this.filteredProducts = result.data;
