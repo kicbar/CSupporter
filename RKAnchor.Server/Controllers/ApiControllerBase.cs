@@ -1,6 +1,4 @@
-﻿// Ignore Spelling: Api
-
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RKAnchor.Server.Application.Models;
 

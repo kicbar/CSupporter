@@ -1,6 +1,4 @@
-﻿// Ignore Spelling: Api
-
-namespace RKAnchor.Server.Application.Models;
+﻿namespace RKAnchor.Server.Application.Models;
 
 public class ApiResult<T>
 {

@@ -9,11 +9,11 @@ namespace RKAnchor.Server.Controllers.v1
     public class DictionaryController(IMediator mediator) : ApiControllerBase(mediator)
     {
         [HttpGet("{dictionaryType}")]
-        public Task<ActionResult<ApiResult<IEnumerable<string>>>> GetDictionary(string dictionaryType)
+        public ActionResult<ApiResult<IEnumerable<string>>> GetDictionary(string dictionaryType)
         {
             var result = _mediator.Send(new GetDictionaryQuery() { DictionaryType = dictionaryType });
 
-            return Task.FromResult(Success(result.Result));
+            return Success(result.Result);
         }
     }
 }

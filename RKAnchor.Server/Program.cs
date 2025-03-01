@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RKAnchor.Server;
+using RKAnchor.Server.Application.Middleware;
 using RKAnchor.Server.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -49,6 +50,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
