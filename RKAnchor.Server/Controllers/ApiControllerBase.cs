@@ -1,5 +1,6 @@
 ﻿// Ignore Spelling: Api
 
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RKAnchor.Server.Application.Models;
 
@@ -9,6 +10,13 @@ namespace RKAnchor.Server.Controllers;
 [Route("v{version:apiVersion}/[controller]")]
 public abstract class ApiControllerBase : ControllerBase
 {
+    protected readonly IMediator _mediator;
+
+    public ApiControllerBase(IMediator mediator)
+    {
+        _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+    }
+
     protected ActionResult<ApiResult<T>> Success<T>(T data, string message = "") =>
         Success(data, message, StatusCodes.Status200OK);
     protected ActionResult<ApiResult<T>> Created<T>(T data, string message) =>

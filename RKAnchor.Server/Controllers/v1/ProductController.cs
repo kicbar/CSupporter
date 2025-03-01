@@ -8,15 +8,8 @@ using RKAnchor.Server.Domain.Entities;
 namespace RKAnchor.Server.Controllers.v1;
 
 [ApiVersion("1.0")]
-public class ProductController : ApiControllerBase
+public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
 {
-    private readonly IMediator _mediator;
-
-    public ProductController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
-
     [HttpPost]
     public async Task<ActionResult<ApiResult<Product>>> CreateProduct([FromBody] CreateProductCommand command)
     {
