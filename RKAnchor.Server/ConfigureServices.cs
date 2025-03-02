@@ -9,6 +9,7 @@ public static class ConfigureServices
     internal static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddTransient<IProductRepository, ProductRepository>();
+        services.AddTransient<IClientRepository, ClientRepository>();
 
         return services;
     }
@@ -24,8 +25,8 @@ public static class ConfigureServices
          
         services.AddVersionedApiExplorer(options =>
         {
-            options.GroupNameFormat = "'v'VVV"; // Format wersji w ścieżkach API
-            options.SubstituteApiVersionInUrl = true; // Podstawia wersję w URL
+            options.GroupNameFormat = "'v'VVV";
+            options.SubstituteApiVersionInUrl = true;
         });
 
         return services;

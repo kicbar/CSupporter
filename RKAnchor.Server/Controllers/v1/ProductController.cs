@@ -11,32 +11,31 @@ namespace RKAnchor.Server.Controllers.v1;
 public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
 {
     [HttpPost]
-    public async Task<ActionResult<ApiResult<Product>>> CreateProduct([FromBody] CreateProductCommand command)
+    public async Task<ActionResult<ApiResult<Product>>> CreateProduct([FromBody] CreateProductCommand command, CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(command);
+        var response = await _mediator.Send(command, cancellationToken);
         return Success(response);
     }
 
     [HttpGet]
-    public async Task<ActionResult<ApiResult<IEnumerable<Product>>>> GetAllProducts()
+    public async Task<ActionResult<ApiResult<IEnumerable<Product>>>> GetAllProducts(CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(new GetProductsQuery());
+        var response = await _mediator.Send(new GetProductsQuery(), cancellationToken);
         return Success(response);
     }
 
     [HttpGet("{productId}")]
-    public async Task<ActionResult<ApiResult<Product>>> GetProduct(int productId)
+    public async Task<ActionResult<ApiResult<Product>>> GetProduct(int productId, CancellationToken cancellationToken)
     {
-        var response = await _mediator.Send(new GetProductQuery() { ProductId = productId });
+        var response = await _mediator.Send(new GetProductQuery() { ProductId = productId }, cancellationToken);
         return Success(response);
-
     }
 
     [HttpPut("{productId}")]
-    public async Task<ActionResult<ApiResult<Product>>> UpdateProduct(int productId, [FromBody] UpdateProductCommand command)
+    public async Task<ActionResult<ApiResult<Product>>> UpdateProduct(int productId, [FromBody] UpdateProductCommand command, CancellationToken cancellationToken)
     {
         command.ProductId = productId;
-        var response = await _mediator.Send(command);
+        var response = await _mediator.Send(command, cancellationToken);
         return Success(response);
     }
 }

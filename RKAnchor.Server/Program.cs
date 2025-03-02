@@ -28,15 +28,15 @@ builder.Services.AddServices();
 
 builder.Services.AddApiVersioning(options =>
 {
-    options.ReportApiVersions = true; // Dodaje nag³ówek z wersjami API
+    options.ReportApiVersions = true;
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.DefaultApiVersion = new ApiVersion(1, 0);
 });
 
 object value = builder.Services.AddVersionedApiExplorer(options =>
 {
-    options.GroupNameFormat = "'v'VVV"; // Format wersji w œcie¿kach API
-    options.SubstituteApiVersionInUrl = true; // Podstawia wersjê w URL
+    options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
 });
 
 var app = builder.Build();

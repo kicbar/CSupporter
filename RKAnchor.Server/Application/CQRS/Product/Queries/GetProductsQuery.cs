@@ -3,7 +3,7 @@ using RKAnchor.Server.Domain.Interfaces;
 
 namespace RKAnchor.Server.Application.CQRS.Product.Queries;
 
-public class GetProductsQuery : IRequest<IEnumerable<Domain.Entities.Product>> { }
+public record GetProductsQuery : IRequest<IEnumerable<Domain.Entities.Product>> { }
 
 public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<Domain.Entities.Product>>
 {
