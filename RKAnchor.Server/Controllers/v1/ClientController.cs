@@ -6,8 +6,7 @@ using RKAnchor.Server.Domain.Entities;
 
 namespace RKAnchor.Server.Controllers.v1
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [ApiVersion("1.0")]
     public class ClientController : ApiControllerBase
     {
         public ClientController(IMediator mediator) : base(mediator) { }
