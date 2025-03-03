@@ -17,6 +17,11 @@ public class ClientRepository : IClientRepository
         _connectionString = configuration.GetConnectionString("AnchorDbConnection");
     }
 
+    public async Task<IEnumerable<Client>> GetAllClients(CancellationToken cancellationToken)
+    {
+        return await _dbContext.Clients.ToListAsync(cancellationToken);
+    }
+
     public async Task<Client?> GetClientByLastName(string lastName, CancellationToken cancellationToken)
     {
         try
@@ -47,5 +52,13 @@ public class ClientRepository : IClientRepository
         {
             throw exc; 
         }
+    }
+
+    public async Task<Client> AddClient(Client client, CancellationToken cancellationToken)
+    {
+        await _dbContext.Clients.AddAsync(client);
+        await _dbContext.SaveChangesAsync(cancellationToken);
+
+        return client;
     }
 }

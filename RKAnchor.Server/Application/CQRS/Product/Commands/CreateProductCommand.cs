@@ -28,10 +28,6 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
             Name = command.Name,
             Description = command.Description,
             ProductType = command.ProductType,
-            InsertDate = DateTime.Now,
-            InsertUser = "sys_user",
-            UpdateDate = DateTime.Now,
-            UpdateUser = "sys_user",
         };
 
         return await _productRepository.AddProduct(product, cancellationToken);
