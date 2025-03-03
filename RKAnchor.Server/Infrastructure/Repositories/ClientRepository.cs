@@ -41,7 +41,8 @@ public class ClientRepository : IClientRepository
                     {
                         Id = reader.GetInt32(0),
                         LastName = reader.GetString(1),
-                        FirstName = reader.GetString(2)
+                        FirstName = reader.GetString(2),
+                        ClientType = reader.GetString(3),
                     };
                 }
             }
