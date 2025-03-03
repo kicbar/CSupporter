@@ -1,0 +1,44 @@
+<div class="form-container">
+    <h2>Dodawanie klienta</h2>
+    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Imię</mat-label>
+        <input matInput placeholder="Podaj imię" formControlName="firstName" />
+        <mat-error *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched">
+          Imię jest wymagane.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nazwisko</mat-label>
+        <input matInput placeholder="Podaj nazwisko" formControlName="lastName" />
+        <mat-error *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched">
+          Nazwisko jest wymagane.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Typ klienta</mat-label>
+        <input matInput placeholder="Podaj typ klienta" formControlName="clientType" />
+        <mat-error *ngIf="clientForm.get('clientType')?.invalid && clientForm.get('clientType')?.touched">
+          Typ klienta jest wymagany.
+        </mat-error>
+      </mat-form-field>
+  
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="clientForm.invalid"
+        class="full-width">
+        Zapisz
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        class="full-width">
+      Anuluj
+    </button> 
+  </form>
+</div>

@@ -1,0 +1,23 @@
+<h2>Lista klientów</h2>
+<div class="container">
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nazwisko</mat-label>
+        <input matInput placeholder="Podaj nazwisko" formControlName="lastName" />
+      </mat-form-field>    
+    <button
+        mat-raised-button
+        color="primary"
+        type="submit" 
+        (click)="refreshClientList()">
+        Odśwież listę
+    </button>
+</div>
+<div class="container">
+    <ol>
+      <li *ngFor="let client of clients">
+        Imię:<span [innerHTML]="client.firstName"></span> <!-- <script>alert('XSS Atak!')</script> -->
+        Nazwisko:<span [innerHTML]="client.lastName"></span>  <!-- <img src="x" onerror="alert('XSS attack!')"> -->
+        Typ:<span [innerHTML]="client.clientType"></span>
+      </li>
+    </ol>        
+</div>

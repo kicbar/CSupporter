@@ -1,0 +1,18 @@
+<h2>Wyszukiwanie klienta po nazwisku</h2>
+<form [formGroup]="clientForm" (ngSubmit)="onSubmitSearch()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nazwisko</mat-label>
+      <input matInput formControlName="lastName" placeholder="Wpisz nazwisko">
+      <mat-error *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched">
+        Nazwisko jest wymagane.
+      </mat-error>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" type="submit" [disabled]="clientForm.invalid">
+      Wyszukaj
+    </button>
+</form>
+<div>
+    <h1>Znaleziony klient</h1>
+    {{foundedClient?.firstName}} - {{foundedClient?.lastName}} - {{foundedClient?.clientType}}
+</div>

@@ -23,6 +23,10 @@ import { ProductService } from './services/product.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ClientDetailsComponent } from './clients/client-details/client-details.component';
+import { ClientAddComponent } from './clients/client-add/client-add.component';
+import { ClientListComponent } from './clients/client-list/client-list.component';
+import { ClientService } from './services/client.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,9 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     ProductAddComponent,
     ConfirmationDialogComponent,
     ProductEditComponent,
+    ClientDetailsComponent,
+    ClientAddComponent,
+    ClientListComponent,
   ],
   imports: [
     BrowserModule, 
@@ -52,7 +59,10 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
     MatDialogModule,
     MatSnackBarModule,
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    ClientService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
