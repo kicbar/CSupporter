@@ -10,6 +10,8 @@ public static class ConfigureServices
     {
         services.AddTransient<IProductRepository, ProductRepository>();
         services.AddTransient<IClientRepository, ClientRepository>();
+        services.AddTransient<IUserRepository, UserRepository>();
+        services.AddTransient<IRoleRepository, RoleRepository>();
 
         return services;
     }

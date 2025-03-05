@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RKAnchor.Server.Application.CQRS.Product.Commands;
-using RKAnchor.Server.Application.CQRS.Product.Queries;
+using RKAnchor.Server.Application.CQRS.Products.Commands;
+using RKAnchor.Server.Application.CQRS.Products.Queries;
 using RKAnchor.Server.Application.Models;
 using RKAnchor.Server.Domain.Entities;
 
