@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using RKAnchor.Server.Domain.Entities;
 using RKAnchor.Server.Domain.Interfaces;
 using RKAnchor.Server.Infrastructure.Repositories;
 
@@ -12,6 +14,7 @@ public static class ConfigureServices
         services.AddTransient<IClientRepository, ClientRepository>();
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<IRoleRepository, RoleRepository>();
+        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
         return services;
     }

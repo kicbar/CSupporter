@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
 using RKAnchor.Server.Domain.Entities;
 using RKAnchor.Server.Domain.Enums;
 using RKAnchor.Server.Domain.Interfaces;
@@ -18,11 +19,13 @@ public class CreateUserQueryCommandHandler : IRequestHandler<CreateUserQuery, in
 {
     private readonly IUserRepository _userRepository;
     private readonly IRoleRepository _roleRepository;
+    private readonly IPasswordHasher<User> _passwordHasher;
 
-    public CreateUserQueryCommandHandler(IUserRepository userRepository, IRoleRepository roleRepository)
+    public CreateUserQueryCommandHandler(IUserRepository userRepository, IRoleRepository roleRepository, IPasswordHasher<User> passwordHasher)
     {
         _userRepository = userRepository;
         _roleRepository = roleRepository;
+        _passwordHasher = passwordHasher;
     }
 
     public async Task<int> Handle(CreateUserQuery request, CancellationToken cancellationToken)
@@ -33,9 +36,11 @@ public class CreateUserQueryCommandHandler : IRequestHandler<CreateUserQuery, in
             FirstName = request.FirstName,
             LastName = request.LastName,
             Nationality = request.Nationality,
-            PasswordHash = request.PasswordHash,
             Role = await _roleRepository.GetRole(RoleType.User, cancellationToken),
         };
+        var passwordHash = _passwordHasher.HashPassword(user, request.PasswordHash);
+        user.PasswordHash = passwordHash;
+
         var result = await _userRepository.CreateUser(user, cancellationToken);
 
         if (result == 0)
