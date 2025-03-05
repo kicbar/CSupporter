@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using RKAnchor.Server.Domain.Interfaces;
 
-namespace RKAnchor.Server.Application.CQRS.Product.Commands;
+namespace RKAnchor.Server.Application.CQRS.Products.Commands;
 
 public record RemoveProductCommand : IRequest<bool>
 {

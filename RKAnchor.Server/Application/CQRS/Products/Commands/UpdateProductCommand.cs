@@ -2,7 +2,7 @@
 using RKAnchor.Server.Domain.Interfaces;
 using System.Text.Json.Serialization;
 
-namespace RKAnchor.Server.Application.CQRS.Product.Commands;
+namespace RKAnchor.Server.Application.CQRS.Products.Commands;
 
 public record UpdateProductCommand : IRequest<Domain.Entities.Product>
 {
