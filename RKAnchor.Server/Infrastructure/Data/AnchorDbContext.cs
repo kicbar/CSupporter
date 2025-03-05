@@ -17,6 +17,8 @@ public class AnchorDbContext : DbContext
 
     public DbSet<Product> Products { get; set; }
     public DbSet<Client> Clients { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Role> Roles { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
