@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using RKAnchor.Server.Application.Exceptions;
 using RKAnchor.Server.Domain.Entities;
@@ -18,12 +19,14 @@ public record CreateUserQuery : IRequest<int>
 
 public class CreateUserQueryCommandHandler : IRequestHandler<CreateUserQuery, int>
 {
+    private readonly IMapper _mapper;
     private readonly IUserRepository _userRepository;
     private readonly IRoleRepository _roleRepository;
     private readonly IPasswordHasher<User> _passwordHasher;
 
-    public CreateUserQueryCommandHandler(IUserRepository userRepository, IRoleRepository roleRepository, IPasswordHasher<User> passwordHasher)
+    public CreateUserQueryCommandHandler(IUserRepository userRepository, IRoleRepository roleRepository, IPasswordHasher<User> passwordHasher, IMapper mapper)
     {
+        _mapper = mapper;
         _userRepository = userRepository;
         _roleRepository = roleRepository;
         _passwordHasher = passwordHasher;
@@ -36,14 +39,9 @@ public class CreateUserQueryCommandHandler : IRequestHandler<CreateUserQuery, in
         if (userExist is not null) 
             throw new EntityAlreadyExistException(request.Email, userExist.GetType().Name);
 
-        var user = new User() 
-        { 
-            Email = request.Email,
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            Nationality = request.Nationality,
-            Role = await _roleRepository.GetRole(RoleType.User, cancellationToken),
-        };
+        var user = _mapper.Map<User>(request);
+        user.Role = await _roleRepository.GetRole(RoleType.User, cancellationToken);
+
         var passwordHash = _passwordHasher.HashPassword(user, request.PasswordHash);
         user.PasswordHash = passwordHash;
 

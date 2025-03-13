@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using RKAnchor.Server.Domain.Entities;
 using RKAnchor.Server.Domain.Interfaces;
 
@@ -13,21 +14,18 @@ public record CreateClientCommand : IRequest<Client>
 
 public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Client>
 {
+    private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
 
-    public CreateClientCommandHandler(IClientRepository clientRepository)
+    public CreateClientCommandHandler(IClientRepository clientRepository, IMapper mapper)
     {
+        _mapper = mapper;
         _clientRepository = clientRepository;
     }
 
     public async Task<Client> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
-        var client = new Client() 
-        { 
-            FirstName = request.FirstName,
-            LastName = request.LastName,
-            ClientType = request.ClientType,
-        };
+        var client = _mapper.Map<Client>(request);
 
         return await _clientRepository.AddClient(client, cancellationToken);
     }

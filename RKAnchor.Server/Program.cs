@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using RKAnchor.Server;
 using RKAnchor.Server.Application.Middleware;
 using RKAnchor.Server.Infrastructure.Data;
+using RKAnchor.Server.Infrastructure.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,7 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(AnchorProfile));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddServices();
