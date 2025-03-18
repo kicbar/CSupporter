@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces;
+using RKAnchor.Server.Domain.Interfaces.IRepositories;
 
 namespace RKAnchor.Server.Application.CQRS.Clients.Command;
 

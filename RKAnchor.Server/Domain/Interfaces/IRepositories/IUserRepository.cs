@@ -1,6 +1,6 @@
 ﻿using RKAnchor.Server.Domain.Entities;
 
-namespace RKAnchor.Server.Domain.Interfaces;
+namespace RKAnchor.Server.Domain.Interfaces.IRepositories;
 
 public interface IUserRepository
 {

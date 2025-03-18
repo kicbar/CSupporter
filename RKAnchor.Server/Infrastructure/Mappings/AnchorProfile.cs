@@ -12,7 +12,7 @@ public class AnchorProfile : Profile
     {
         CreateMap<CreateClientCommand, Client>();
 
-        CreateMap<CreateUserQuery, User>();
+        CreateMap<CreateUserCommand, User>();
 
         CreateMap<CreateProductCommand, Product>();
     }

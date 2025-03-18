@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using RKAnchor.Server.Domain.Interfaces;
+using RKAnchor.Server.Domain.Interfaces.IRepositories;
 using System.Text.Json.Serialization;
 
 namespace RKAnchor.Server.Application.CQRS.Products.Commands;

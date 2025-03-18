@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RKAnchor.Server.Application.Exceptions;
 using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces;
+using RKAnchor.Server.Domain.Interfaces.IRepositories;
 using RKAnchor.Server.Infrastructure.Data;
 
 namespace RKAnchor.Server.Infrastructure.Repositories;

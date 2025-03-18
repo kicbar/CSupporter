@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using RKAnchor.Server.Application.Models.Configuration;
+using RKAnchor.Server.Application.Services;
 using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces;
+using RKAnchor.Server.Domain.Interfaces.IRepositories;
+using RKAnchor.Server.Domain.Interfaces.IServices;
 using RKAnchor.Server.Infrastructure.Repositories;
+using System.Text;
 
 namespace RKAnchor.Server;
 
@@ -14,6 +19,7 @@ public static class ConfigureServices
         services.AddTransient<IClientRepository, ClientRepository>();
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<IRoleRepository, RoleRepository>();
+        services.AddScoped<IJwtProviderService, JwtProviderService>();
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
         return services;
@@ -32,6 +38,31 @@ public static class ConfigureServices
         {
             options.GroupNameFormat = "'v'VVV";
             options.SubstituteApiVersionInUrl = true;
+        });
+
+        return services;
+    }
+
+    internal static IServiceCollection AddJwtIdentity(this IServiceCollection services, IConfiguration configuration)
+    {
+        var jwtOptions = new JwtOptions();
+        configuration.GetSection("jwt").Bind(jwtOptions);
+
+        services.AddSingleton(jwtOptions);
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = "Bearer";
+            options.DefaultScheme = "Bearer";
+            options.DefaultChallengeScheme = "Bearer";
+        }).AddJwtBearer(cfg => 
+        {
+            cfg.RequireHttpsMetadata = false;
+            cfg.TokenValidationParameters = new TokenValidationParameters()
+            {
+                ValidIssuer = jwtOptions.JwtIssuer,
+                ValidAudience = jwtOptions.JwtIssuer,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.JwtKey)),
+            };
         });
 
         return services;

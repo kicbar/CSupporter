@@ -27,6 +27,7 @@ builder.Services.AddAutoMapper(typeof(AnchorProfile));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddServices();
+builder.Services.AddJwtIdentity(builder.Configuration);
 
 builder.Services.AddApiVersioning(options =>
 {
@@ -47,11 +48,11 @@ app.UseDefaultFiles();
 app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
+app.UseAuthentication();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 

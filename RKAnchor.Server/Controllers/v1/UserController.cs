@@ -10,10 +10,17 @@ namespace RKAnchor.Server.Controllers.v1
     {
         public UserController(IMediator mediator) : base(mediator) { }
 
-        [HttpPost]
-        public async Task<ActionResult<ApiResult<int>>> CreateUser([FromBody] CreateUserQuery query, CancellationToken cancellationToken)
+        [HttpPost("register")]
+        public async Task<ActionResult<ApiResult<int>>> CreateUser([FromBody] CreateUserCommand command, CancellationToken cancellationToken)
         {
-            var result = await _mediator.Send(query, cancellationToken);
+            var result = await _mediator.Send(command, cancellationToken);
+            return Success(result);
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<ApiResult<string>>> LoginUser([FromBody] LoginUserCommand command, CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(command, cancellationToken);
             return Success(result);
         }
     }

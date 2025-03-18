@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using RKAnchor.Server.Domain.Interfaces;
+using RKAnchor.Server.Domain.Interfaces.IRepositories;
 
 namespace RKAnchor.Server.Application.CQRS.Products.Queries;
 

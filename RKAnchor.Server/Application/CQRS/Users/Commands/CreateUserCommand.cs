@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Identity;
 using RKAnchor.Server.Application.Exceptions;
 using RKAnchor.Server.Domain.Entities;
 using RKAnchor.Server.Domain.Enums;
-using RKAnchor.Server.Domain.Interfaces;
+using RKAnchor.Server.Domain.Interfaces.IRepositories;
 
 namespace RKAnchor.Server.Application.CQRS.Users.Commands;
 
-public record CreateUserQuery : IRequest<int>
+public record CreateUserCommand : IRequest<int>
 {
     public string Email { get; set; }
     public string FirstName { get; set; }
@@ -17,14 +17,14 @@ public record CreateUserQuery : IRequest<int>
     public string PasswordHash { get; set; }
 }
 
-public class CreateUserQueryCommandHandler : IRequestHandler<CreateUserQuery, int>
+public class CreateUserCommandCommandHandler : IRequestHandler<CreateUserCommand, int>
 {
     private readonly IMapper _mapper;
     private readonly IUserRepository _userRepository;
     private readonly IRoleRepository _roleRepository;
     private readonly IPasswordHasher<User> _passwordHasher;
 
-    public CreateUserQueryCommandHandler(IUserRepository userRepository, IRoleRepository roleRepository, IPasswordHasher<User> passwordHasher, IMapper mapper)
+    public CreateUserCommandCommandHandler(IUserRepository userRepository, IRoleRepository roleRepository, IPasswordHasher<User> passwordHasher, IMapper mapper)
     {
         _mapper = mapper;
         _userRepository = userRepository;
@@ -32,7 +32,7 @@ public class CreateUserQueryCommandHandler : IRequestHandler<CreateUserQuery, in
         _passwordHasher = passwordHasher;
     }
 
-    public async Task<int> Handle(CreateUserQuery request, CancellationToken cancellationToken)
+    public async Task<int> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var userExist = await _userRepository.GetUserByEmail(request.Email, cancellationToken);
 

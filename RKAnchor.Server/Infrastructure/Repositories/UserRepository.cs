@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces;
+using RKAnchor.Server.Domain.Interfaces.IRepositories;
 using RKAnchor.Server.Infrastructure.Data;
 
 namespace RKAnchor.Server.Infrastructure.Repositories;
@@ -16,7 +16,9 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetUserByEmail(string email, CancellationToken cancellationToken)
     {
-        return await _anchorDbContext.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        return await _anchorDbContext.Users
+            .Include(x => x.Role)
+            .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
     }
 
     public async Task<int> CreateUser(User user, CancellationToken cancellationToken)
