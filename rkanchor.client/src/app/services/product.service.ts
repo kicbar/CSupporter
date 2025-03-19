@@ -18,8 +18,9 @@ export class ProductService {
   refreshProductsSubject$ = this.refreshProductsSubject.asObservable();
 
   constructor(private http: HttpClient) { }
-  getProduct(productId: number): Observable<Product> {
-    return this.http.get<Product>(`${this.baseUrl}/Product/${productId}`);
+
+  getProduct(productId: number): Observable<ApiResult<Product>> {
+    return this.http.get<ApiResult<Product>>(`${this.baseUrl}/Product/${productId}`);
   }
 
   getAllProducts(): Observable<ApiResult<Product[]>> {

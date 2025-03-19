@@ -1,5 +1,9 @@
-﻿<mat-toolbar color="primary">
+<mat-toolbar color="primary">
   <span>Anchor RK</span>
+  <span class="spacer"></span>
+  <button mat-button *ngIf="isAuthenticated" (click)="logout()">Wyloguj</button>
+  <button mat-button *ngIf="!isAuthenticated" routerLink="/login">Logowanie</button>
+  <button mat-button *ngIf="!isAuthenticated" routerLink="/register">Rejestracja</button>
 </mat-toolbar>
 
 <mat-tab-group

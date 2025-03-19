@@ -33,7 +33,7 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
         var user = await _userRepository.GetUserByEmail(request.Email, cancellationToken);
 
         if (user is null)
-            throw new EntityNotFoundException(request.Email, user.GetType().Name);
+            throw new EntityNotFoundException(request.Email, nameof(User));
 
         var passwordVerificationResult = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, request.Password);
 

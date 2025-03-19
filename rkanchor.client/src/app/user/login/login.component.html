@@ -1,0 +1,23 @@
+<h2>Logowanie</h2>
+<form [formGroup]="userForm" (ngSubmit)="login()" class="login-container">
+    <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Podaj email" formControlName="email" />
+        <mat-error *ngIf="userForm.get('email')?.hasError('required')">
+          Email jest wymagany.
+        </mat-error>
+        <mat-error *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched">
+            Wprowadź poprawny adres email.
+        </mat-error>        
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Hasło</mat-label>
+        <input matInput type="password" placeholder="Podaj hasło" formControlName="password" />
+        <mat-error *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+          Hasło jest wymagane.
+        </mat-error>
+      </mat-form-field>      
+
+  <button mat-raised-button color="primary" type="submit">Zaloguj</button>
+</form>

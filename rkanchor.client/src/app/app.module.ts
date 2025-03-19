@@ -27,6 +27,9 @@ import { ClientDetailsComponent } from './clients/client-details/client-details.
 import { ClientAddComponent } from './clients/client-add/client-add.component';
 import { ClientListComponent } from './clients/client-list/client-list.component';
 import { ClientService } from './services/client.service';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './user/login/login.component';
+import { RegisterComponent } from './user/register/register.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +47,8 @@ import { ClientService } from './services/client.service';
     ClientDetailsComponent,
     ClientAddComponent,
     ClientListComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule, 
@@ -62,6 +67,7 @@ import { ClientService } from './services/client.service';
   providers: [
     ProductService,
     ClientService,
+    AuthService,
   ],
   bootstrap: [AppComponent]
 })
