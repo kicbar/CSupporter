@@ -19,12 +19,12 @@ public class JwtProviderService : IJwtProviderService
 
     public string GenerateJwtToken(User user)
     {
-
         var claims = new List<Claim>()
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new Claim(ClaimTypes.Role, user.Role.RoleName),
             new Claim(ClaimTypes.Email, user.Email),
+            new Claim(ClaimTypes.Name, user.Email),
             new Claim("Nationality", user.Nationality),
         };
 

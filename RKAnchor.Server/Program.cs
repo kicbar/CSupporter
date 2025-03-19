@@ -27,6 +27,7 @@ builder.Services.AddAutoMapper(typeof(AnchorProfile));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddServices();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddJwtIdentity(builder.Configuration);
 
 builder.Services.AddApiVersioning(options =>

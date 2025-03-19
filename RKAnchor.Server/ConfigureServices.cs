@@ -20,6 +20,7 @@ public static class ConfigureServices
         services.AddTransient<IUserRepository, UserRepository>();
         services.AddTransient<IRoleRepository, RoleRepository>();
         services.AddScoped<IJwtProviderService, JwtProviderService>();
+        services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
         return services;
