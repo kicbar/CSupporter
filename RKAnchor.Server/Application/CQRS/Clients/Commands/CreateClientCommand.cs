@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using RKAnchor.Server.Application.Services;
 using RKAnchor.Server.Domain.Entities;
 using RKAnchor.Server.Domain.Interfaces.IRepositories;
+using RKAnchor.Server.Domain.Interfaces.IServices;
 
 namespace RKAnchor.Server.Application.CQRS.Clients.Command;
 
@@ -16,16 +18,24 @@ public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, C
 {
     private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
+    private readonly ICurrentUserService _currentUserService;
 
-    public CreateClientCommandHandler(IClientRepository clientRepository, IMapper mapper)
+    public CreateClientCommandHandler(IMapper mapper, IClientRepository clientRepository, ICurrentUserService currentUserService)
     {
         _mapper = mapper;
         _clientRepository = clientRepository;
+        _currentUserService = currentUserService;
     }
 
     public async Task<Client> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
+        var currentUser = _currentUserService?.UserEmail;
         var client = _mapper.Map<Client>(request);
+        if (currentUser is not null) 
+        {
+            client.InsertUser = currentUser;
+            client.UpdateUser = currentUser;
+        }
 
         return await _clientRepository.AddClient(client, cancellationToken);
     }

@@ -1,10 +1,13 @@
 ﻿using MediatR;
+using RKAnchor.Server.Application.Services;
+using RKAnchor.Server.Domain.Entities;
 using RKAnchor.Server.Domain.Interfaces.IRepositories;
+using RKAnchor.Server.Domain.Interfaces.IServices;
 using System.Text.Json.Serialization;
 
 namespace RKAnchor.Server.Application.CQRS.Products.Commands;
 
-public record UpdateProductCommand : IRequest<Domain.Entities.Product>
+public record UpdateProductCommand : IRequest<Product>
 {
     [JsonIgnore]
     public int ProductId { get; set; }
@@ -14,22 +17,27 @@ public record UpdateProductCommand : IRequest<Domain.Entities.Product>
     public string ProductType { get; set; }
 }
 
-public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Domain.Entities.Product>
+public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Product>
 {
     private readonly IProductRepository _productRepository;
+    private readonly ICurrentUserService _currentUserService;
 
-    public UpdateProductCommandHandler(IProductRepository productRepository)
+    public UpdateProductCommandHandler(IProductRepository productRepository, ICurrentUserService currentUserService)
     {
         _productRepository = productRepository;
+        _currentUserService = currentUserService;
     }
 
-    public async Task<Domain.Entities.Product> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
+    public async Task<Product> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
     {
         var product = await _productRepository.GetProductById(command.ProductId, cancellationToken);
         product.ProductCode = command.ProductCode;
         product.Name = command.Name;
         product.Description = command.Description;
         product.ProductType = command.ProductType;
+        var currentUser = _currentUserService?.UserEmail;
+        if (currentUser is not null) 
+            product.UpdateUser = currentUser;
 
         return await _productRepository.UpdateProduct(product, cancellationToken);
     }

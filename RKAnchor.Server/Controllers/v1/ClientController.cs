@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RKAnchor.Server.Application.CQRS.Clients.Command;
 using RKAnchor.Server.Application.CQRS.Clients.Queries;
@@ -7,6 +8,7 @@ using RKAnchor.Server.Domain.Entities;
 
 namespace RKAnchor.Server.Controllers.v1
 {
+    [Authorize]
     [ApiVersion("1.0")]
     public class ClientController : ApiControllerBase
     {
