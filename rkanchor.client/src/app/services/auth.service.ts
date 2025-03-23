@@ -17,8 +17,15 @@ export class AuthService {
   logIn(user: UserDto) {
     this.http.post<ApiResult<string>>(`${environment.apiBaseUrl}/User/login`, user).subscribe({
       next: (result) => {
-        if (result.isSuccess && result.data) 
+        if (result.isSuccess && result.data) {
           localStorage.setItem(this.tokenKey, result.data);
+
+          this.snackBar.open(`Użytkownik ${user.email} zalogowany`, 'OK', {
+            duration: 3000, 
+            horizontalPosition: 'center', 
+            verticalPosition: 'top', 
+          });
+        }
         else
           this.snackBar.open(`Nie udało się zalogować`, 'OK', {
             duration: 3000, 

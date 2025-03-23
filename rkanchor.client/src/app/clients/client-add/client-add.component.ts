@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Client } from '../../models/client.model';
@@ -9,7 +9,7 @@ import { ClientService } from '../../services/client.service';
   templateUrl: './client-add.component.html',
   styleUrl: './client-add.component.css'
 })
-export class ClientAddComponent {
+export class ClientAddComponent implements OnInit {
   clientForm!: FormGroup;
   clients: Client[] = [];
   

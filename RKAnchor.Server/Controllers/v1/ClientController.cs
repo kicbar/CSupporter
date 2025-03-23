@@ -8,12 +8,13 @@ using RKAnchor.Server.Domain.Entities;
 
 namespace RKAnchor.Server.Controllers.v1;
 
-[Authorize]
+
 [ApiVersion("1.0")]
 public class ClientController : ApiControllerBase
 {
     public ClientController(IMediator mediator) : base(mediator) { }
 
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<ApiResult<IEnumerable<Client>>>> GetAllClients(CancellationToken cancellationToken) 
     {
@@ -28,6 +29,7 @@ public class ClientController : ApiControllerBase
         return Success(response);
     }
 
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<ApiResult<Client>>> CreateClient([FromBody] CreateClientCommand createClientCommand, CancellationToken cancellationToken)
     {

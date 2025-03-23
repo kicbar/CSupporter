@@ -29,7 +29,12 @@ export class ClientService {
     }
 
     addClient(client: ClientDto): Observable<ApiResult<Client>> {
-      return this.http.post<ApiResult<Client>>(`${this.baseUrl}/Client`, client);
+      var token = this.authService.getToken();
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+
+      return this.http.post<ApiResult<Client>>(`${this.baseUrl}/Client`, client, { headers });
     }
 
     private handleError(error: HttpErrorResponse): Observable<ApiResult<null>> {
