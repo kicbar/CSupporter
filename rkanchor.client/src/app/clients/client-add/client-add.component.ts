@@ -26,7 +26,7 @@ export class ClientAddComponent {
   onSubmit() {
     if (this.clientForm.valid) {
       const client = this.clientForm.value;
-      this.clientService.addProduct(client).subscribe(response => {
+      this.clientService.addClient(client).subscribe(response => {
         if (response.isSuccess && response.data) {
           this.snackBar.open(`Klient ${response.data.firstName} ${response.data.lastName} został dodany poprawnie pod identyfikatorem: ${response.data.id}`, 'OK', {
             duration: 3000, 

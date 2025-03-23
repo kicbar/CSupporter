@@ -49,7 +49,6 @@ export class AppComponent implements OnInit {
   }
 
   get isAuthenticated(): boolean {
-    console.log('isAuthenticated');
     return this.authService.isAuthenticated();
   }
 }
