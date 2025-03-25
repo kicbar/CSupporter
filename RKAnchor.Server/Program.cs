@@ -45,6 +45,7 @@ object value = builder.Services.AddVersionedApiExplorer(options =>
 
 var app = builder.Build();
 
+app.UseResponseCaching();
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
