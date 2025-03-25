@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using RKAnchor.Server.Application.CQRS.Products.Commands;
 using RKAnchor.Server.Application.CQRS.Products.Queries;
+using RKAnchor.Server.Application.Filters;
 using RKAnchor.Server.Application.Models;
 using RKAnchor.Server.Domain.Entities;
 
 namespace RKAnchor.Server.Controllers.v1;
 
 [ApiVersion("1.0")]
+[TimeTrackFilter]
 public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
 {
     [HttpPost]
