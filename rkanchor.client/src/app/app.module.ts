@@ -30,6 +30,10 @@ import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import { DictionaryService } from './services/dictionary.service';
+import { NotificationService } from './services/notification.service';
+import { MatOptionModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -63,11 +67,15 @@ import { RegisterComponent } from './user/register/register.component';
     MatButtonModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSelectModule,
+    MatOptionModule,
   ],
   providers: [
     ProductService,
     ClientService,
     AuthService,
+    DictionaryService,
+    NotificationService,
   ],
   bootstrap: [AppComponent]
 })

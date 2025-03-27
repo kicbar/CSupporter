@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RKAnchor.Server.Application.CQRS.Dictionary.Queries;
 using RKAnchor.Server.Application.Models;
+using RKAnchor.Server.Domain.Enums;
 
 namespace RKAnchor.Server.Controllers.v1;
 
@@ -10,7 +11,7 @@ public class DictionaryController(IMediator mediator) : ApiControllerBase(mediat
 {
     [ResponseCache(Duration = 1200, VaryByQueryKeys = new[] { "name" })]
     [HttpGet("{dictionaryType}")]
-    public ActionResult<ApiResult<IEnumerable<string>>> GetDictionary(string dictionaryType, CancellationToken cancellationToken)
+    public ActionResult<ApiResult<IEnumerable<string>>> GetDictionary(DictionaryType dictionaryType, CancellationToken cancellationToken)
     {
         var result = _mediator.Send(new GetDictionaryQuery() { DictionaryType = dictionaryType }, cancellationToken);
 

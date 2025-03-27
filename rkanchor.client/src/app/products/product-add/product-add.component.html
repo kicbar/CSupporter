@@ -24,12 +24,16 @@
   
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Product Type</mat-label>
-        <input matInput placeholder="Enter product type" formControlName="productType" />
+        <mat-select formControlName="productType">
+          <mat-option *ngFor="let type of productTypes" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="productForm.get('productType')?.invalid && productForm.get('productType')?.touched">
           Product type is required.
         </mat-error>
       </mat-form-field>
-  
+    
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Product Code</mat-label>
         <input matInput placeholder="Enter product code" formControlName="productCode" />

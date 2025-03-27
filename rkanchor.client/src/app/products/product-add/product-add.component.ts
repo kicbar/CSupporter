@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../../services/notification.service';
+import { DictionaryService } from '../../services/dictionary.service';
+import { DictionaryType } from '../../enums/dictionary-type.enum';
 
 
 @Component({
@@ -12,15 +15,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ProductAddComponent {
   productForm!: FormGroup;
+  productTypes!: string[];
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private snackBar: MatSnackBar) {}
+  constructor(private fb: FormBuilder, private router: Router, private snackBar: MatSnackBar, 
+    private productService: ProductService, private dictionaryService: DictionaryService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
+    this.dictionaryService.getDictionary(DictionaryType.Product).subscribe((result) => {
+      if (result.isSuccess && result.data) 
+        this.productTypes = result.data;
+      else 
+        this.notificationService.customGetDataErrorMessageWithLog(result.statusCode, result.message);
+    });
+
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      productType: ['', Validators.required],
-      productCode: ['', Validators.required]
+      productCode: ['', Validators.required],
+      productType: [null, Validators.required]
     });
   }
 
@@ -47,7 +59,7 @@ export class ProductAddComponent {
           });
           const status =  error?.status ? error.status : '';
           const message =  error?.message ? error.message : '';
-          console.log(`Błąd podczas dodawania prduktu: ${product.name} error: ${error}. Details: ${status}-${message}`);
+          console.log(`Błąd podczas dodawania produktu: ${product.name} error: ${error}. Details: ${status}-${message}`);
         }
       });
     }

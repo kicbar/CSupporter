@@ -5,21 +5,21 @@ namespace RKAnchor.Server.Application.CQRS.Dictionary.Queries;
 
 public record GetDictionaryQuery : IRequest<IEnumerable<string>>
 {
-    public string DictionaryType { get; set; }
+    public DictionaryType DictionaryType { get; set; }
 }
 
 public class GetDictionaryQueryHandler : IRequestHandler<GetDictionaryQuery, IEnumerable<string>>
 {
     public async Task<IEnumerable<string>> Handle(GetDictionaryQuery request, CancellationToken cancellationToken)
     {
-        Type type = request.DictionaryType.ToLower() switch
+        var dictionaryType = request.DictionaryType switch
         {
-            "product" => typeof(ProductType),
-            "client" => typeof(ClientType),
+            DictionaryType.Product => typeof(ProductType),
+            DictionaryType.Client => typeof(ClientType),
             _ => throw new ArgumentNullException("Dictionary not exist!")
         };
 
-        var values = Enum.GetValues(type)
+        var values = Enum.GetValues(dictionaryType)
                  .Cast<Enum>()
                  .Select(e => e.ToString())
                  .ToList();

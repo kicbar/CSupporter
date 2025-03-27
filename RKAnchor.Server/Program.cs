@@ -4,6 +4,7 @@ using RKAnchor.Server;
 using RKAnchor.Server.Application.Middleware;
 using RKAnchor.Server.Infrastructure.Data;
 using RKAnchor.Server.Infrastructure.Mappings;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,11 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 builder.Services.AddAutoMapper(typeof(AnchorProfile));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
