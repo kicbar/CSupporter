@@ -19,7 +19,7 @@ public class ProductRepository : IProductRepository
     {
         var product = await _anchorDbContext.Products.FirstOrDefaultAsync(x => x.Id == productId, cancellationToken);
         if (product is null)
-            throw new EntityNotFoundException(productId.ToString(), product.GetType().Name);
+            throw new EntityNotFoundException(productId.ToString(), nameof(Product));
 
         return product;
     }
