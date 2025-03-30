@@ -40,4 +40,11 @@ public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
         var response = await _mediator.Send(command, cancellationToken);
         return Success(response);
     }
+
+    [HttpDelete("{productId}")]
+    public async Task<ActionResult<ApiResult<bool>>> DeleteProduct(int productId, CancellationToken cancellationToken)
+    {
+        var response = await _mediator.Send(new RemoveProductCommand() { ProductId = productId }, cancellationToken);
+        return Success(response);
+    }
 }
