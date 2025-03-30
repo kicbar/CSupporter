@@ -19,6 +19,17 @@ export class ProductAddComponent {
     private productService: ProductService, private dictionaryService: DictionaryService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
+    this.loadProductTypeDictionary();
+
+    this.productForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+      productCode: ['', Validators.required],
+      productType: [null, Validators.required]
+    });
+  }
+
+  loadProductTypeDictionary(): void {
     this.dictionaryService.getDictionary(DictionaryType.Product).subscribe({
       next: (response) => {
         if (response.isSuccess && response.data) 
@@ -33,16 +44,9 @@ export class ProductAddComponent {
         console.log(`Błąd podczas pobierania słówników, error: ${error}. Details: ${status}-${message}`);
       }
     });
-
-    this.productForm = this.fb.group({
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      productCode: ['', Validators.required],
-      productType: [null, Validators.required]
-    });
   }
 
-  onSubmit(): void {
+  onAddSubmit(): void {
     if (this.productForm.valid) {
       const product = this.productForm.value;
       this.productService.addProduct(product).subscribe({
@@ -64,7 +68,7 @@ export class ProductAddComponent {
     }
   }
 
-  onCancel(): void {
+  onAddCancel(): void {
     this.router.navigate(['/products']);
   }
 }

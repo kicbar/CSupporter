@@ -3,7 +3,7 @@
 </p>
 <div *ngIf="product" class="form-container">
   <h2>Edytuj produkt</h2>
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="productForm" (ngSubmit)="onEditSubmit()">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Name</mat-label>
       <input matInput placeholder="Enter product name" formControlName="name" />
@@ -27,7 +27,11 @@
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>Product Type</mat-label>
-      <input matInput placeholder="Enter product type" formControlName="productType" />
+      <mat-select formControlName="productType">
+        <mat-option *ngFor="let type of productTypes" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
       <mat-error *ngIf="productForm.get('productType')?.invalid && productForm.get('productType')?.touched">
         Product type is required.
       </mat-error>
@@ -55,7 +59,7 @@
       color="warn"
       type="button"
       class="full-width"
-      (click)="onCancel()"
+      (click)="onEditCancel()"
     >
       Anuluj
     </button>

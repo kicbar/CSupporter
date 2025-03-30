@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2>Dodawanie produktu</h2>
-    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="productForm" (ngSubmit)="onAddSubmit()">
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Name</mat-label>
         <input matInput placeholder="Enter product name" formControlName="name" />
@@ -55,7 +55,7 @@
         color="warn"
         type="button"
         class="full-width"
-        (click)="onCancel()">
+        (click)="onAddCancel()">
       Anuluj
     </button> 
     </form>
