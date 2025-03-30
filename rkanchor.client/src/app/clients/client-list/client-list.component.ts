@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ClientService } from '../../services/client.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { NotificationService } from '../../services/notification.service';
+import { ClientDto } from '../../models/client.dto';
 
 @Component({
   selector: 'app-client-list',
@@ -9,26 +9,27 @@ import { NotificationService } from '../../services/notification.service';
   styleUrl: './client-list.component.css'
 })
 export class ClientListComponent {
-  clients: { firstName: SafeHtml; lastName: SafeHtml; clientType: SafeHtml }[] = [];
+  clients: ClientDto[] = [];
 
-  constructor(private clientService: ClientService, private notficationService: NotificationService, private sanitizer: DomSanitizer) { }
+  constructor(private clientService: ClientService, private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.refreshClientList();
   }
 
   refreshClientList(): void {
-    this.clientService.getAllClients().subscribe( 
-      result => {
-      if (result.isSuccess && result.data) {
-        this.clients = result.data.map(client => ({
-          firstName: this.sanitizer.bypassSecurityTrustHtml(client.firstName),
-          lastName: this.sanitizer.bypassSecurityTrustHtml(client.lastName),
-          clientType: this.sanitizer.bypassSecurityTrustHtml(client.clientType),
-        })
-      );
-      } else {
-        console.log(`Error: ${result.statusCode} - ${result.message}`  );
+    this.clientService.getAllClients().subscribe({
+      next: (response) => {
+        if (response.isSuccess && response.data) 
+          this.clients = response.data;
+        else 
+          this.notificationService.customApiErrorMessageWithLog(response.statusCode, response.message);
+      },
+      error: (error) => {
+        this.notificationService.customErrorMessage(`Podczas pobierania klientów, wystąpił błąd!`);
+        const status =  error?.status ? error.status : '';
+        const message =  error?.message ? error.message : '';
+        console.log(`Błąd podczas pobierania listy klientów, error: ${error}. Details: ${status}-${message}`);
       }
     });
   }

@@ -28,11 +28,10 @@ export class ClientAddComponent implements OnInit {
       const client = this.clientForm.value;
       this.clientService.addClient(client).subscribe({
         next: response => {
-          if (response.isSuccess && response.data) {
+          if (response.isSuccess && response.data) 
             this.notificationService.customSuccessMessage(`Klient ${response.data.firstName} ${response.data.lastName} został dodany poprawnie pod identyfikatorem: ${response.data.id}`);
-          } else {
+          else 
             this.notificationService.customApiErrorMessageWithLog(response.statusCode, response.message);
-          }
         },
         error: (error) => {
           this.notificationService.customErrorMessage(`Podczas dodawania klienta o nazwie: ${client.firstName} ${client.lastName}, wystąpił błąd!`);

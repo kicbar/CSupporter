@@ -21,8 +21,7 @@ export class AuthService {
           localStorage.setItem(this.tokenKey, response.data);
           this.notificationService.customSuccessMessage(`Użytkownik ${user.email} zalogowany`);
         } else {
-          this.notificationService.customErrorMessage(`Użytkownik ${user.email} nie został zalogowany!`);
-          console.log(`Error: ${response.statusCode} - ${response.message}`);
+          this.notificationService.customApiErrorMessageWithLog(response.statusCode, response.message);
         }
       },
       error: (error) => 

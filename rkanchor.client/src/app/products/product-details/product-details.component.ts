@@ -27,11 +27,10 @@ export class ProductDetailsComponent {
         this.productService.removeProduct(product.id).subscribe({
           next: (response) => {
             if (response.isSuccess && response.data) {
-              if (response.data === true) {
+              if (response.data === true) 
                 this.notificationService.customSuccessMessage(`Produkt o identyfikatorze ${product.id} został poprawnie usunięty!`);
-              } else {
+              else 
                 this.notificationService.customErrorMessage(`Podczas usuwania produktu o identyfikatorze ${product.id} wystąpił błąd!`);
-              }
             } else {
               this.notificationService.customApiErrorMessageWithLog(response.statusCode, response.message);
             }
