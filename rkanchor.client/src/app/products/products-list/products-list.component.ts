@@ -24,11 +24,11 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   loadProducts(): void {
     this.productService.getAllProducts().subscribe({
-      next: (result) => {
+      next: (response) => {
         // trzeba poprawic tą obsluge
-        if (result.isSuccess && result.data) {
-          this.products = result.data;
-          this.filteredProducts = result.data;
+        if (response.isSuccess && response.data) {
+          this.products = response.data;
+          this.filteredProducts = response.data;
         }
       },
       error: (error) => console.error('Błąd podczas pobierania produktów:', error)

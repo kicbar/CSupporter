@@ -17,10 +17,3 @@ h2 {
   width: 100%;
   margin-bottom: 15px;
 }
-
-.custom-snackbar-error {
-  background-color: #ff5252; 
-  color: #ffffff; 
-  font-weight: bold;
-  text-align: center;
-}

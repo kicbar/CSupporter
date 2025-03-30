@@ -16,16 +16,16 @@ export class ClientService {
     constructor(private http: HttpClient, private authService: AuthService) { }
 
     getAllClients(): Observable<ApiResult<Client[]>> {
-        var token = this.authService.getToken();
-        const headers = new HttpHeaders({
-          'Authorization': `Bearer ${token}`
-        });
-        
-        return this.http.get<ApiResult<Client[]>>(`${this.baseUrl}/Client`, { headers });
+      var token = this.authService.getToken();
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      
+      return this.http.get<ApiResult<Client[]>>(`${this.baseUrl}/Client`, { headers });
     }
 
     getClientByLastName(lastName: string): Observable<ApiResult<Client>> {
-        return this.http.get<ApiResult<Client>>(`${this.baseUrl}/Client/${lastName}`);
+      return this.http.get<ApiResult<Client>>(`${this.baseUrl}/Client/${lastName}`);
     }
 
     addClient(client: ClientDto): Observable<ApiResult<Client>> {

@@ -1,9 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { Product } from '../../models/product.model';
 import { ProductService } from '../../services/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-product-edit',
@@ -14,10 +14,10 @@ export class ProductEditComponent {
   productForm!: FormGroup;
   product!: Product;
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private fb: FormBuilder, private router: Router, 
+    private productService: ProductService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-
     this.productService.productSelected$.subscribe((selectedProduct) => {
       if (selectedProduct) {
         this.product = selectedProduct;      
@@ -38,22 +38,15 @@ export class ProductEditComponent {
       this.productService.editProduct(this.product.id, product).subscribe({
         next: (response) => {
           if (response.isSuccess && response.data) {
-            this.snackBar.open(`Produkt o nazwie ${response.data.name} został poprawnie edytowany.`, 'OK', {
-              duration: 3000, 
-              horizontalPosition: 'center', 
-              verticalPosition: 'top', 
-            });
+            this.notificationService.customSuccessMessage(`Produkt o nazwie: ${response.data.name}, został poprawnie edytowany.`);
             this.productService.selectProduct(product);
             this.router.navigate(['/products']);  
+          } else {
+            this.notificationService.customApiErrorMessageWithLog(response.statusCode, response.message);
           }
         }, 
         error: (error) => {
-          this.snackBar.open(`Podczas edytowania produktu o nazwie ${product.name} wystąpił błąd!`, 'OK', {
-            duration: 3000, 
-            horizontalPosition: 'center', 
-            verticalPosition: 'top', 
-            panelClass: ['custom-snackbar-error']
-          });
+          this.notificationService.customErrorMessage(`Podczas edytowania produktu o nazwie: ${product.name}, wystąpił błąd!`);
           const status =  error?.status ? error.status : '';
           const message =  error?.message ? error.message : '';
           console.log(`Błąd podczas edytowania prduktu: ${product.name} error: ${error}. Details: ${status}-${message}`);

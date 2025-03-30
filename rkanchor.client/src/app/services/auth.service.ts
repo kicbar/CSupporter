@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { ApiResult } from '../models/api.result';
 import { environment } from '../../envrinments/environments';
 import { UserDto } from '../models/user.dto';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { jwtDecode } from 'jwt-decode';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,35 +12,25 @@ import { jwtDecode } from 'jwt-decode';
 export class AuthService {
   private tokenKey = 'auth_token';
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private notificationService: NotificationService) { }
 
   logIn(user: UserDto) {
     this.http.post<ApiResult<string>>(`${environment.apiBaseUrl}/User/login`, user).subscribe({
-      next: (result) => {
-        if (result.isSuccess && result.data) {
-          localStorage.setItem(this.tokenKey, result.data);
-
-          this.snackBar.open(`Użytkownik ${user.email} zalogowany`, 'OK', {
-            duration: 3000, 
-            horizontalPosition: 'center', 
-            verticalPosition: 'top', 
-          });
+      next: (response) => {
+        if (response.isSuccess && response.data) {
+          localStorage.setItem(this.tokenKey, response.data);
+          this.notificationService.customSuccessMessage(`Użytkownik ${user.email} zalogowany`);
+        } else {
+          this.notificationService.customErrorMessage(`Użytkownik ${user.email} nie został zalogowany!`);
+          console.log(`Error: ${response.statusCode} - ${response.message}`);
         }
-        else
-          this.snackBar.open(`Nie udało się zalogować`, 'OK', {
-            duration: 3000, 
-            horizontalPosition: 'center', 
-            verticalPosition: 'top', 
-          });
       },
       error: (error) => 
       {          
-        this.snackBar.open(`Nie udało się zalogować`, 'OK', {
-          duration: 3000, 
-          horizontalPosition: 'center', 
-          verticalPosition: 'top', 
-        });
-        console.error('Błąd podczas logowania', error);
+        this.notificationService.customErrorMessage(`Podczas logowania użytwkonika ${user.email} wystąpił błąd!`);
+        const status =  error?.status ? error.status : '';
+        const message =  error?.message ? error.message : '';
+        console.log(`Błąd podczas dodawania logowania: ${user.email} error: ${error}. Details: ${status}-${message}`);
       }
     });
   }

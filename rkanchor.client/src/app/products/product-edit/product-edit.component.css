@@ -25,11 +25,3 @@ button {
 button:last-child {
   margin-bottom: 0;
 }
-
-.custom-snackbar-error {
-  background-color: #ff5252;
-  color: #ffffff;
-  font-weight: bold;
-  text-align: center;
-}
-  

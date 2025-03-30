@@ -2,3 +2,23 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.custom-snackbar-error {
+  background-color: #ff5252;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+  
+.custom-snackbar-success {
+  background-color: #4caf50;
+  color: #ffffff;
+  font-weight: bold;
+  text-align: center;
+}
+
+/*.mat-mdc-snack-bar-container.custom-snackbar-success {
+  --mdc-snackbar-container-color: #4caf50;
+  --mdc-snackbar-supporting-text-color: #ffffff;
+}*/
