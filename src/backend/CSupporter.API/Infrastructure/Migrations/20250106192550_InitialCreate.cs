@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace RKAnchor.Server.Migrations
+namespace CSupporter.API.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

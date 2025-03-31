@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
-using RKAnchor.Server.Application.CQRS.Clients.Command;
-using RKAnchor.Server.Application.CQRS.Products.Commands;
-using RKAnchor.Server.Application.CQRS.Users.Commands;
-using RKAnchor.Server.Domain.Entities;
+using CSupporter.API.Application.CQRS.Clients.Command;
+using CSupporter.API.Application.CQRS.Products.Commands;
+using CSupporter.API.Application.CQRS.Users.Commands;
+using CSupporter.API.Domain.Entities;
 
-namespace RKAnchor.Server.Infrastructure.Mappings;
+namespace CSupporter.API.Infrastructure.Mappings;
 
 public class AnchorProfile : Profile
 {

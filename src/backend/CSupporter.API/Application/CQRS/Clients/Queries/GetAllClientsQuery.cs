@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces.IRepositories;
+using CSupporter.API.Domain.Entities;
+using CSupporter.API.Domain.Interfaces.IRepositories;
 
-namespace RKAnchor.Server.Application.CQRS.Clients.Queries;
+namespace CSupporter.API.Application.CQRS.Clients.Queries;
 
 public class GetAllClientsQuery : IRequest<IEnumerable<Client>> { }
 

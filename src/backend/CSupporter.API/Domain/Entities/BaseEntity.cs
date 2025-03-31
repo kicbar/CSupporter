@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RKAnchor.Server.Domain.Entities;
+namespace CSupporter.API.Domain.Entities;
 
 public abstract class BaseEntity
 {

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RKAnchor.Server.Application.CQRS.Users.Commands;
-using RKAnchor.Server.Application.Models;
+using CSupporter.API.Application.CQRS.Users.Commands;
+using CSupporter.API.Application.Models;
 
-namespace RKAnchor.Server.Controllers.v1;
+namespace CSupporter.API.Controllers.v1;
 
 [ApiVersion("1.0")]
 public class UserController : ApiControllerBase

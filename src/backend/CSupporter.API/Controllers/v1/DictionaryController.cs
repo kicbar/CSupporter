@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RKAnchor.Server.Application.CQRS.Dictionary.Queries;
-using RKAnchor.Server.Application.Models;
-using RKAnchor.Server.Domain.Enums;
+using CSupporter.API.Application.CQRS.Dictionary.Queries;
+using CSupporter.API.Application.Models;
+using CSupporter.API.Domain.Enums;
 
-namespace RKAnchor.Server.Controllers.v1;
+namespace CSupporter.API.Controllers.v1;
 
 [ApiVersion("1.0")]
 public class DictionaryController(IMediator mediator) : ApiControllerBase(mediator)

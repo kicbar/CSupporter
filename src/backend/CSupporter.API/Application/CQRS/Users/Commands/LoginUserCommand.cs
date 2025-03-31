@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
-using RKAnchor.Server.Application.Exceptions;
-using RKAnchor.Server.Application.Services;
-using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces.IRepositories;
-using RKAnchor.Server.Domain.Interfaces.IServices;
+using CSupporter.API.Application.Exceptions;
+using CSupporter.API.Application.Services;
+using CSupporter.API.Domain.Entities;
+using CSupporter.API.Domain.Interfaces.IRepositories;
+using CSupporter.API.Domain.Interfaces.IServices;
 
-namespace RKAnchor.Server.Application.CQRS.Users.Commands;
+namespace CSupporter.API.Application.CQRS.Users.Commands;
 
 public record LoginUserCommand : IRequest<string>
 {

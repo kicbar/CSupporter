@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RKAnchor.Server.Application.CQRS.Products.Commands;
-using RKAnchor.Server.Application.CQRS.Products.Queries;
-using RKAnchor.Server.Application.Filters;
-using RKAnchor.Server.Application.Models;
-using RKAnchor.Server.Domain.Entities;
+using CSupporter.API.Application.CQRS.Products.Commands;
+using CSupporter.API.Application.CQRS.Products.Queries;
+using CSupporter.API.Application.Filters;
+using CSupporter.API.Application.Models;
+using CSupporter.API.Domain.Entities;
 
-namespace RKAnchor.Server.Controllers.v1;
+namespace CSupporter.API.Controllers.v1;
 
 [ApiVersion("1.0")]
 [TimeTrackFilter]

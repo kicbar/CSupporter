@@ -1,7 +1,7 @@
-﻿using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Enums;
+﻿using CSupporter.API.Domain.Entities;
+using CSupporter.API.Domain.Enums;
 
-namespace RKAnchor.Server.Domain.Interfaces.IRepositories;
+namespace CSupporter.API.Domain.Interfaces.IRepositories;
 
 public interface IRoleRepository
 {

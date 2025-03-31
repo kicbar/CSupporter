@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace RKAnchor.Server.Domain.Enums;
+namespace CSupporter.API.Domain.Enums;
 
 public enum ProductType
 {

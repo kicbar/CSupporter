@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
-using RKAnchor.Server.Application.Services;
-using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces.IRepositories;
-using RKAnchor.Server.Domain.Interfaces.IServices;
+using CSupporter.API.Application.Services;
+using CSupporter.API.Domain.Entities;
+using CSupporter.API.Domain.Interfaces.IRepositories;
+using CSupporter.API.Domain.Interfaces.IServices;
 
-namespace RKAnchor.Server.Application.CQRS.Clients.Command;
+namespace CSupporter.API.Application.CQRS.Clients.Command;
 
 public record CreateClientCommand : IRequest<Client>
 {

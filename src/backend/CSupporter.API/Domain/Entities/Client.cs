@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RKAnchor.Server.Domain.Entities;
+namespace CSupporter.API.Domain.Entities;
 
 public class Client : BaseEntity
 {

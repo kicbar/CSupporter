@@ -1,8 +1,8 @@
-﻿using RKAnchor.Server.Application.Exceptions;
-using RKAnchor.Server.Application.Models;
+﻿using CSupporter.API.Application.Exceptions;
+using CSupporter.API.Application.Models;
 using System.Text.Json;
 
-namespace RKAnchor.Server.Application.Middleware;
+namespace CSupporter.API.Application.Middleware;
 
 public class ExceptionHandlingMiddleware
 {

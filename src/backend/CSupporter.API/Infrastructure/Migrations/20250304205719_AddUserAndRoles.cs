@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace RKAnchor.Server.Migrations
+namespace CSupporter.API.Migrations
 {
     /// <inheritdoc />
     public partial class AddUserAndRoles : Migration

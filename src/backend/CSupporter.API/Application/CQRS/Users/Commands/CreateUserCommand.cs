@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using RKAnchor.Server.Application.Exceptions;
-using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Enums;
-using RKAnchor.Server.Domain.Interfaces.IRepositories;
+using CSupporter.API.Application.Exceptions;
+using CSupporter.API.Domain.Entities;
+using CSupporter.API.Domain.Enums;
+using CSupporter.API.Domain.Interfaces.IRepositories;
 
-namespace RKAnchor.Server.Application.CQRS.Users.Commands;
+namespace CSupporter.API.Application.CQRS.Users.Commands;
 
 public record CreateUserCommand : IRequest<int>
 {

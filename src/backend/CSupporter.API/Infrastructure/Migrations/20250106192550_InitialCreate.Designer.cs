@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using RKAnchor.Server.Infrastructure.Data;
+using CSupporter.API.Infrastructure.Data;
 
 #nullable disable
 
-namespace RKAnchor.Server.Migrations
+namespace CSupporter.API.Migrations
 {
     [DbContext(typeof(AnchorDbContext))]
     [Migration("20250106192550_InitialCreate")]

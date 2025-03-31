@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
 using System.Diagnostics;
 
-namespace RKAnchor.Server.Application.Filters;
+namespace CSupporter.API.Application.Filters;
 
 public class TimeTrackFilter : Attribute, IActionFilter
 {

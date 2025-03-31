@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Infrastructure.Configuration;
+using CSupporter.API.Domain.Entities;
+using CSupporter.API.Infrastructure.Configuration;
 
-namespace RKAnchor.Server.Infrastructure.Data;
+namespace CSupporter.API.Infrastructure.Data;
 
 public class AnchorDbContext : DbContext
 {

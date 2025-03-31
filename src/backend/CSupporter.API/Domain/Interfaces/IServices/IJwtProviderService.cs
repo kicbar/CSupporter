@@ -1,6 +1,6 @@
-﻿using RKAnchor.Server.Domain.Entities;
+﻿using CSupporter.API.Domain.Entities;
 
-namespace RKAnchor.Server.Domain.Interfaces.IServices;
+namespace CSupporter.API.Domain.Interfaces.IServices;
 
 public interface IJwtProviderService
 {

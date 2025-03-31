@@ -1,4 +1,4 @@
-﻿namespace RKAnchor.Server.Domain.Interfaces.IServices;
+﻿namespace CSupporter.API.Domain.Interfaces.IServices;
 
 public interface ICurrentUserService
 {

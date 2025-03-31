@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using RKAnchor.Server.Domain.Enums;
+using CSupporter.API.Domain.Enums;
 
-namespace RKAnchor.Server.Application.CQRS.Dictionary.Queries;
+namespace CSupporter.API.Application.CQRS.Dictionary.Queries;
 
 public record GetDictionaryQuery : IRequest<IEnumerable<string>>
 {

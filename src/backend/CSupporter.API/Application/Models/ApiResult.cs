@@ -1,4 +1,4 @@
-﻿namespace RKAnchor.Server.Application.Models;
+﻿namespace CSupporter.API.Application.Models;
 
 public class ApiResult<T>
 {

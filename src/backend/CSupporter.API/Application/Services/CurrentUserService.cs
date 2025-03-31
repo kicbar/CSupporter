@@ -1,7 +1,7 @@
-﻿using RKAnchor.Server.Domain.Interfaces.IServices;
+﻿using CSupporter.API.Domain.Interfaces.IServices;
 using System.Security.Claims;
 
-namespace RKAnchor.Server.Application.Services;
+namespace CSupporter.API.Application.Services;
 
 public class CurrentUserService : ICurrentUserService
 {

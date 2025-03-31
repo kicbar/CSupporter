@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using RKAnchor.Server;
-using RKAnchor.Server.Application.Middleware;
-using RKAnchor.Server.Infrastructure.Data;
-using RKAnchor.Server.Infrastructure.Mappings;
+using CSupporter.API;
+using CSupporter.API.Application.Middleware;
+using CSupporter.API.Infrastructure.Data;
+using CSupporter.API.Infrastructure.Mappings;
 using Serilog;
 using System.Text.Json.Serialization;
 

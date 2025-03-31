@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using RKAnchor.Server.Application.Models.Configuration;
-using RKAnchor.Server.Application.Services;
-using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces.IRepositories;
-using RKAnchor.Server.Domain.Interfaces.IServices;
-using RKAnchor.Server.Infrastructure.Repositories;
+using CSupporter.API.Application.Models.Configuration;
+using CSupporter.API.Application.Services;
+using CSupporter.API.Domain.Entities;
+using CSupporter.API.Domain.Interfaces.IRepositories;
+using CSupporter.API.Domain.Interfaces.IServices;
+using CSupporter.API.Infrastructure.Repositories;
 using System.Text;
 
-namespace RKAnchor.Server;
+namespace CSupporter.API;
 
 public static class ConfigureServices
 {

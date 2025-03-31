@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using RKAnchor.Server.Domain.Entities;
+using CSupporter.API.Domain.Entities;
 
-namespace RKAnchor.Server.Infrastructure.Configuration;
+namespace CSupporter.API.Infrastructure.Configuration;
 
 public class RoleConfiguration : IEntityTypeConfiguration<Role>
 {

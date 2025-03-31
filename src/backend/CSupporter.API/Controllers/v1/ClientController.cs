@@ -1,12 +1,12 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using RKAnchor.Server.Application.CQRS.Clients.Command;
-using RKAnchor.Server.Application.CQRS.Clients.Queries;
-using RKAnchor.Server.Application.Models;
-using RKAnchor.Server.Domain.Entities;
+using CSupporter.API.Application.CQRS.Clients.Command;
+using CSupporter.API.Application.CQRS.Clients.Queries;
+using CSupporter.API.Application.Models;
+using CSupporter.API.Domain.Entities;
 
-namespace RKAnchor.Server.Controllers.v1;
+namespace CSupporter.API.Controllers.v1;
 
 [ApiVersion("1.0")]
 public class ClientController : ApiControllerBase

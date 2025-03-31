@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces.IRepositories;
-using RKAnchor.Server.Infrastructure.Data;
+using CSupporter.API.Domain.Entities;
+using CSupporter.API.Domain.Interfaces.IRepositories;
+using CSupporter.API.Infrastructure.Data;
 
-namespace RKAnchor.Server.Infrastructure.Repositories;
+namespace CSupporter.API.Infrastructure.Repositories;
 
 public class UserRepository : IUserRepository
 {

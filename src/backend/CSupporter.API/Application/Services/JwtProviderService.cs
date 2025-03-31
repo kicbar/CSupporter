@@ -1,12 +1,12 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using RKAnchor.Server.Application.Models.Configuration;
-using RKAnchor.Server.Domain.Entities;
-using RKAnchor.Server.Domain.Interfaces.IServices;
+using CSupporter.API.Application.Models.Configuration;
+using CSupporter.API.Domain.Entities;
+using CSupporter.API.Domain.Interfaces.IServices;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace RKAnchor.Server.Application.Services;
+namespace CSupporter.API.Application.Services;
 
 public class JwtProviderService : IJwtProviderService
 {

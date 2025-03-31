@@ -1,6 +1,6 @@
-﻿using RKAnchor.Server.Domain.Entities;
+﻿using CSupporter.API.Domain.Entities;
 
-namespace RKAnchor.Server.Domain.Interfaces.IRepositories;
+namespace CSupporter.API.Domain.Interfaces.IRepositories;
 
 public interface IClientRepository
 {

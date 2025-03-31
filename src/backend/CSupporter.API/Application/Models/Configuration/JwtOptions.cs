@@ -1,4 +1,4 @@
-﻿namespace RKAnchor.Server.Application.Models.Configuration;
+﻿namespace CSupporter.API.Application.Models.Configuration;
 
 public class JwtOptions
 {

@@ -1,4 +1,4 @@
-﻿namespace RKAnchor.Server.Application.Exceptions;
+﻿namespace CSupporter.API.Application.Exceptions;
 
 public class EntityNotFoundException : Exception
 {

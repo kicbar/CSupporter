@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using RKAnchor.Server.Application.Models;
+using CSupporter.API.Application.Models;
 
-namespace RKAnchor.Server.Controllers;
+namespace CSupporter.API.Controllers;
 
 [ApiController]
 [Route("v{version:apiVersion}/[controller]")]

@@ -1,4 +1,4 @@
-﻿namespace RKAnchor.Server.Domain.Enums;
+﻿namespace CSupporter.API.Domain.Enums;
 
 public enum RoleType
 {
