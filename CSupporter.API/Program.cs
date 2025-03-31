@@ -4,9 +4,20 @@ using RKAnchor.Server;
 using RKAnchor.Server.Application.Middleware;
 using RKAnchor.Server.Infrastructure.Data;
 using RKAnchor.Server.Infrastructure.Mappings;
+using Serilog;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("C:/logs/RKAnchor/log.log", rollingInterval: RollingInterval.Day)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+Log.Information($"Application start at {DateTime.UtcNow}");
+
+builder.Host.UseSerilog();
 
 // Add services to the container.
 builder.Services.AddDbContext<AnchorDbContext>(options =>
@@ -74,3 +85,5 @@ app.MapControllers();
 app.MapFallbackToFile("/index.html");
 
 app.Run();
+
+Log.Information($"Application stop at {DateTime.UtcNow}");
