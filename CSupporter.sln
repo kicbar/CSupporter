@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "frontend", "frontend", "{78
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "backend", "backend", "{79F0227E-A227-42A7-AF89-715A35A85159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Domain", "CSupporter.Domain\CSupporter.Domain.csproj", "{3A4B1E33-FDA7-4D79-8331-6798EADA8DB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Domain", "src\backend\CSupporter.Domain\CSupporter.Domain.csproj", "{3A4B1E33-FDA7-4D79-8331-6798EADA8DB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Application", "CSupporter.Application\CSupporter.Application.csproj", "{70A08499-621A-48E9-A0E6-CC142B96FBEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Application", "src\backend\CSupporter.Application\CSupporter.Application.csproj", "{70A08499-621A-48E9-A0E6-CC142B96FBEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Infrastucture", "CSupporter.Infrastucture\CSupporter.Infrastucture.csproj", "{8932BDB7-751A-4EB4-BC63-18F94C260C07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Infrastucture", "src\backend\CSupporter.Infrastucture\CSupporter.Infrastucture.csproj", "{8932BDB7-751A-4EB4-BC63-18F94C260C07}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{80BBBAEB-C21F-4B3A-BF70-BA7DF17943BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Tests", "CSupporter.Tests\CSupporter.Tests.csproj", "{6077D99B-A50C-4424-B662-113EE2CE75F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Tests", "src\backend\CSupporter.Tests\CSupporter.Tests.csproj", "{6077D99B-A50C-4424-B662-113EE2CE75F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
