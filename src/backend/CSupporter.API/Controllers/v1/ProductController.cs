@@ -1,10 +1,10 @@
-﻿using MediatR;
+﻿using CSupporter.Application.CQRS.Products.Commands;
+using CSupporter.Application.CQRS.Products.Queries;
+using CSupporter.Application.Filters;
+using CSupporter.Application.Models;
+using CSupporter.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CSupporter.API.Application.CQRS.Products.Commands;
-using CSupporter.API.Application.CQRS.Products.Queries;
-using CSupporter.API.Application.Filters;
-using CSupporter.API.Application.Models;
-using CSupporter.API.Domain.Entities;
 
 namespace CSupporter.API.Controllers.v1;
 

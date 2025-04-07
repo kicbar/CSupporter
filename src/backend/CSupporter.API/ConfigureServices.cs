@@ -1,31 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using CSupporter.Application.Models.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
-using CSupporter.API.Application.Models.Configuration;
-using CSupporter.API.Application.Services;
-using CSupporter.API.Domain.Entities;
-using CSupporter.API.Domain.Interfaces.IRepositories;
-using CSupporter.API.Domain.Interfaces.IServices;
-using CSupporter.API.Infrastructure.Repositories;
 using System.Text;
 
 namespace CSupporter.API;
 
 public static class ConfigureServices
 {
-    internal static IServiceCollection AddServices(this IServiceCollection services)
-    {
-        services.AddTransient<IProductRepository, ProductRepository>();
-        services.AddTransient<IClientRepository, ClientRepository>();
-        services.AddTransient<IUserRepository, UserRepository>();
-        services.AddTransient<IRoleRepository, RoleRepository>();
-        services.AddScoped<IJwtProviderService, JwtProviderService>();
-        services.AddScoped<ICurrentUserService, CurrentUserService>();
-        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
-
-        return services;
-    }
-
     internal static IServiceCollection AddVersioning(this IServiceCollection services)
     {
         services.AddApiVersioning(options =>

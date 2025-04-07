@@ -1,6 +1,6 @@
-﻿using MediatR;
+﻿using CSupporter.Application.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CSupporter.API.Application.Models;
 
 namespace CSupporter.API.Controllers;
 

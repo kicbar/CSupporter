@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CSupporter.API;
-using CSupporter.API.Application.Middleware;
 using CSupporter.API.Infrastructure.Data;
-using CSupporter.API.Infrastructure.Mappings;
 using Serilog;
 using System.Text.Json.Serialization;
+using CSupporter.Infrastructure.Middleware;
+using CSupporter.Application;
+using CSupporter.Domain;
+using CSupporter.Infrastucture;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,16 +35,21 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services
+    .AddDomain()
+    .AddApplication()
+    .AddInfrastructure();
+
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(CSupporter.Application.Extensions).Assembly));
 builder.Services.AddControllers()
         .AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
         });
-builder.Services.AddAutoMapper(typeof(AnchorProfile));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddServices();
+builder.Services.AddVersioning();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddJwtIdentity(builder.Configuration);
 

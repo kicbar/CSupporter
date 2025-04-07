@@ -1,8 +1,8 @@
-﻿using MediatR;
+﻿using CSupporter.Application.CQRS.Dictionary.Queries;
+using CSupporter.Application.Models;
+using CSupporter.Domain.Enums;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CSupporter.API.Application.CQRS.Dictionary.Queries;
-using CSupporter.API.Application.Models;
-using CSupporter.API.Domain.Enums;
 
 namespace CSupporter.API.Controllers.v1;
 

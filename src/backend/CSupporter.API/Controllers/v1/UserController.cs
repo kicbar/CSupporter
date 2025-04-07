@@ -1,7 +1,7 @@
-﻿using MediatR;
+﻿using CSupporter.Application.CQRS.Users.Commands;
+using CSupporter.Application.Models;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using CSupporter.API.Application.CQRS.Users.Commands;
-using CSupporter.API.Application.Models;
 
 namespace CSupporter.API.Controllers.v1;
 
