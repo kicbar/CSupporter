@@ -35,13 +35,15 @@ public static class DependencyRegistration
 
     internal static IServiceCollection AddCors(this IServiceCollection services, IConfiguration configuration)
     {
-        var origins = "https://127.0.0.1:4200";
+        var allowedOrigins = configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+        if (allowedOrigins is null || !allowedOrigins.Any())
+            throw new ArgumentNullException(nameof(allowedOrigins), "Cors not found!");
 
         services.AddCors(options =>
         {
             options.AddPolicy("AllowSpecificOrigins", builder =>
             {
-                builder.WithOrigins(origins)
+                builder.WithOrigins(allowedOrigins)
                        .AllowAnyMethod()
                        .AllowAnyHeader();
             });
