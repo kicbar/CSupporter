@@ -1,17 +1,23 @@
 ﻿using CSupporter.Application.IServices;
-using CSupporter.Application.Models.Configuration;
 using CSupporter.Application.Services;
 using CSupporter.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
-namespace CSupporter.Application;
+namespace CSupporter.Application.Extensions;
 
-public static class Extensions
+public static class DependencyRegistration
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        var executingAssembly = Assembly.GetExecutingAssembly();
+
+        services
+            .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(executingAssembly))
+            .AddAutoMapper(executingAssembly);
+
         services.AddScoped<IJwtProviderService, JwtProviderService>();
         services.AddScoped<ICurrentUserService, CurrentUserService>();
         services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
