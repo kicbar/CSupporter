@@ -2,6 +2,7 @@
 using CSupporter.Application.Models.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using Serilog;
 using System.Text;
 
 namespace CSupporter.API.Extensions;
@@ -11,7 +12,7 @@ public static class DependencyRegistration
     internal static IServiceCollection AddJwtIdentity(this IServiceCollection services, IConfiguration configuration)
     {
         var jwtOptions = new JwtOptions();
-        configuration.GetSection("jwt").Bind(jwtOptions);
+        configuration.GetSection("JwtOptions").Bind(jwtOptions);
 
         services.AddSingleton(jwtOptions);
         services.AddAuthentication(options =>
@@ -69,4 +70,6 @@ public static class DependencyRegistration
 
         return services;
     }
+
+
 }

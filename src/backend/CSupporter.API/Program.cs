@@ -8,55 +8,63 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("C:/logs/RKAnchor/log.log", rollingInterval: RollingInterval.Day)
-    .Enrich.FromLogContext()
+    .ReadFrom.Configuration(builder.Configuration)
     .CreateLogger();
-
-Log.Information($"Application start at {DateTime.UtcNow}");
 
 builder.Host.UseSerilog();
 
-// Add services to the container.
-builder.Services
-    .AddCors(builder.Configuration)
-    .AddEndpointsApiExplorer()
-    .AddSwaggerGen()
-    .AddHttpContextAccessor()
-    .AddJwtIdentity(builder.Configuration)
-    .AddVersioningApi()
-    .AddApplication()
-    .AddInfrastructure(builder.Configuration)
-    .AddControllers()
-        .AddJsonOptions(options =>
-        {
-            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-        });
+try
+{
+    Log.Information($"Application start at {DateTime.UtcNow}");
 
-// Configure the HTTP request pipeline.
-var app = builder.Build();
+    // Add services to the container.
+    builder.Services
+        .AddCors(builder.Configuration)
+        .AddEndpointsApiExplorer()
+        .AddSwaggerGen()
+        .AddHttpContextAccessor()
+        .AddJwtIdentity(builder.Configuration)
+        .AddVersioningApi()
+        .AddApplication()
+        .AddInfrastructure(builder.Configuration)
+        .AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
 
-app.UseResponseCaching();
-app.UseDefaultFiles();
-app.UseStaticFiles();
+    // Configure the HTTP request pipeline.
+    var app = builder.Build();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+    app.UseResponseCaching();
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
 
-app.UseAuthentication();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
-app.UseMiddleware<ExceptionHandlingMiddleware>();
+    app.UseAuthentication();
 
-app.UseHttpsRedirection();
+    app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-app.UseCors("AllowSpecificOrigins");
+    app.UseHttpsRedirection();
 
-app.UseAuthorization();
+    app.UseCors("AllowSpecificOrigins");
 
-app.MapControllers();
+    app.UseAuthorization();
 
-app.MapFallbackToFile("/index.html");
+    app.MapControllers();
 
-app.Run();
+    app.MapFallbackToFile("/index.html");
 
-Log.Information($"Application stop at {DateTime.UtcNow}");
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly!");
+}
+finally
+{
+    Log.Information($"Application stop at {DateTime.UtcNow}");
+    Log.CloseAndFlush();
+}
