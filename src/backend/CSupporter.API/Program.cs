@@ -28,17 +28,19 @@ try
         .AddVersioningApi()
         .AddApplication()
         .AddInfrastructure(builder.Configuration)
-        .AddControllers(options => 
+        .AddControllers(options =>
         {
             options.Filters.Add<TimeTrackFilter>();
         })
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-            });
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 
     // Configure the HTTP request pipeline.
     var app = builder.Build();
+
+    await app.Services.ApplyMigrationsAsync();
 
     app.UseResponseCaching();
     app.UseDefaultFiles();
