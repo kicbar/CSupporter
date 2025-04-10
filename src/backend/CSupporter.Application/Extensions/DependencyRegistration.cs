@@ -1,4 +1,5 @@
-﻿using CSupporter.Application.IServices;
+﻿using CSupporter.Application.Filters;
+using CSupporter.Application.IServices;
 using CSupporter.Application.Services;
 using CSupporter.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -16,11 +17,27 @@ public static class DependencyRegistration
 
         services
             .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(executingAssembly))
-            .AddAutoMapper(executingAssembly);
+            .AddAutoMapper(executingAssembly)
+            .AddServices()
+            .AddFilters();
 
-        services.AddScoped<IJwtProviderService, JwtProviderService>();
-        services.AddScoped<ICurrentUserService, CurrentUserService>();
-        services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+        return services;
+    }
+
+    public static IServiceCollection AddServices(this IServiceCollection services)
+    {
+        services
+            .AddScoped<IJwtProviderService, JwtProviderService>()
+            .AddScoped<ICurrentUserService, CurrentUserService>()
+            .AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddFilters(this IServiceCollection services)
+    {
+        services
+            .AddScoped<TimeTrackFilter>();
 
         return services;
     }

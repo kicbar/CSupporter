@@ -1,5 +1,6 @@
 using CSupporter.API.Extensions;
 using CSupporter.Application.Extensions;
+using CSupporter.Application.Filters;
 using CSupporter.Infrastructure.Middleware;
 using CSupporter.Infrastucture.Extensions;
 using Serilog;
@@ -27,7 +28,10 @@ try
         .AddVersioningApi()
         .AddApplication()
         .AddInfrastructure(builder.Configuration)
-        .AddControllers()
+        .AddControllers(options => 
+        {
+            options.Filters.Add<TimeTrackFilter>();
+        })
             .AddJsonOptions(options =>
             {
                 options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());

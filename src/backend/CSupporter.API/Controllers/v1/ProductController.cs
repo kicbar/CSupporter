@@ -1,6 +1,5 @@
 ﻿using CSupporter.Application.CQRS.Products.Commands;
 using CSupporter.Application.CQRS.Products.Queries;
-using CSupporter.Application.Filters;
 using CSupporter.Application.Models;
 using CSupporter.Domain.Entities;
 using MediatR;
@@ -9,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace CSupporter.API.Controllers.v1;
 
 [ApiVersion("1.0")]
-[TimeTrackFilter]
 public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
 {
     [HttpPost]
