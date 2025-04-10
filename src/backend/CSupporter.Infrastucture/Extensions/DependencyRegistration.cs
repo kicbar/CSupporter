@@ -1,8 +1,10 @@
 ﻿using CSupporter.API.Infrastructure.Data;
 using CSupporter.API.Infrastructure.Repositories;
 using CSupporter.Domain.Interfaces.Repositories;
+using CSupporter.Domain.Interfaces.Services;
 using CSupporter.Infrastructure.Mappings;
 using CSupporter.Infrastructure.Repositories;
+using CSupporter.Infrastucture.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +17,8 @@ public static class DependencyRegistration
     {
         services
             .AddDatabase(configuration)
-            .AddRepositories();
+            .AddRepositories()
+            .AddServices();
 
         services.AddAutoMapper(typeof(AnchorProfile));
 
@@ -33,10 +36,18 @@ public static class DependencyRegistration
     public static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services
-            .AddTransient<IProductRepository, ProductRepository>()
-            .AddTransient<IClientRepository, ClientRepository>()
-            .AddTransient<IUserRepository, UserRepository>()
-            .AddTransient<IRoleRepository, RoleRepository>();
+            .AddScoped<IProductRepository, ProductRepository>()
+            .AddScoped<IClientRepository, ClientRepository>()
+            .AddScoped<IUserRepository, UserRepository>()
+            .AddScoped<IRoleRepository, RoleRepository>();
+
+        return services;
+    }
+
+    public static IServiceCollection AddServices(this IServiceCollection services)
+    {
+        services
+            .AddSingleton<IDateTimeProvider, DateTimeProvider>();
 
         return services;
     }

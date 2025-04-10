@@ -14,7 +14,7 @@ public class BaseEntityConfiguration<T> : IEntityTypeConfiguration<T> where T : 
             .HasColumnOrder(1);
 
         builder.Property(x => x.InsertDate)
-            .HasDefaultValueSql("GETDATE()")
+            .HasDefaultValueSql("GETUTCDATE()")
             .HasColumnOrder(100);
 
         builder.Property(x => x.InsertUser)
@@ -23,7 +23,7 @@ public class BaseEntityConfiguration<T> : IEntityTypeConfiguration<T> where T : 
             .HasColumnOrder(101);
 
         builder.Property(x => x.UpdateDate)
-            .HasDefaultValueSql("GETDATE()")
+            .HasDefaultValueSql("GETUTCDATE()")
             .HasColumnOrder(102);
 
         builder.Property(x => x.UpdateUser)

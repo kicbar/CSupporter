@@ -61,7 +61,7 @@ try
 }
 catch (Exception ex)
 {
-    Log.Fatal(ex, "Application terminated unexpectedly!");
+    Log.Fatal(ex, $"Application stop unexpectedly at {DateTime.UtcNow}");
 }
 finally
 {
