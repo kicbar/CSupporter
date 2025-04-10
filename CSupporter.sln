@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Infrastucture", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{80BBBAEB-C21F-4B3A-BF70-BA7DF17943BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Tests", "src\backend\CSupporter.Tests\CSupporter.Tests.csproj", "{6077D99B-A50C-4424-B662-113EE2CE75F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Tests", "src\tests\CSupporter.Tests\CSupporter.Tests.csproj", "{6077D99B-A50C-4424-B662-113EE2CE75F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
