@@ -24,9 +24,8 @@ try
         .AddEndpointsApiExplorer()
         .AddSwaggerGen()
         .AddHttpContextAccessor()
-        .AddJwtIdentity(builder.Configuration)
         .AddVersioningApi()
-        .AddApplication()
+        .AddApplication(builder.Configuration)
         .AddInfrastructure(builder.Configuration)
         .AddControllers(options =>
         {

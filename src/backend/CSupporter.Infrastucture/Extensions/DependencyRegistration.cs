@@ -18,14 +18,13 @@ public static class DependencyRegistration
         services
             .AddDatabase(configuration)
             .AddRepositories()
-            .AddServices();
-
-        services.AddAutoMapper(typeof(AnchorProfile));
+            .AddServices()
+            .AddAutoMapper(typeof(AnchorProfile));
 
         return services;
     }
 
-    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+    internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<AnchorDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("AnchorDbConnection")));
@@ -33,7 +32,7 @@ public static class DependencyRegistration
         return services;
     }
 
-    public static IServiceCollection AddRepositories(this IServiceCollection services)
+    internal static IServiceCollection AddRepositories(this IServiceCollection services)
     {
         services
             .AddScoped<IProductRepository, ProductRepository>()
@@ -44,7 +43,7 @@ public static class DependencyRegistration
         return services;
     }
 
-    public static IServiceCollection AddServices(this IServiceCollection services)
+    internal static IServiceCollection AddServices(this IServiceCollection services)
     {
         services
             .AddSingleton<IDateTimeProvider, DateTimeProvider>();

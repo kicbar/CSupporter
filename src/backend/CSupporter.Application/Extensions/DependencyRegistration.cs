@@ -1,17 +1,20 @@
 ﻿using CSupporter.Application.Filters;
 using CSupporter.Application.IServices;
+using CSupporter.Application.Models.Configuration;
 using CSupporter.Application.Services;
 using CSupporter.Domain.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 
 namespace CSupporter.Application.Extensions;
 
 public static class DependencyRegistration
 {
-    public static IServiceCollection AddApplication(this IServiceCollection services)
+    public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
     {
         var executingAssembly = Assembly.GetExecutingAssembly();
 
@@ -19,12 +22,13 @@ public static class DependencyRegistration
             .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(executingAssembly))
             .AddAutoMapper(executingAssembly)
             .AddServices()
-            .AddFilters();
+            .AddFilters()
+            .AddJwtIdentity(configuration);
 
         return services;
     }
 
-    public static IServiceCollection AddServices(this IServiceCollection services)
+    internal static IServiceCollection AddServices(this IServiceCollection services)
     {
         services
             .AddScoped<IJwtProviderService, JwtProviderService>()
@@ -34,7 +38,7 @@ public static class DependencyRegistration
         return services;
     }
 
-    public static IServiceCollection AddFilters(this IServiceCollection services)
+    internal static IServiceCollection AddFilters(this IServiceCollection services)
     {
         services
             .AddScoped<TimeTrackFilter>();
@@ -44,25 +48,25 @@ public static class DependencyRegistration
 
     internal static IServiceCollection AddJwtIdentity(this IServiceCollection services, IConfiguration configuration)
     {
-        //var jwtOptions = new JwtOptions();
-        //configuration.GetSection("jwt").Bind(jwtOptions);
-        //
-        //services.AddSingleton(jwtOptions);
-        //services.AddAuthentication(options =>
-        //{
-        //    options.DefaultAuthenticateScheme = "Bearer";
-        //    options.DefaultScheme = "Bearer";
-        //    options.DefaultChallengeScheme = "Bearer";
-        //}).AddJwtBearer(cfg =>
-        //{
-        //    cfg.RequireHttpsMetadata = false;
-        //    cfg.TokenValidationParameters = new TokenValidationParameters()
-        //    {
-        //        ValidIssuer = jwtOptions.JwtIssuer,
-        //        ValidAudience = jwtOptions.JwtIssuer,
-        //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.JwtKey)),
-        //    };
-        //});
+        var jwtOptions = new JwtOptions();
+        configuration.GetSection("JwtOptions").Bind(jwtOptions);
+
+        services.AddSingleton(jwtOptions);
+        services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = "Bearer";
+            options.DefaultScheme = "Bearer";
+            options.DefaultChallengeScheme = "Bearer";
+        }).AddJwtBearer(cfg =>
+        {
+            cfg.RequireHttpsMetadata = false;
+            cfg.TokenValidationParameters = new TokenValidationParameters()
+            {
+                ValidIssuer = jwtOptions.JwtIssuer,
+                ValidAudience = jwtOptions.JwtIssuer,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.JwtKey)),
+            };
+        });
 
         return services;
     }
