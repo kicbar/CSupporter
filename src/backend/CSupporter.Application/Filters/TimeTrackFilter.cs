@@ -20,17 +20,22 @@ public class TimeTrackFilter : IActionFilter
     public void OnActionExecuted(ActionExecutedContext context)
     {
         _stopwatch.Stop();
-        
+
+        var request = context.HttpContext.Request;
+        var requestUrl = $"{request.Scheme}://{request.Host}{request.Path}{request.QueryString}";
+        var action = $"{request.Method} {requestUrl}";
         var miliseconds = _stopwatch.ElapsedMilliseconds;
-        var action = context.ActionDescriptor.DisplayName;
 
         _logger.LogInformation($"Action [{action}] stop at {_dateTimeProvider.CurrentDateTime} and executed in {miliseconds}ms.");
     }
 
     public void OnActionExecuting(ActionExecutingContext context)
     {
+        var request = context.HttpContext.Request;
+        var requestUrl = $"{request.Scheme}://{request.Host}{request.Path}{request.QueryString}";
+        var action = $"{request.Method} {requestUrl}";
+
         _stopwatch = Stopwatch.StartNew();
-        var action = context.ActionDescriptor.DisplayName;
 
         _logger.LogInformation($"Action [{action}] start at {_dateTimeProvider.CurrentDateTime}.");
     }

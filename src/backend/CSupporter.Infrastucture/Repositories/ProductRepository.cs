@@ -18,10 +18,7 @@ public class ProductRepository : IProductRepository
     public async Task<Product> GetProductById(int productId, CancellationToken cancellationToken)
     {
         var product = await _anchorDbContext.Products.FirstOrDefaultAsync(x => x.Id == productId, cancellationToken);
-        if (product is null)
-            throw new EntityNotFoundException(productId.ToString(), nameof(Product));
-
-        return product;
+        return product is null ? throw new EntityNotFoundException(productId.ToString(), nameof(Product)) : product;
     }
 
     public async Task<IEnumerable<Product>> GetAllProducts(CancellationToken cancellationToken)

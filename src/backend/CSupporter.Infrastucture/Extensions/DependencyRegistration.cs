@@ -19,7 +19,7 @@ public static class DependencyRegistration
             .AddDatabase(configuration)
             .AddRepositories()
             .AddServices()
-            .AddAutoMapper(typeof(AnchorProfile));
+            .AddAutoMapper(typeof(MappingProfile));
 
         return services;
     }

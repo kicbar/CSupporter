@@ -6,9 +6,9 @@ using CSupporter.Domain.Entities;
 
 namespace CSupporter.Infrastructure.Mappings;
 
-public class AnchorProfile : Profile
+public class MappingProfile : Profile
 {
-    public AnchorProfile()
+    public MappingProfile()
     {
         CreateMap<CreateClientCommand, Client>();
 

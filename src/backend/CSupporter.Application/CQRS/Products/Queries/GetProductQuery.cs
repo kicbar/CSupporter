@@ -1,14 +1,15 @@
-﻿using MediatR;
+﻿using CSupporter.Domain.Entities;
 using CSupporter.Domain.Interfaces.Repositories;
+using MediatR;
 
 namespace CSupporter.Application.CQRS.Products.Queries;
 
-public record GetProductQuery : IRequest<Domain.Entities.Product>
+public record GetProductQuery : IRequest<Product>
 {
     public int ProductId { get; set; }
 }
 
-public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Domain.Entities.Product>
+public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Product>
 {
     private readonly IProductRepository _productRepository;
 
@@ -17,7 +18,7 @@ public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Domain.En
         _productRepository = productRepository;
     }
 
-    public async Task<Domain.Entities.Product> Handle(GetProductQuery command, CancellationToken cancellationToken)
+    public async Task<Product> Handle(GetProductQuery command, CancellationToken cancellationToken)
     {
         return await _productRepository.GetProductById(command.ProductId, cancellationToken);
     }

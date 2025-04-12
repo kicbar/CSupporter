@@ -25,7 +25,26 @@ public class ExceptionHandlingMiddleware
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Unhandled exception occurred.");
+            _logger.LogError(ex,
+                """
+                Unhandled exception:
+                Message:     {Message}
+                InnerExc:    {InnerException}
+                Path:        {Path}
+                Method:      {Method}
+                Query:       {Query}
+                User:        {User}
+                IP:          {IP}
+                """,
+                ex.Message,
+                ex.InnerException?.ToString() ?? string.Empty,
+                context.Request.Path,
+                context.Request.Method,
+                context.Request.QueryString,
+                context.User?.Identity?.Name ?? "Anonymous",
+                context.Connection.RemoteIpAddress?.ToString()
+            );
+
             await HandleExceptionAsync(context, ex);
         }
     }
