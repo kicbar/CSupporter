@@ -9,9 +9,12 @@ public class LoginUserCommandValdator : AbstractValidator<LoginUserCommand>
     {
         RuleFor(x => x.Email)
             .NotEmpty()
-            .EmailAddress();
+            .EmailAddress()
+            .MaximumLength(64);
 
         RuleFor(x => x.Password)
-            .NotEmpty();
+            .NotEmpty()
+            .MinimumLength(8)
+            .MaximumLength(64);
     }
 }

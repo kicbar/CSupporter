@@ -8,7 +8,6 @@ public class RemoveProductCommandValidator : AbstractValidator<RemoveProductComm
     public RemoveProductCommandValidator()
     {
         RuleFor(x => x.ProductId)
-            .GreaterThan(0)
-            .WithMessage("ProductId must be greater than 0.");
+            .GreaterThan(0).WithMessage("ProductId must be greater than 0.");
     }
 }

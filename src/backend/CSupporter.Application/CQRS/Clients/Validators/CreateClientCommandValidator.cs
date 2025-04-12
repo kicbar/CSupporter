@@ -9,10 +9,12 @@ public class CreateClientCommandValidator : AbstractValidator<CreateClientComman
     public CreateClientCommandValidator()
     {
         RuleFor(x => x.FirstName)
-            .NotEmpty();
+            .NotEmpty()
+            .MaximumLength(64);
 
         RuleFor(x => x.LastName)
-            .NotEmpty();
+            .NotEmpty()
+            .MaximumLength(64);
 
         RuleFor(x => x.ClientType)
             .NotEmpty()

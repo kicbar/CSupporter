@@ -8,7 +8,6 @@ public class GetProductQueryValidator : AbstractValidator<GetProductQuery>
     public GetProductQueryValidator()
     {
         RuleFor(x => x.ProductId)
-            .GreaterThan(0)
-            .WithMessage("ProductId must be greater than 0.");
+            .GreaterThan(0).WithMessage("ProductId must be greater than 0.");
     }
 }

@@ -8,6 +8,7 @@ public class GetClientByLastNameQueryValidator : AbstractValidator<GetClientByLa
     public GetClientByLastNameQueryValidator()
     {
         RuleFor(x => x.LastName)
-            .NotEmpty();
+            .NotEmpty()
+            .MaximumLength(64);
     }
 }

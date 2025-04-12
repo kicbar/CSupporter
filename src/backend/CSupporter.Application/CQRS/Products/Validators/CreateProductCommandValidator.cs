@@ -9,7 +9,14 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
     public CreateProductCommandValidator()
     {
         RuleFor(x => x.Name)
-            .NotEmpty();
+            .NotEmpty()
+            .MaximumLength(64);
+
+        RuleFor(x => x.Description)
+            .MaximumLength(256);
+
+        RuleFor(x => x.ProductCode)
+            .MaximumLength(16);
 
         RuleFor(x => x.ProductType)
             .NotEmpty()
