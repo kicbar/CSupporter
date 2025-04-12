@@ -17,7 +17,7 @@ public abstract class ApiControllerBase : ControllerBase
 
     protected ActionResult<ApiResult<T>> Success<T>(T data, string message = "") =>
         Success(data, message, StatusCodes.Status200OK);
-    protected ActionResult<ApiResult<T>> Created<T>(T data, string message) =>
+    protected ActionResult<ApiResult<T>> Created<T>(T data, string message = "") =>
         Success(data, message, StatusCodes.Status201Created);
     protected ActionResult<ApiResult<T>> Error<T>(T data, string message) =>
         BadRequest(ApiResult<T>.Error(data, message));

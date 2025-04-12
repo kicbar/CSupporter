@@ -22,7 +22,7 @@ try
     builder.Services
         .AddCors(builder.Configuration)
         .AddEndpointsApiExplorer()
-        .AddSwaggerGen()
+        .AddSwagger()
         .AddHttpContextAccessor()
         .AddVersioningApi()
         .AddApplication(builder.Configuration)

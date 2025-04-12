@@ -8,10 +8,10 @@ namespace CSupporter.Application.CQRS.Products.Commands;
 
 public record CreateProductCommand : IRequest<Product>
 {
-    public string ProductCode { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public string ProductType { get; set; }
+    public string ProductCode { get; set; }
 }
 
 public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Product>
