@@ -26,7 +26,7 @@ public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
     ///         "name": "Window p.1",
     ///         "description": "Okno testowe",
     ///         "productType": "window",
-    ///         "productCode": "WZ1",
+    ///         "productCode": "WZ1"
     ///     }
     /// </remarks>
     /// <param name="command">Product data to create.</param>
@@ -35,6 +35,8 @@ public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpPost]
     [ProducesResponseType(typeof(ApiResult<Product>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<Product>>> CreateProduct([FromBody] CreateProductCommand command, CancellationToken cancellationToken)
     {
@@ -55,6 +57,8 @@ public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpGet]
     [ProducesResponseType(typeof(ApiResult<IEnumerable<Product>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<IEnumerable<Product>>>> GetAllProducts(CancellationToken cancellationToken)
     {
@@ -76,6 +80,8 @@ public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpGet("{productId}")]
     [ProducesResponseType(typeof(ApiResult<Product>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<Product>>> GetProduct(int productId, CancellationToken cancellationToken)
     {
@@ -94,7 +100,7 @@ public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
     ///         "name": "Window p.1",
     ///         "description": "Okno testowe v2",
     ///         "productType": "window",
-    ///         "productCode": "WZ2",
+    ///         "productCode": "WZ2"
     ///     }
     /// </remarks>
     /// <param name="productId">ID of the product to update.</param>
@@ -104,6 +110,8 @@ public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpPut("{productId}")]
     [ProducesResponseType(typeof(ApiResult<Product>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<Product>>> UpdateProduct(int productId, [FromBody] UpdateProductCommand command, CancellationToken cancellationToken)
     {
@@ -126,6 +134,8 @@ public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpDelete("{productId}")]
     [ProducesResponseType(typeof(ApiResult<bool>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<bool>>> DeleteProduct(int productId, CancellationToken cancellationToken)
     {

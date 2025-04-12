@@ -34,6 +34,8 @@ public class ClientController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpPost]
     [ProducesResponseType(typeof(ApiResult<Client>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<Client>>> CreateClient([FromBody] CreateClientCommand createClientCommand, CancellationToken cancellationToken)
     {
@@ -54,6 +56,8 @@ public class ClientController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpGet]
     [ProducesResponseType(typeof(ApiResult<IEnumerable<Client>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<IEnumerable<Client>>>> GetAllClients(CancellationToken cancellationToken) 
     {
@@ -75,6 +79,8 @@ public class ClientController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpGet("{lastName}")]
     [ProducesResponseType(typeof(ApiResult<Client>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<Client>>> GetClientByName(string lastName, CancellationToken cancellationToken)
     {

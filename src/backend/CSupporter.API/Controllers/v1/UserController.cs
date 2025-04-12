@@ -32,6 +32,8 @@ public class UserController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpPost("register")]
     [ProducesResponseType(typeof(ApiResult<int>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     public async Task<ActionResult<ApiResult<int>>> CreateUser([FromBody] CreateUserCommand command, CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(command, cancellationToken);
@@ -56,6 +58,8 @@ public class UserController(IMediator mediator) : ApiControllerBase(mediator)
     [HttpPost("login")]
     [ProducesResponseType(typeof(ApiResult<string>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
     public async Task<ActionResult<ApiResult<string>>> LoginUser([FromBody] LoginUserCommand command, CancellationToken cancellationToken)
     {
