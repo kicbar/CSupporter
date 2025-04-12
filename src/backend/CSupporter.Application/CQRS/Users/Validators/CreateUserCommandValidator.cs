@@ -9,15 +9,25 @@ public class CreateUserCommandValidator : AbstractValidator<CreateUserCommand>
     {
         RuleFor(x => x.Email)
             .NotEmpty()
-            .EmailAddress();
+            .EmailAddress()
+            .MaximumLength(64);
 
         RuleFor(x => x.FirstName)
-            .NotEmpty();
+            .NotEmpty()
+            .MinimumLength(2)
+            .MaximumLength(64);
 
         RuleFor(x => x.LastName)
-            .NotEmpty();
+            .NotEmpty()
+            .MinimumLength(2)
+            .MaximumLength(64);
 
-        RuleFor(x => x.PasswordHash)
-            .NotEmpty();
+        RuleFor(x => x.Password)
+            .NotEmpty()
+            .MinimumLength(8)
+            .MaximumLength(64);
+
+        RuleFor(x => x.ConfirmPassword)
+            .Equal(x => x.Password).WithMessage("Passwords do not match.");
     }
 }

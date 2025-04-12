@@ -10,7 +10,6 @@ namespace CSupporter.API.Controllers.v1;
 /// <summary>
 /// Provides access to predefined dictionary data used across the application (e.g., enums, static values).
 /// </summary>
-[Authorize]
 [ApiVersion("1.0")]
 public class DictionaryController(IMediator mediator) : ApiControllerBase(mediator)
 {

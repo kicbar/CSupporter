@@ -11,7 +11,6 @@ namespace CSupporter.API.Controllers.v1;
 /// <summary>
 /// Controller responsible for managing products.
 /// </summary>
-[Authorize]
 [ApiVersion("1.0")]
 public class ProductController(IMediator mediator) : ApiControllerBase(mediator)
 {

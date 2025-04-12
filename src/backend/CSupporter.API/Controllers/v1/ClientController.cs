@@ -11,7 +11,6 @@ namespace CSupporter.API.Controllers.v1;
 /// <summary>
 /// Controller responsible for managing clients.
 /// </summary>
-[Authorize]
 [ApiVersion("1.0")]
 public class ClientController(IMediator mediator) : ApiControllerBase(mediator)
 {

@@ -14,7 +14,8 @@ public record CreateUserCommand : IRequest<int>
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Nationality { get; set; }
-    public string PasswordHash { get; set; }
+    public string Password { get; set; }
+    public string ConfirmPassword { get; set; }
 }
 
 public class CreateUserCommandCommandHandler : IRequestHandler<CreateUserCommand, int>
@@ -42,7 +43,7 @@ public class CreateUserCommandCommandHandler : IRequestHandler<CreateUserCommand
         var user = _mapper.Map<User>(request);
         user.Role = await _roleRepository.GetRole(RoleType.User, cancellationToken);
 
-        var passwordHash = _passwordHasher.HashPassword(user, request.PasswordHash);
+        var passwordHash = _passwordHasher.HashPassword(user, request.Password);
         user.PasswordHash = passwordHash;
 
         var result = await _userRepository.CreateUser(user, cancellationToken);
