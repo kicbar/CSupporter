@@ -1,6 +1,7 @@
 ﻿using CSupporter.Application.Exceptions;
 using CSupporter.Application.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
@@ -51,20 +52,43 @@ public class ExceptionHandlingMiddleware
 
     private static async Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
-        var statusCode = exception switch
-        {
-            ArgumentException => StatusCodes.Status400BadRequest,
-            EntityNotFoundException => StatusCodes.Status404NotFound,
-            AggregateException => StatusCodes.Status404NotFound,
-            KeyNotFoundException => StatusCodes.Status404NotFound,
-            UnauthorizedAccessException => StatusCodes.Status401Unauthorized,
-            _ => StatusCodes.Status500InternalServerError
-        };
+        int statusCode;
+        var details = new ProblemDetails();
 
-        var result = ApiResult<string>.Error(null, exception.Message, statusCode);
+        switch (exception)
+        {
+            case ArgumentException:
+                statusCode = StatusCodes.Status400BadRequest;
+                break;
+
+            case EntityNotFoundException:
+            case AggregateException:
+            case KeyNotFoundException:
+                statusCode = StatusCodes.Status404NotFound;
+                break;
+
+            case UnauthorizedAccessException:
+                statusCode = StatusCodes.Status401Unauthorized;
+                break;
+
+            case ValidationException validationEx:
+                statusCode = StatusCodes.Status422UnprocessableEntity;
+                details.Extensions["errors"] = validationEx.Errors;
+                break;
+
+            default:
+                statusCode = StatusCodes.Status500InternalServerError;
+                break;
+        }
+
+        var result = ApiResult<ProblemDetails>.Error(details, exception.Message, statusCode);
 
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = statusCode;
-        await context.Response.WriteAsync(JsonSerializer.Serialize(result));
+        var json = JsonSerializer.Serialize(result, new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        });
+        await context.Response.WriteAsync(json);
     }
 }

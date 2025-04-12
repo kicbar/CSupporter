@@ -1,8 +1,11 @@
-﻿using CSupporter.Application.Filters;
+﻿using CSupporter.Application.Behaviors;
+using CSupporter.Application.Filters;
 using CSupporter.Application.IServices;
 using CSupporter.Application.Models.Configuration;
 using CSupporter.Application.Services;
 using CSupporter.Domain.Entities;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,7 +22,7 @@ public static class DependencyRegistration
         var executingAssembly = Assembly.GetExecutingAssembly();
 
         services
-            .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(executingAssembly))
+            .AddMediator()
             .AddAutoMapper(executingAssembly)
             .AddServices()
             .AddFilters()
@@ -43,6 +46,18 @@ public static class DependencyRegistration
         services
             .AddScoped<TimeTrackFilter>();
 
+        return services;
+    }
+
+    internal static IServiceCollection AddMediator(this IServiceCollection services)
+    {
+        var executingAssembly = Assembly.GetExecutingAssembly();
+
+        services
+            .AddMediatR(cfg => cfg.RegisterServicesFromAssembly(executingAssembly))
+            .AddValidatorsFromAssembly(executingAssembly)
+            .AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        
         return services;
     }
 
