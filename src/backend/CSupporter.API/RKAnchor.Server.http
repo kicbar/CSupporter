@@ -1,6 +1,0 @@
-@RKAnchor.Server_HostAddress = https://localhost:7048
-
-###
-GET {{RKAnchor.Server_HostAddress}}/product
-Accept: application/json
-

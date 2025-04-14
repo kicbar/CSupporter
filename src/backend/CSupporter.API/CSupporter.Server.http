@@ -1,0 +1,5 @@
+@CSupporter.Server_HostAddress = https://localhost:7048
+
+###
+GET {{CSupporter.Server_HostAddress}}/product
+Accept: application/json
