@@ -22,16 +22,8 @@ public class AnchorDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        foreach (var entityType in modelBuilder.Model.GetEntityTypes()
-             .Where(t => t.ClrType.IsSubclassOf(typeof(BaseEntity))))
-        {
-            var method = typeof(ModelBuilder)
-                .GetMethods()
-                .First(m => m.Name == nameof(ModelBuilder.ApplyConfiguration) && m.GetParameters()[0].ParameterType.GetGenericTypeDefinition() == typeof(IEntityTypeConfiguration<>));
-
-            var configInstance = Activator.CreateInstance(typeof(BaseEntityConfiguration<>).MakeGenericType(entityType.ClrType));
-            method.MakeGenericMethod(entityType.ClrType).Invoke(modelBuilder, new[] { configInstance });
-        }
+        
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AnchorDbContext).Assembly);
 
         base.OnModelCreating(modelBuilder);
     }
