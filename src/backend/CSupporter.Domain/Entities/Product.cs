@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CSupporter.Domain.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSupporter.Domain.Entities;
 
@@ -14,5 +15,5 @@ public class Product : BaseEntity
     public string Description { get; set; }
 
     [Column(Order = 5)]
-    public string ProductType { get; set; }
+    public ProductType ProductType { get; set; }
 }

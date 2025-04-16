@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CSupporter.Application.IServices;
 using CSupporter.Domain.Entities;
+using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
 using MediatR;
 
@@ -10,7 +11,7 @@ public record CreateProductCommand : IRequest<Product>
 {
     public string Name { get; set; }
     public string Description { get; set; }
-    public string ProductType { get; set; }
+    public ProductType ProductType { get; set; }
     public string ProductCode { get; set; }
 }
 

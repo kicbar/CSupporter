@@ -1,6 +1,8 @@
 ﻿using CSupporter.Domain.Entities;
+using CSupporter.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSupporter.Infrastructure.Configuration;
 
@@ -20,8 +22,9 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasColumnOrder(3);
 
         builder.Property(x => x.ProductType)
-            .HasMaxLength(64)
-            .HasColumnOrder(4);
+            .HasMaxLength(32)
+            .HasColumnOrder(4)
+            .HasConversion(new EnumToStringConverter<ProductType>());
 
         builder.Property(x => x.Description)
             .HasMaxLength(256)

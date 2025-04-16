@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CSupporter.Application.IServices;
 using CSupporter.Domain.Entities;
+using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
 using MediatR;
 
@@ -10,7 +11,7 @@ public record CreateClientCommand : IRequest<Client>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public string ClientType { get; set; }
+    public ClientType ClientType { get; set; }
 }
 
 public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Client>

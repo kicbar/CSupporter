@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CSupporter.Domain.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CSupporter.Domain.Entities;
 
@@ -11,5 +12,5 @@ public class Client : BaseEntity
     public string LastName { get; set; }
 
     [Column(Order = 4)]
-    public string ClientType { get; set; }
+    public ClientType ClientType { get; set; }
 }

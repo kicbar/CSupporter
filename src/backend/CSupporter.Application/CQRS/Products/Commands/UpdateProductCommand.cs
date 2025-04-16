@@ -1,5 +1,6 @@
 ﻿using CSupporter.Application.IServices;
 using CSupporter.Domain.Entities;
+using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
 using MediatR;
 using System.Text.Json.Serialization;
@@ -13,7 +14,7 @@ public record UpdateProductCommand : IRequest<Product>
     public string ProductCode { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public string ProductType { get; set; }
+    public ProductType ProductType { get; set; }
 }
 
 public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Product>
