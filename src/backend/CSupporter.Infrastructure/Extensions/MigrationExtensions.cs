@@ -9,7 +9,7 @@ public static class MigrationExtensions
     public static async Task ApplyMigrationsAsync(this IServiceProvider serviceProvider)
     {
         using var scope = serviceProvider.CreateScope();
-        var db = scope.ServiceProvider.GetRequiredService<AnchorDbContext>();
+        var db = scope.ServiceProvider.GetRequiredService<CsupporterDbContext>();
 
         await db.Database.MigrateAsync();
     }

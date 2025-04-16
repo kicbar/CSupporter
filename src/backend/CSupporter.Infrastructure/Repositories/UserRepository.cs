@@ -7,16 +7,16 @@ namespace CSupporter.Infrastructure.Repositories;
 
 public class UserRepository : IUserRepository
 {
-    private readonly AnchorDbContext _anchorDbContext;
+    private readonly CsupporterDbContext _csupporterDbContext;
 
-    public UserRepository(AnchorDbContext anchorDbContext)
+    public UserRepository(CsupporterDbContext csupporterDbContext)
     {
-        _anchorDbContext = anchorDbContext;
+        _csupporterDbContext = csupporterDbContext;
     }
 
     public async Task<User?> GetUserByEmail(string email, CancellationToken cancellationToken)
     {
-        return await _anchorDbContext.Users
+        return await _csupporterDbContext.Users
             .Include(x => x.Role)
             .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
     }
@@ -25,8 +25,8 @@ public class UserRepository : IUserRepository
     {
         try
         {
-            await _anchorDbContext.AddAsync(user, cancellationToken);
-            await _anchorDbContext.SaveChangesAsync();
+            await _csupporterDbContext.AddAsync(user, cancellationToken);
+            await _csupporterDbContext.SaveChangesAsync();
 
             return user.Id;
         }

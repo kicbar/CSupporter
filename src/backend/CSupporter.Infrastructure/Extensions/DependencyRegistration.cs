@@ -26,8 +26,9 @@ public static class DependencyRegistration
 
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<AnchorDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("AnchorDbConnection")));
+        services.AddDbContext<CsupporterDbContext>(options =>
+            options.UseSqlServer(configuration.GetConnectionString("CSupporterDbConnection"),
+            sqlOptions => sqlOptions.MigrationsAssembly("CSupporter.Infrastructure")));
 
         return services;
     }

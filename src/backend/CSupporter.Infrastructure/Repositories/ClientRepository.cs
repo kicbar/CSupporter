@@ -8,9 +8,9 @@ namespace CSupporter.Infrastructure.Repositories;
 
 public class ClientRepository : IClientRepository
 {
-    private readonly AnchorDbContext _dbContext;
+    private readonly CsupporterDbContext _dbContext;
 
-    public ClientRepository(AnchorDbContext dbContext, IConfiguration configuration)
+    public ClientRepository(CsupporterDbContext dbContext, IConfiguration configuration)
     {
         _dbContext = dbContext;
     }

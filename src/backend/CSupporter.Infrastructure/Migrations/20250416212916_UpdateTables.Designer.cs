@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CSupporter.API.Migrations
 {
-    [DbContext(typeof(AnchorDbContext))]
+    [DbContext(typeof(CsupporterDbContext))]
     [Migration("20250416212916_UpdateTables")]
     partial class UpdateTables
     {

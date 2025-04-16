@@ -11,7 +11,7 @@ using CSupporter.Infrastructure.Data;
 
 namespace CSupporter.API.Migrations
 {
-    [DbContext(typeof(AnchorDbContext))]
+    [DbContext(typeof(CsupporterDbContext))]
     [Migration("20250304205719_AddUserAndRoles")]
     partial class AddUserAndRoles
     {

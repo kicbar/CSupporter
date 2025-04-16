@@ -1,19 +1,18 @@
 ﻿using CSupporter.Domain.Entities;
-using CSupporter.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSupporter.Infrastructure.Data;
 
-public class AnchorDbContext : DbContext
+public class CsupporterDbContext : DbContext
 {
     private readonly string _connectionString;
 
-    public AnchorDbContext(string connectionString)
+    public CsupporterDbContext(string connectionString)
     {
         _connectionString = connectionString;
     }
 
-    public AnchorDbContext(DbContextOptions<AnchorDbContext> options) : base(options) { }
+    public CsupporterDbContext(DbContextOptions<CsupporterDbContext> options) : base(options) { }
 
     public DbSet<Product> Products { get; set; }
     public DbSet<Client> Clients { get; set; }
@@ -23,7 +22,7 @@ public class AnchorDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(AnchorDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CsupporterDbContext).Assembly);
 
         base.OnModelCreating(modelBuilder);
     }

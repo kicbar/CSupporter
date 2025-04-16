@@ -8,16 +8,16 @@ namespace CSupporter.Infrastructure.Repositories;
 
 public class RoleRepository : IRoleRepository
 {
-    private readonly AnchorDbContext _anchorDbContext;
+    private readonly CsupporterDbContext _csupporterDbContext;
 
-    public RoleRepository(AnchorDbContext anchorDbContext)
+    public RoleRepository(CsupporterDbContext csupporterDbContext)
     {
-        _anchorDbContext = anchorDbContext;
+        _csupporterDbContext = csupporterDbContext;
     }
 
     public async Task<Role> GetRole(RoleType roleType, CancellationToken cancellationToken)
     {
-        return await _anchorDbContext.Roles.FirstOrDefaultAsync(x => x.RoleName == roleType.ToString(), cancellationToken)
+        return await _csupporterDbContext.Roles.FirstOrDefaultAsync(x => x.RoleName == roleType.ToString(), cancellationToken)
             ?? throw new Exception($"Role with name: {roleType} not exist!");
     }
 }

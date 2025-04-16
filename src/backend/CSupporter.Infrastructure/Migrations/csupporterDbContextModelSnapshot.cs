@@ -4,7 +4,6 @@ using CSupporter.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CSupporter.API.Migrations
 {
     [DbContext(typeof(CsupporterDbContext))]
-    [Migration("20250410202617_ChangeDefaultDate")]
-    partial class ChangeDefaultDate
+    partial class csupporterDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,50 +33,43 @@ namespace CSupporter.API.Migrations
 
                     b.Property<string>("ClientType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)")
                         .HasColumnOrder(4);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
                         .HasColumnOrder(2);
 
                     b.Property<DateTime>("InsertDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(100)
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnOrder(101);
 
                     b.Property<string>("InsertUser")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)")
-                        .HasDefaultValue("sys_user")
-                        .HasColumnOrder(101);
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(100);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(1280)
+                        .HasColumnType("nvarchar(1280)")
                         .HasColumnOrder(3);
 
                     b.Property<DateTime>("UpdateDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(102)
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnOrder(103);
 
                     b.Property<string>("UpdateUser")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)")
-                        .HasDefaultValue("sys_user")
-                        .HasColumnOrder(103);
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(102);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients");
+                    b.ToTable("Clients", (string)null);
                 });
 
             modelBuilder.Entity("CSupporter.Domain.Entities.Product", b =>
@@ -93,137 +83,122 @@ namespace CSupporter.API.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(4);
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)")
+                        .HasColumnOrder(5);
 
                     b.Property<DateTime>("InsertDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(100)
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnOrder(101);
 
                     b.Property<string>("InsertUser")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)")
-                        .HasDefaultValue("sys_user")
-                        .HasColumnOrder(101);
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(100);
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
                         .HasColumnOrder(3);
 
                     b.Property<string>("ProductCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)")
                         .HasColumnOrder(2);
 
                     b.Property<string>("ProductType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnOrder(5);
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)")
+                        .HasColumnOrder(4);
 
                     b.Property<DateTime>("UpdateDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(102)
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnOrder(103);
 
                     b.Property<string>("UpdateUser")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)")
-                        .HasDefaultValue("sys_user")
-                        .HasColumnOrder(103);
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(102);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("CSupporter.Domain.Entities.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("InsertDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(100)
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnOrder(101);
 
                     b.Property<string>("InsertUser")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)")
-                        .HasDefaultValue("sys_user")
-                        .HasColumnOrder(101);
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(100);
 
                     b.Property<string>("RoleName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)")
+                        .HasColumnOrder(2);
 
                     b.Property<DateTime>("UpdateDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(102)
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnOrder(103);
 
                     b.Property<string>("UpdateUser")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)")
-                        .HasDefaultValue("sys_user")
-                        .HasColumnOrder(103);
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(102);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Roles");
+                    b.ToTable("Roles", (string)null);
                 });
 
             modelBuilder.Entity("CSupporter.Domain.Entities.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)")
+                        .HasColumnOrder(2);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)")
+                        .HasColumnOrder(4);
 
                     b.Property<DateTime>("InsertDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(100)
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnOrder(101);
 
                     b.Property<string>("InsertUser")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)")
-                        .HasDefaultValue("sys_user")
-                        .HasColumnOrder(101);
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(100);
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)")
+                        .HasColumnOrder(5);
 
                     b.Property<string>("Nationality")
                         .IsRequired()
@@ -231,30 +206,27 @@ namespace CSupporter.API.Migrations
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)")
+                        .HasColumnOrder(3);
 
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdateDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasColumnOrder(102)
-                        .HasDefaultValueSql("GETUTCDATE()");
+                        .HasColumnOrder(103);
 
                     b.Property<string>("UpdateUser")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasMaxLength(32)
-                        .HasColumnType("nvarchar(32)")
-                        .HasDefaultValue("sys_user")
-                        .HasColumnOrder(103);
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnOrder(102);
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("CSupporter.Domain.Entities.User", b =>

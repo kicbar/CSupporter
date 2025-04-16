@@ -8,44 +8,44 @@ namespace CSupporter.API.Infrastructure.Repositories;
 
 public class ProductRepository : IProductRepository
 {
-    private readonly AnchorDbContext _anchorDbContext;
+    private readonly CsupporterDbContext _csupporterDbContext;
 
-    public ProductRepository(AnchorDbContext anchorDbContext)
+    public ProductRepository(CsupporterDbContext csupporterDbContext)
     {
-        _anchorDbContext = anchorDbContext;
+        _csupporterDbContext = csupporterDbContext;
     }
 
     public async Task<Product> GetProductById(int productId, CancellationToken cancellationToken)
     {
-        var product = await _anchorDbContext.Products.FirstOrDefaultAsync(x => x.Id == productId, cancellationToken);
+        var product = await _csupporterDbContext.Products.FirstOrDefaultAsync(x => x.Id == productId, cancellationToken);
         return product is null ? throw new EntityNotFoundException(productId.ToString(), nameof(Product)) : product;
     }
 
     public async Task<IEnumerable<Product>> GetAllProducts(CancellationToken cancellationToken)
     {
-        return await _anchorDbContext.Products.ToListAsync(cancellationToken);
+        return await _csupporterDbContext.Products.ToListAsync(cancellationToken);
     }
 
     public async Task<Product> AddProduct(Product product, CancellationToken cancellationToken)
     {
-        await _anchorDbContext.Products.AddAsync(product);
-        await _anchorDbContext.SaveChangesAsync(cancellationToken);
+        await _csupporterDbContext.Products.AddAsync(product);
+        await _csupporterDbContext.SaveChangesAsync(cancellationToken);
 
         return product;
     }
 
     public async Task<Product> UpdateProduct(Product product, CancellationToken cancellationToken)
     {
-        _anchorDbContext.Products.Update(product);
-        await _anchorDbContext.SaveChangesAsync(cancellationToken);
+        _csupporterDbContext.Products.Update(product);
+        await _csupporterDbContext.SaveChangesAsync(cancellationToken);
 
         return product;
     }
 
     public async Task<bool> RemoveProduct(Product product, CancellationToken cancellationToken)
     {
-        _anchorDbContext.Products.Remove(product);
-        await _anchorDbContext.SaveChangesAsync(cancellationToken);
+        _csupporterDbContext.Products.Remove(product);
+        await _csupporterDbContext.SaveChangesAsync(cancellationToken);
         return true;
     }
 }
