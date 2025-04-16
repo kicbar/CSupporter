@@ -1,7 +1,7 @@
-﻿using CSupporter.API.Infrastructure.Data;
-using CSupporter.Application.Exceptions;
+﻿using CSupporter.Application.Exceptions;
 using CSupporter.Domain.Entities;
 using CSupporter.Domain.Interfaces.Repositories;
+using CSupporter.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace CSupporter.API.Infrastructure.Repositories;

@@ -1,8 +1,8 @@
 using CSupporter.API.Extensions;
 using CSupporter.Application.Extensions;
 using CSupporter.Application.Filters;
+using CSupporter.Infrastructure.Extensions;
 using CSupporter.Infrastructure.Middleware;
-using CSupporter.Infrastucture.Extensions;
 using Serilog;
 using System.Text.Json.Serialization;
 

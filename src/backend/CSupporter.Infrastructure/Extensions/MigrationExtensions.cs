@@ -1,8 +1,8 @@
-﻿using CSupporter.API.Infrastructure.Data;
+﻿using CSupporter.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CSupporter.Infrastucture.Extensions;
+namespace CSupporter.Infrastructure.Extensions;
 
 public static class MigrationExtensions
 {

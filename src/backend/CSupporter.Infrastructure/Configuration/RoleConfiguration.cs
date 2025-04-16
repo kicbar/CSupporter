@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CSupporter.API.Infrastructure.Configuration;
+namespace CSupporter.Infrastructure.Configuration;
 
 public class RoleConfiguration : IEntityTypeConfiguration<Role>
 {

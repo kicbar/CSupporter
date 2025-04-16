@@ -1,8 +1,8 @@
-﻿using CSupporter.API.Infrastructure.Configuration;
-using CSupporter.Domain.Entities;
+﻿using CSupporter.Domain.Entities;
+using CSupporter.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 
-namespace CSupporter.API.Infrastructure.Data;
+namespace CSupporter.Infrastructure.Data;
 
 public class AnchorDbContext : DbContext
 {

@@ -33,8 +33,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CSupporter.Application\CSupporter.Application.csproj" />
     <ProjectReference Include="..\CSupporter.Domain\CSupporter.Domain.csproj" />
-    <ProjectReference Include="..\CSupporter.Infrastucture\CSupporter.Infrastucture.csproj" />
-	  <ProjectReference Include="..\..\frontend\rkanchor.client\rkanchor.client.esproj">
+	<ProjectReference Include="..\CSupporter.Infrastructure\CSupporter.Infrastructure.csproj" />
+	<ProjectReference Include="..\..\frontend\rkanchor.client\rkanchor.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>

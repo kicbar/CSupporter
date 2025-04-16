@@ -1,10 +1,10 @@
-﻿using CSupporter.API.Infrastructure.Data;
-using CSupporter.Domain.Entities;
+﻿using CSupporter.Domain.Entities;
 using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
+using CSupporter.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace CSupporter.API.Infrastructure.Repositories;
+namespace CSupporter.Infrastructure.Repositories;
 
 public class RoleRepository : IRoleRepository
 {

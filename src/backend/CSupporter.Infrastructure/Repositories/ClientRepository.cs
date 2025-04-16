@@ -1,6 +1,6 @@
-﻿using CSupporter.API.Infrastructure.Data;
-using CSupporter.Domain.Entities;
+﻿using CSupporter.Domain.Entities;
 using CSupporter.Domain.Interfaces.Repositories;
+using CSupporter.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

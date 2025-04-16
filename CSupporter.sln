@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Domain", "src\ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Application", "src\backend\CSupporter.Application\CSupporter.Application.csproj", "{70A08499-621A-48E9-A0E6-CC142B96FBEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Infrastucture", "src\backend\CSupporter.Infrastucture\CSupporter.Infrastucture.csproj", "{8932BDB7-751A-4EB4-BC63-18F94C260C07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSupporter.Infrastructure", "src\backend\CSupporter.Infrastructure\CSupporter.Infrastructure.csproj", "{8932BDB7-751A-4EB4-BC63-18F94C260C07}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{80BBBAEB-C21F-4B3A-BF70-BA7DF17943BA}"
 EndProject

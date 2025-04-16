@@ -1,15 +1,15 @@
-﻿using CSupporter.API.Infrastructure.Data;
-using CSupporter.API.Infrastructure.Repositories;
+﻿using CSupporter.API.Infrastructure.Repositories;
 using CSupporter.Domain.Interfaces.Repositories;
 using CSupporter.Domain.Interfaces.Services;
+using CSupporter.Infrastructure.Data;
 using CSupporter.Infrastructure.Mappings;
 using CSupporter.Infrastructure.Repositories;
-using CSupporter.Infrastucture.Services;
+using CSupporter.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CSupporter.Infrastucture.Extensions;
+namespace CSupporter.Infrastructure.Extensions;
 
 public static class DependencyRegistration
 {
