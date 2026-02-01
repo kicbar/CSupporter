@@ -2,5 +2,5 @@
 
 public interface IDateTimeProvider
 {
-    public DateTime CurrentDateTime { get; }
+    public DateTime Now { get; }
 }

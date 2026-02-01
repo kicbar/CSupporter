@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CSupporter.Infrastructure.Configuration;
+namespace CSupporter.Infrastructure.Data.Configuration;
 
 public class ClientConfiguration : IEntityTypeConfiguration<Client>
 {

@@ -26,7 +26,7 @@ public class TimeTrackFilter : IActionFilter
         var action = $"{request.Method} {requestUrl}";
         var miliseconds = _stopwatch.ElapsedMilliseconds;
 
-        _logger.LogInformation($"Action [{action}] stop at {_dateTimeProvider.CurrentDateTime} and executed in {miliseconds}ms.");
+        _logger.LogInformation($"Action [{action}] stop at {_dateTimeProvider.Now} and executed in {miliseconds}ms.");
     }
 
     public void OnActionExecuting(ActionExecutingContext context)
@@ -37,6 +37,6 @@ public class TimeTrackFilter : IActionFilter
 
         _stopwatch = Stopwatch.StartNew();
 
-        _logger.LogInformation($"Action [{action}] start at {_dateTimeProvider.CurrentDateTime}.");
+        _logger.LogInformation($"Action [{action}] start at {_dateTimeProvider.Now}.");
     }
 }

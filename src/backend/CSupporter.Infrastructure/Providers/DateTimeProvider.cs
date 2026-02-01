@@ -4,5 +4,5 @@ namespace CSupporter.Infrastructure.Providers;
 
 public class DateTimeProvider : IDateTimeProvider
 {
-    public DateTime CurrentDateTime => DateTime.UtcNow;
+    public DateTime Now => DateTime.UtcNow;
 }

@@ -22,23 +22,16 @@ public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, C
 {
     private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
-    private readonly ICurrentUserService _currentUserService;
 
-    public CreateClientCommandHandler(IMapper mapper, IClientRepository clientRepository, ICurrentUserService currentUserService)
+    public CreateClientCommandHandler(IMapper mapper, IClientRepository clientRepository)
     {
         _mapper = mapper;
         _clientRepository = clientRepository;
-        _currentUserService = currentUserService;
     }
 
     public async Task<Client> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
-        var currentUser = _currentUserService?.UserEmail;
         var client = _mapper.Map<Client>(request);
-        client.InsertUser = currentUser ?? "DefaultUser";
-        client.UpdateUser = currentUser ?? "DefaultUser";
-        client.InsertDate = DateTime.UtcNow;
-        client.UpdateDate = DateTime.UtcNow;
 
         return await _clientRepository.AddClient(client, cancellationToken);
     }

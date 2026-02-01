@@ -2,6 +2,7 @@
 using CSupporter.Application.Interfaces;
 using CSupporter.Domain.Interfaces.Repositories;
 using CSupporter.Infrastructure.Data;
+using CSupporter.Infrastructure.Data.Interceptors;
 using CSupporter.Infrastructure.Mappings;
 using CSupporter.Infrastructure.Providers;
 using CSupporter.Infrastructure.Repositories;
@@ -17,6 +18,7 @@ public static class DependencyRegistration
     {
         services
             .AddDatabase(configuration)
+            .AddInterceptors()
             .AddRepositories()
             .AddServices()
             .AddAutoMapper(typeof(MappingProfile));
@@ -26,9 +28,14 @@ public static class DependencyRegistration
 
     internal static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<CsupporterDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("CSupporterDbConnection"),
-            sqlOptions => sqlOptions.MigrationsAssembly("CSupporter.Infrastructure")));
+        services.AddDbContext<CsupporterDbContext>((sp, options) =>
+        {
+            options
+                .UseSqlServer(configuration.GetConnectionString("CSupporterDbConnection"))
+                .AddInterceptors(sp.GetRequiredService<AuditSaveChangesInterceptor>());
+
+            //sqlOptions => sqlOptions.MigrationsAssembly("CSupporter.Infrastructure")));
+        });
 
         return services;
     }
@@ -48,6 +55,14 @@ public static class DependencyRegistration
     {
         services
             .AddSingleton<IDateTimeProvider, DateTimeProvider>();
+
+        return services;
+    }
+
+    internal static IServiceCollection AddInterceptors(this IServiceCollection services)
+    {
+        services
+            .AddScoped<AuditSaveChangesInterceptor>();
 
         return services;
     }

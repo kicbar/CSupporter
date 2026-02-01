@@ -19,7 +19,7 @@ public class CreateProductCommandValidator : AbstractValidator<CreateProductComm
             .MaximumLength(16);
 
         RuleFor(x => x.ProductType)
-            .NotEmpty()
-            .Must(value => Enum.IsDefined(typeof(ProductType), value));
+            .NotNull()
+            .IsInEnum();
     }
 }
