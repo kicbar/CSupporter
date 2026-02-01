@@ -33,8 +33,6 @@ public static class DependencyRegistration
             options
                 .UseSqlServer(configuration.GetConnectionString("CSupporterDbConnection"))
                 .AddInterceptors(sp.GetRequiredService<AuditSaveChangesInterceptor>());
-
-            //sqlOptions => sqlOptions.MigrationsAssembly("CSupporter.Infrastructure")));
         });
 
         return services;
