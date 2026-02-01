@@ -1,6 +1,6 @@
 ﻿using CSupporter.Application.Behaviors;
 using CSupporter.Application.Filters;
-using CSupporter.Application.IServices;
+using CSupporter.Application.Interfaces;
 using CSupporter.Application.Models.Configuration;
 using CSupporter.Application.Services;
 using CSupporter.Domain.Entities;

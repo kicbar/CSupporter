@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using CSupporter.Application.IServices;
+using CSupporter.Application.Interfaces;
 using CSupporter.Domain.Entities;
 using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;

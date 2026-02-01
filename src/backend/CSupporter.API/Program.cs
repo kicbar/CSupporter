@@ -39,7 +39,10 @@ try
     // Configure the HTTP request pipeline.
     var app = builder.Build();
 
-    await app.Services.ApplyMigrationsAsync();
+    if (app.Environment.IsDevelopment())
+    {
+        await app.Services.ApplyMigrationsAsync();
+    }
 
     app.UseResponseCaching();
     app.UseDefaultFiles();

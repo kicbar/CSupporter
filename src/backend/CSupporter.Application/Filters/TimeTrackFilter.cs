@@ -1,4 +1,4 @@
-﻿using CSupporter.Domain.Interfaces.Services;
+﻿using CSupporter.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;

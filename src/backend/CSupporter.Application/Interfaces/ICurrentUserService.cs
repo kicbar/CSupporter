@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace CSupporter.Application.IServices;
+namespace CSupporter.Application.Interfaces;
 
 public interface ICurrentUserService
 {

@@ -8,11 +8,10 @@ public class RoleConfiguration : IEntityTypeConfiguration<Role>
 {
     public void Configure(EntityTypeBuilder<Role> builder)
     {
-        builder.ToTable("Roles");
+        builder.ToTable(nameof(Role));
 
         builder.Property(x => x.RoleName)
             .IsRequired()
-            .HasMaxLength(32)
-            .HasColumnOrder(2);
+            .HasMaxLength(32);
     }
 }

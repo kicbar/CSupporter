@@ -1,4 +1,4 @@
-﻿namespace CSupporter.Domain.Interfaces.Services;
+﻿namespace CSupporter.Application.Interfaces;
 
 public interface IDateTimeProvider
 {

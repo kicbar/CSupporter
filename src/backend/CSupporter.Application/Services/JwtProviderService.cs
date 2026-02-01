@@ -1,4 +1,4 @@
-﻿using CSupporter.Application.IServices;
+﻿using CSupporter.Application.Interfaces;
 using CSupporter.Application.Models.Configuration;
 using CSupporter.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;

@@ -1,4 +1,4 @@
-﻿using CSupporter.Application.IServices;
+﻿using CSupporter.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 

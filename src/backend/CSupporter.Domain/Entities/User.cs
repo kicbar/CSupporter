@@ -1,9 +1,9 @@
-﻿namespace CSupporter.Domain.Entities;
+﻿using CSupporter.Domain.Common;
 
-public class User : BaseEntity
+namespace CSupporter.Domain.Entities;
+
+public class User : BaseAuditableEntity<int>
 {
-    public int Id { get; set; }
-
     public string Email { get; set; }
 
     public string FirstName { get; set; }

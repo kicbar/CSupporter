@@ -1,6 +1,6 @@
-﻿using CSupporter.Domain.Interfaces.Services;
+﻿using CSupporter.Application.Interfaces;
 
-namespace CSupporter.Infrastructure.Services;
+namespace CSupporter.Infrastructure.Providers;
 
 public class DateTimeProvider : IDateTimeProvider
 {

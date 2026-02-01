@@ -1,16 +1,13 @@
-﻿using CSupporter.Domain.Enums;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using CSupporter.Domain.Common;
+using CSupporter.Domain.Enums;
 
 namespace CSupporter.Domain.Entities;
 
-public class Client : BaseEntity
+public class Client : BaseAuditableEntity<int>
 {
-    [Column(Order = 2)]
     public string FirstName { get; set; }
 
-    [Column(Order = 3)]
     public string LastName { get; set; }
 
-    [Column(Order = 4)]
     public ClientType ClientType { get; set; }
 }

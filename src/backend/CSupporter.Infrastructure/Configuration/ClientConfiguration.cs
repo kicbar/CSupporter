@@ -10,19 +10,18 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
 {
     public void Configure(EntityTypeBuilder<Client> builder)
     {
-        builder.ToTable("Clients");
+        builder.ToTable(nameof(Client));
+
+        builder.HasKey(x => x.Id);
 
         builder.Property(x => x.FirstName)
-               .HasMaxLength(128)
-               .HasColumnOrder(2);
+               .HasMaxLength(128);
 
         builder.Property(x => x.LastName)
-               .HasMaxLength(1280)
-               .HasColumnOrder(3);
+               .HasMaxLength(128);
 
         builder.Property(x => x.ClientType)
                .HasMaxLength(32)
-               .HasColumnOrder(4)
                .HasConversion(new EnumToStringConverter<ClientType>());
     }
 }

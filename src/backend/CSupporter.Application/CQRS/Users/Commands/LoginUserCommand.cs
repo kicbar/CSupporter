@@ -1,5 +1,5 @@
 ﻿using CSupporter.Application.Exceptions;
-using CSupporter.Application.IServices;
+using CSupporter.Application.Interfaces;
 using CSupporter.Domain.Entities;
 using CSupporter.Domain.Interfaces.Repositories;
 using MediatR;
