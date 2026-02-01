@@ -25,7 +25,7 @@ import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { ClientDetailsComponent } from './clients/client-details/client-details.component';
 import { ClientAddComponent } from './clients/client-add/client-add.component';
-import { ClientListComponent } from './clients/client-list/client-list.component';
+import { ClientsListComponent } from './clients/clients-list/clients-list.component';
 import { ClientService } from './services/client.service';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './user/login/login.component';
@@ -34,6 +34,8 @@ import { DictionaryService } from './services/dictionary.service';
 import { NotificationService } from './services/notification.service';
 import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { ClientListItemComponent } from './clients/clients-list/client-list-item/client-list-item.component';
+import { ClientEditComponent } from './clients/client-edit/client-edit.component';
 
 @NgModule({
   declarations: [
@@ -50,9 +52,11 @@ import { MatSelectModule } from '@angular/material/select';
     ProductEditComponent,
     ClientDetailsComponent,
     ClientAddComponent,
-    ClientListComponent,
+    ClientsListComponent,
     LoginComponent,
     RegisterComponent,
+    ClientListItemComponent,
+    ClientEditComponent,
   ],
   imports: [
     BrowserModule, 

@@ -7,6 +7,8 @@ import { ProductAddComponent } from './products/product-add/product-add.componen
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
+import { ClientAddComponent } from './clients/client-add/client-add.component';
+import { ClientEditComponent } from './clients/client-edit/client-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'product-add', component: ProductAddComponent },
   { path: 'product-edit', component: ProductEditComponent },
   { path: 'clients', component: ClientsComponent },
+  { path: 'client-add', component: ClientAddComponent },
+  { path: 'client-edit', component: ClientEditComponent },  
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 ];

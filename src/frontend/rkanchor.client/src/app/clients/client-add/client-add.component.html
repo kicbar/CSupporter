@@ -1,27 +1,36 @@
 <div class="form-container">
     <h2>Dodawanie klienta</h2>
-    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="clientForm" (ngSubmit)="onAddSubmit()">
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Imię</mat-label>
-        <input matInput placeholder="Podaj imię" formControlName="firstName" />
+        <mat-label>Firstname</mat-label>
+        <input matInput placeholder="Enter client firstname" formControlName="firstName" />
         <mat-error *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched">
-          Imię jest wymagane.
+          Firstname is required.
         </mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Nazwisko</mat-label>
-        <input matInput placeholder="Podaj nazwisko" formControlName="lastName" />
+        <mat-label>Lastname</mat-label>
+        <textarea
+          matInput
+          placeholder="Enter client lastname"
+          formControlName="lastName"
+          rows="3"
+        ></textarea>
         <mat-error *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched">
-          Nazwisko jest wymagane.
+          Lastname is required.
         </mat-error>
       </mat-form-field>
   
       <mat-form-field appearance="fill" class="full-width">
-        <mat-label>Typ klienta</mat-label>
-        <input matInput placeholder="Podaj typ klienta" formControlName="clientType" />
+        <mat-label>Client Type</mat-label>
+        <mat-select formControlName="clientType">
+          <mat-option *ngFor="let type of clientTypes" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="clientForm.get('clientType')?.invalid && clientForm.get('clientType')?.touched">
-          Typ klienta jest wymagany.
+          Product type is required.
         </mat-error>
       </mat-form-field>
   
@@ -37,8 +46,10 @@
         mat-raised-button
         color="warn"
         type="button"
-        class="full-width">
+        class="full-width"
+        (click)="onAddCancel()">
       Anuluj
     </button> 
-  </form>
-</div>
+    </form>
+  </div>
+  

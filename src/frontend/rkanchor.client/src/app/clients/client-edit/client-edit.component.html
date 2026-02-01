@@ -1,0 +1,59 @@
+<p *ngIf="!client" class="no-client-message">
+  Klient do edycji nie został wybrany
+</p>
+<div *ngIf="client" class="form-container">
+  <h2>Edytuj klienta</h2>
+  <form [formGroup]="clientForm" (ngSubmit)="onEditSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>FirstName</mat-label>
+      <input matInput placeholder="Enter client name" formControlName="firstName" />
+      <mat-error *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched">
+        FirstName is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>LastName</mat-label>
+      <textarea
+        matInput
+        placeholder="Enter client lastName"
+        formControlName="lastName"
+        rows="3"
+      ></textarea>
+      <mat-error *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched">
+        LastName is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Client Type</mat-label>
+      <mat-select formControlName="clientType">
+        <mat-option *ngFor="let type of clientTypes" [value]="type">
+          {{ type }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="clientForm.get('clientType')?.invalid && clientForm.get('clientType')?.touched">
+        Client type is required.
+      </mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="clientForm.invalid || !clientForm.dirty"
+      class="full-width"
+    >
+      Zapisz
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      type="button"
+      class="full-width"
+      (click)="onEditCancel()"
+    >
+      Anuluj
+    </button>
+  </form>
+</div>

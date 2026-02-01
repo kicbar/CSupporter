@@ -1,0 +1,18 @@
+<div class="search-container">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Wyszukaj klienta</mat-label>
+    <input matInput (input)="onSearch($event)" placeholder="Wpisz imię lub nazwisko" />
+  </mat-form-field>
+</div>
+
+<p *ngIf="!clients" class="loading-text">Ładowanie klientów...</p>
+
+<div class="list-container">
+  <div class="list-item-container">
+    <app-client-list-item
+      *ngFor="let client of filteredClients"
+      [client]="client"
+      (click)="onClientSelected(client)">
+    </app-client-list-item>
+  </div>
+</div>
