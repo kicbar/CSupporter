@@ -1,5 +1,6 @@
 ﻿using CSupporter.API.Infrastructure.Repositories;
 using CSupporter.Application.Interfaces;
+using CSupporter.Application.Services;
 using CSupporter.Domain.Interfaces.Repositories;
 using CSupporter.Infrastructure.Data;
 using CSupporter.Infrastructure.Data.Interceptors;
@@ -52,7 +53,8 @@ public static class DependencyRegistration
     internal static IServiceCollection AddServices(this IServiceCollection services)
     {
         services
-            .AddSingleton<IDateTimeProvider, DateTimeProvider>();
+            .AddSingleton<IDateTimeProvider, DateTimeProvider>()
+            .AddScoped<IJwtTokenProvider, JwtTokenProvider>();
 
         return services;
     }

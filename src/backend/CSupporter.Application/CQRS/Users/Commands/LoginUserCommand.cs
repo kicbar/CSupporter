@@ -18,13 +18,13 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
 {
     private readonly IUserRepository _userRepository;
     private readonly IPasswordHasher<User> _passwordHasher;
-    private readonly IJwtProviderService _jwtProviderService;
+    private readonly IJwtTokenProvider _jwtTokenProvider;
 
-    public LoginUserCommandHandler(IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IJwtProviderService jwtProviderService)
+    public LoginUserCommandHandler(IUserRepository userRepository, IPasswordHasher<User> passwordHasher, IJwtTokenProvider jwtTokenProvider)
     {
         _userRepository = userRepository;
         _passwordHasher = passwordHasher;
-        _jwtProviderService = jwtProviderService;
+        _jwtTokenProvider = jwtTokenProvider;
     }
 
     public async Task<string> Handle(LoginUserCommand request, CancellationToken cancellationToken)
@@ -39,6 +39,6 @@ public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand, string>
         if (passwordVerificationResult == PasswordVerificationResult.Failed)
             throw new Exception("Incorrect user login or password!");
 
-        return _jwtProviderService.GenerateJwtToken(user);
+        return _jwtTokenProvider.GenerateJwtToken(user);
     }
 }

@@ -34,7 +34,6 @@ public static class DependencyRegistration
     internal static IServiceCollection AddServices(this IServiceCollection services)
     {
         services
-            .AddScoped<IJwtProviderService, JwtProviderService>()
             .AddScoped<ICurrentUserService, CurrentUserService>()
             .AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 

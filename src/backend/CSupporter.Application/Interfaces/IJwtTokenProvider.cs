@@ -2,7 +2,7 @@
 
 namespace CSupporter.Application.Interfaces;
 
-public interface IJwtProviderService
+public interface IJwtTokenProvider
 {
     string GenerateJwtToken(User user);
 }

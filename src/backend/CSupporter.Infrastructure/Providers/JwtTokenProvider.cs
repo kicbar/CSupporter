@@ -8,11 +8,11 @@ using System.Text;
 
 namespace CSupporter.Application.Services;
 
-public class JwtProviderService : IJwtProviderService
+public class JwtTokenProvider : IJwtTokenProvider
 {
     private readonly JwtOptions _jwtOptions;
 
-    public JwtProviderService(JwtOptions jwtOptions)
+    public JwtTokenProvider(JwtOptions jwtOptions)
     {
         _jwtOptions = jwtOptions;
     }
