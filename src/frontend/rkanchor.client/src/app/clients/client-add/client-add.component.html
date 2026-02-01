@@ -11,12 +11,7 @@
   
       <mat-form-field appearance="fill" class="full-width">
         <mat-label>Lastname</mat-label>
-        <textarea
-          matInput
-          placeholder="Enter client lastname"
-          formControlName="lastName"
-          rows="3"
-        ></textarea>
+        <input matInput placeholder="Enter client lastName" formControlName="lastName" />        
         <mat-error *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched">
           Lastname is required.
         </mat-error>

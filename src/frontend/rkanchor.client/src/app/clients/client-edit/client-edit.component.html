@@ -6,7 +6,7 @@
   <form [formGroup]="clientForm" (ngSubmit)="onEditSubmit()">
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>FirstName</mat-label>
-      <input matInput placeholder="Enter client name" formControlName="firstName" />
+      <input matInput placeholder="Enter client firstName" formControlName="firstName" />
       <mat-error *ngIf="clientForm.get('firstName')?.invalid && clientForm.get('firstName')?.touched">
         FirstName is required.
       </mat-error>
@@ -14,12 +14,7 @@
 
     <mat-form-field appearance="fill" class="full-width">
       <mat-label>LastName</mat-label>
-      <textarea
-        matInput
-        placeholder="Enter client lastName"
-        formControlName="lastName"
-        rows="3"
-      ></textarea>
+      <input matInput placeholder="Enter client lastName" formControlName="lastName" />
       <mat-error *ngIf="clientForm.get('lastName')?.invalid && clientForm.get('lastName')?.touched">
         LastName is required.
       </mat-error>

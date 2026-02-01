@@ -1,5 +1,4 @@
 ﻿using CSupporter.Application.CQRS.Products.Commands;
-using CSupporter.Domain.Enums;
 using FluentValidation;
 
 namespace CSupporter.Application.CQRS.Products.Validators;
@@ -22,7 +21,7 @@ public class UpdateProductCommandValidator : AbstractValidator<UpdateProductComm
             .MaximumLength(16);
 
         RuleFor(x => x.ProductType)
-            .NotEmpty()
-            .Must(value => Enum.IsDefined(typeof(ProductType), value));
+            .NotNull()
+            .IsInEnum();
     }
 }

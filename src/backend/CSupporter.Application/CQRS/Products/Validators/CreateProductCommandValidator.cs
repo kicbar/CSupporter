@@ -1,5 +1,4 @@
 ﻿using CSupporter.Application.CQRS.Products.Commands;
-using CSupporter.Domain.Enums;
 using FluentValidation;
 
 namespace CSupporter.Application.CQRS.Products.Validators;

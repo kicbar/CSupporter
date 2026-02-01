@@ -1,4 +1,5 @@
-﻿using CSupporter.Application.Interfaces;
+﻿using CSupporter.Application.Converters;
+using CSupporter.Application.Interfaces;
 using CSupporter.Domain.Entities;
 using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
@@ -14,18 +15,17 @@ public record UpdateProductCommand : IRequest<Product>
     public string ProductCode { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
-    public ProductType ProductType { get; set; }
+    [JsonConverter(typeof(EnumConverter<ProductType>))]
+    public ProductType? ProductType { get; set; }
 }
 
 public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Product>
 {
     private readonly IProductRepository _productRepository;
-    private readonly ICurrentUserService _currentUserService;
 
-    public UpdateProductCommandHandler(IProductRepository productRepository, ICurrentUserService currentUserService)
+    public UpdateProductCommandHandler(IProductRepository productRepository)
     {
         _productRepository = productRepository;
-        _currentUserService = currentUserService;
     }
 
     public async Task<Product> Handle(UpdateProductCommand command, CancellationToken cancellationToken)
@@ -34,10 +34,8 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand,
         product.ProductCode = command.ProductCode;
         product.Name = command.Name;
         product.Description = command.Description;
-        product.ProductType = command.ProductType;
-        var currentUser = _currentUserService?.UserEmail;
-        if (currentUser is not null) 
-            product.UpdateUser = currentUser;
+        if(command.ProductType is not null) 
+        product.ProductType = (ProductType)command.ProductType;
 
         return await _productRepository.UpdateProduct(product, cancellationToken);
     }
