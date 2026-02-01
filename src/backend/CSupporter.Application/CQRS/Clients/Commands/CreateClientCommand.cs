@@ -11,7 +11,7 @@ public record CreateClientCommand : IRequest<Client>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
-    public ClientType ClientType { get; set; }
+    public ClientType? ClientType { get; set; }
 }
 
 public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Client>
@@ -31,11 +31,10 @@ public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, C
     {
         var currentUser = _currentUserService?.UserEmail;
         var client = _mapper.Map<Client>(request);
-        if (currentUser is not null) 
-        {
-            client.InsertUser = currentUser;
-            client.UpdateUser = currentUser;
-        }
+        client.InsertUser = currentUser ?? "DefaultUser";
+        client.UpdateUser = currentUser ?? "DefaultUser";
+        client.InsertDate = DateTime.UtcNow;
+        client.UpdateDate = DateTime.UtcNow;
 
         return await _clientRepository.AddClient(client, cancellationToken);
     }
