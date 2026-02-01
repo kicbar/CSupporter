@@ -1,10 +1,13 @@
-﻿using CSupporter.Domain.Enums;
+﻿using CSupporter.Application.Converters;
+using CSupporter.Domain.Enums;
 using MediatR;
+using System.Text.Json.Serialization;
 
 namespace CSupporter.Application.CQRS.Dictionary.Queries;
 
 public record GetDictionaryQuery : IRequest<IEnumerable<string>>
 {
+    [JsonConverter(typeof(EnumConverter<DictionaryType>))]
     public DictionaryType DictionaryType { get; set; }
 }
 

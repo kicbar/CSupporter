@@ -17,7 +17,7 @@ public class CreateClientCommandValidator : AbstractValidator<CreateClientComman
             .MaximumLength(64);
 
         RuleFor(x => x.ClientType)
-            .NotEmpty()
-            .Must(value => Enum.IsDefined(typeof(ClientType), value));
+            .NotNull()
+            .IsInEnum();
     }
 }

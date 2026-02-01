@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using CSupporter.Application.Converters;
 using CSupporter.Application.IServices;
 using CSupporter.Domain.Entities;
 using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
 using MediatR;
+using System.Text.Json.Serialization;
 
 namespace CSupporter.Application.CQRS.Clients.Command;
 
@@ -11,6 +13,8 @@ public record CreateClientCommand : IRequest<Client>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
+
+    [JsonConverter(typeof(EnumConverter<ClientType>))]
     public ClientType? ClientType { get; set; }
 }
 
