@@ -3,6 +3,7 @@ using CSupporter.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using System.Xml.XPath;
 
 namespace CSupporter.Infrastructure.Data.Configuration;
 
@@ -20,8 +21,22 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
         builder.Property(x => x.LastName)
                .HasMaxLength(128);
 
+        builder.Property(x => x.PhoneNumber)
+               .HasMaxLength(16);
+
+        builder.Property(x => x.Address)
+               .HasMaxLength(128);
+
+        builder.Property(x => x.Address)
+               .HasMaxLength(32);
+
         builder.Property(x => x.ClientType)
                .HasMaxLength(32)
                .HasConversion(new EnumToStringConverter<ClientType>());
+
+        builder.HasMany(x => x.Orders)
+            .WithOne(x => x.Client)
+            .HasForeignKey(x => x.ClientId)
+            .IsRequired();
     }
 }
