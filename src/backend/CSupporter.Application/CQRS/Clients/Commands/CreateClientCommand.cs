@@ -14,11 +14,17 @@ public record CreateClientCommand : IRequest<Client>
 
     public string LastName { get; set; }
 
+    public string PhoneNumber { get; set; }
+
+    public string Address { get; set; }
+
+    public string Email { get; set; }
+
     [JsonConverter(typeof(EnumConverter<ClientType>))]
     public ClientType? ClientType { get; set; }
 }
 
-public class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Client>
+internal class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Client>
 {
     private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;

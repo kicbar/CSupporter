@@ -9,7 +9,7 @@ public record GetClientByIdQuery : IRequest<Client>
     public int ClientId { get; set; }
 }
 
-public class GetClientByIdQueryHandler : IRequestHandler<GetClientByIdQuery, Client>
+internal class GetClientByIdQueryHandler : IRequestHandler<GetClientByIdQuery, Client>
 {
     private readonly IClientRepository _clientRepository;
 

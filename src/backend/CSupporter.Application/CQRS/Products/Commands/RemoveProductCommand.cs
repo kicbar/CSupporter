@@ -8,7 +8,7 @@ public record RemoveProductCommand : IRequest<bool>
     public int ProductId { get; set; }
 }
 
-public class RemoveProductCommandHandler : IRequestHandler<RemoveProductCommand, bool>
+internal class RemoveProductCommandHandler : IRequestHandler<RemoveProductCommand, bool>
 {
     private IProductRepository _productRepository;
 

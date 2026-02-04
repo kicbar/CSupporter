@@ -8,7 +8,7 @@ public record RemoveClientCommand : IRequest<bool>
     public int ClientId { get; set; }
 }
 
-public class RemoveClientCommandHandler : IRequestHandler<RemoveClientCommand, bool>
+internal class RemoveClientCommandHandler : IRequestHandler<RemoveClientCommand, bool>
 {
     private IClientRepository _clientRepository;
 

@@ -9,7 +9,7 @@ public record GetProductQuery : IRequest<Product>
     public int ProductId { get; set; }
 }
 
-public class GetProductQueryHandler : IRequestHandler<GetProductQuery, Product>
+internal class GetProductQueryHandler : IRequestHandler<GetProductQuery, Product>
 {
     private readonly IProductRepository _productRepository;
 

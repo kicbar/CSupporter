@@ -6,7 +6,7 @@ namespace CSupporter.Application.CQRS.Products.Queries;
 
 public record GetProductsQuery : IRequest<IEnumerable<Product>> { }
 
-public class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<Product>>
+internal class GetProductsQueryHandler : IRequestHandler<GetProductsQuery, IEnumerable<Product>>
 {
     private readonly IProductRepository _productRepository;
 

@@ -18,7 +18,7 @@ public record CreateProductCommand : IRequest<Product>
     public string ProductCode { get; set; }
 }
 
-public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Product>
+internal class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Product>
 {
     private readonly IMapper _mapper;
     private readonly IProductRepository _productRepository;

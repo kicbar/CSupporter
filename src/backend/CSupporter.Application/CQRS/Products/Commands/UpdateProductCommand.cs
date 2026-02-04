@@ -19,7 +19,7 @@ public record UpdateProductCommand : IRequest<Product>
     public ProductType? ProductType { get; set; }
 }
 
-public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Product>
+internal class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand, Product>
 {
     private readonly IProductRepository _productRepository;
 

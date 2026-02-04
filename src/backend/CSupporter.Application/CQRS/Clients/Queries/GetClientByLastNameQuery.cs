@@ -9,7 +9,7 @@ public record GetClientByLastNameQuery : IRequest<Client>
     public string LastName { get; set; }
 }
 
-public class GetClientByLastNameQueryHandler : IRequestHandler<GetClientByLastNameQuery, Client>
+internal class GetClientByLastNameQueryHandler : IRequestHandler<GetClientByLastNameQuery, Client>
 {
     private readonly IClientRepository _clientRepository;
 

@@ -20,7 +20,7 @@ public record UpdateClientCommand : IRequest<Client>
     public ClientType? ClientType { get; set; }
 }
 
-public class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, Client>
+internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, Client>
 {
     private readonly IClientRepository _clientRepository;
 
