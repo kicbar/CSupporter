@@ -3,5 +3,6 @@
 public enum DictionaryType
 {
     Product,
+    Producer,
     Client,
 }

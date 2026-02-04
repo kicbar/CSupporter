@@ -1,5 +1,6 @@
 ﻿using CSupporter.Domain.Common;
 using CSupporter.Domain.Enums;
+using System.Text.Json.Serialization;
 
 namespace CSupporter.Domain.Entities;
 
@@ -17,5 +18,6 @@ public class Client : BaseAuditableEntity<int>
 
     public ClientType ClientType { get; set; }
 
+    [JsonIgnore]
     public List<Order> Orders { get; set; }
 }

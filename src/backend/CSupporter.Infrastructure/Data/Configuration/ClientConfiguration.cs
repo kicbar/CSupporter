@@ -33,10 +33,5 @@ public class ClientConfiguration : IEntityTypeConfiguration<Client>
         builder.Property(x => x.ClientType)
                .HasMaxLength(32)
                .HasConversion(new EnumToStringConverter<ClientType>());
-
-        builder.HasMany(x => x.Orders)
-            .WithOne(x => x.Client)
-            .HasForeignKey(x => x.ClientId)
-            .IsRequired();
     }
 }

@@ -44,6 +44,7 @@ public static class DependencyRegistration
         services
             .AddScoped<IProductRepository, ProductRepository>()
             .AddScoped<IClientRepository, ClientRepository>()
+            .AddScoped<IOrderRepository, OrderRepository>()
             .AddScoped<IUserRepository, UserRepository>()
             .AddScoped<IRoleRepository, RoleRepository>();
 

@@ -11,13 +11,14 @@ public record GetDictionaryQuery : IRequest<IEnumerable<string>>
     public DictionaryType DictionaryType { get; set; }
 }
 
-public class GetDictionaryQueryHandler : IRequestHandler<GetDictionaryQuery, IEnumerable<string>>
+internal class GetDictionaryQueryHandler : IRequestHandler<GetDictionaryQuery, IEnumerable<string>>
 {
     public async Task<IEnumerable<string>> Handle(GetDictionaryQuery request, CancellationToken cancellationToken)
     {
         var dictionaryType = request.DictionaryType switch
         {
             DictionaryType.Product => typeof(ProductType),
+            DictionaryType.Producer => typeof(ProducerType),
             DictionaryType.Client => typeof(ClientType),
             _ => throw new ArgumentNullException("Dictionary not exist!")
         };

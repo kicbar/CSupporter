@@ -1,4 +1,5 @@
 using CSupporter.API.Extensions;
+using CSupporter.Application.Converters;
 using CSupporter.Application.Extensions;
 using CSupporter.Application.Filters;
 using CSupporter.Infrastructure.Extensions;
@@ -34,6 +35,7 @@ try
         .AddJsonOptions(options =>
         {
             options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            options.JsonSerializerOptions.Converters.Add(new DateOnlyJsonConverter());
         });
 
     // Configure the HTTP request pipeline.
