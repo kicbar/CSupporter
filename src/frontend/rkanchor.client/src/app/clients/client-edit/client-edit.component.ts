@@ -33,7 +33,10 @@ export class ClientEditComponent {
             id: [this.client.id],
             firstName: [this.client.firstName || '', Validators.required],
             lastName: [this.client.lastName || '', Validators.required],
-            clientType: [this.client.clientType || null, Validators.required]
+            clientType: [this.client.clientType || null, Validators.required],
+            phoneNumber: [this.client.phoneNumber || ''],
+            address: [this.client.address || ''],
+            email: [this.client.email || '']
           });
       }
     });
@@ -58,7 +61,7 @@ export class ClientEditComponent {
 
   onEditSubmit(): void {
     if (this.clientForm.valid) {
-      const client = this.clientForm.value;
+      const client = this.clientForm.value;   
       this.clientService.editClient(this.client.id, client).subscribe({
         next: (response) => {
           if (response.isSuccess && response.data) {

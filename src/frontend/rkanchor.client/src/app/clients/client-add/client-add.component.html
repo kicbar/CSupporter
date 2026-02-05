@@ -25,9 +25,24 @@
           </mat-option>
         </mat-select>
         <mat-error *ngIf="clientForm.get('clientType')?.invalid && clientForm.get('clientType')?.touched">
-          Product type is required.
+          Client type is required.
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Phone number</mat-label>
+        <input matInput placeholder="Enter client phoneNumber" formControlName="phoneNumber" />        
+      </mat-form-field> 
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Address</mat-label>
+        <input matInput placeholder="Enter client address" formControlName="address" />        
+      </mat-form-field> 
+      
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Enter client email" formControlName="email" />        
+      </mat-form-field>       
   
       <button
         mat-raised-button

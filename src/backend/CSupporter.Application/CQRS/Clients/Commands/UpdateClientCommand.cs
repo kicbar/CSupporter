@@ -18,6 +18,12 @@ public record UpdateClientCommand : IRequest<ClientWithAuditDto>
 
     [JsonConverter(typeof(EnumConverter<ClientType>))]
     public ClientType? ClientType { get; set; }
+
+    public string PhoneNumber { get; set; }
+
+    public string Address { get; set; }
+
+    public string Email { get; set; }
 }
 
 internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, ClientWithAuditDto>
@@ -34,8 +40,11 @@ internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand,
     public async Task<ClientWithAuditDto> Handle(UpdateClientCommand command, CancellationToken cancellationToken)
     {
         var client = await _clientRepository.GetClientById(command.ClientId, cancellationToken);
-        client.FirstName = command.FirstName;
-        client.LastName = command.LastName;
+        if (command.FirstName is not null) client.FirstName = command.FirstName.Trim();
+        if (command.LastName is not null) client.LastName = command.LastName.Trim();
+        if (command.PhoneNumber is not null) client.PhoneNumber = command.PhoneNumber.Trim();
+        if (command.Address is not null) client.Address = command.Address.Trim();
+        if (command.Email is not null) client.Email = command.Email.Trim();
         if (command.ClientType is not null)
             client.ClientType = (ClientType)command.ClientType;
 
