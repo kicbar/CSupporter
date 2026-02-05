@@ -10,7 +10,7 @@ using System.Text.Json.Serialization;
 
 namespace CSupporter.Application.CQRS.Orders.Commands;
 
-public record CreateOrderForClientCommand : IRequest<OrderDto>
+public record CreateOrderForClientCommand : IRequest<OrderWithAuditDto>
 {
     public int ClientId { get; set; }
 
@@ -24,7 +24,7 @@ public record CreateOrderForClientCommand : IRequest<OrderDto>
     public string AdditionalInfo { get; set; }
 }
 
-internal class CreateOrderForClientCommandHandler : IRequestHandler<CreateOrderForClientCommand, OrderDto>
+internal class CreateOrderForClientCommandHandler : IRequestHandler<CreateOrderForClientCommand, OrderWithAuditDto>
 {
     private readonly IMapper _mapper;
     private readonly IOrderRepository _orderRepository;
@@ -37,7 +37,7 @@ internal class CreateOrderForClientCommandHandler : IRequestHandler<CreateOrderF
         _clientRepository = clientRepository;
     }
 
-    public async Task<OrderDto> Handle(CreateOrderForClientCommand request, CancellationToken cancellationToken)
+    public async Task<OrderWithAuditDto> Handle(CreateOrderForClientCommand request, CancellationToken cancellationToken)
     {
         var client = await _clientRepository.GetClientById(request.ClientId, cancellationToken) 
             ?? throw new EntityNotFoundException(request.ClientId.ToString(), nameof(Client));
@@ -53,6 +53,6 @@ internal class CreateOrderForClientCommandHandler : IRequestHandler<CreateOrderF
 
         var createdOrder = await _orderRepository.CreateOrderForClient(order, cancellationToken);
 
-        return _mapper.Map<OrderDto>(createdOrder);
+        return _mapper.Map<OrderWithAuditDto>(createdOrder);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace CSupporter.Application.Models.DTOs;
 
-public class ClientDto
+public class ClientWithAuditDto
 {
     public int Id { get; set; }
 
@@ -17,4 +17,12 @@ public class ClientDto
     public string Email { get; set; }
 
     public ClientType ClientType { get; set; }
+
+    public DateTime UpdateDate { get; set; }
+
+    public string UpdateUser { get; set; }
+
+    public DateTime InsertDate { get; set; }
+
+    public string InsertUser { get; set; }
 }

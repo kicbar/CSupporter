@@ -19,6 +19,10 @@ public class MappingProfile : Profile
 
         CreateMap<Order, OrderDto>();
 
+        CreateMap<Order, OrderWithAuditDto>();
+
         CreateMap<Client, ClientDto>();
+
+        CreateMap<Client, ClientWithAuditDto>();
     }
 }

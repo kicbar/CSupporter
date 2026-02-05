@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace CSupporter.Application.CQRS.Clients.Command;
 
-public record CreateClientCommand : IRequest<ClientDto>
+public record CreateClientCommand : IRequest<ClientWithAuditDto>
 {
     public string FirstName { get; set; }
 
@@ -25,7 +25,7 @@ public record CreateClientCommand : IRequest<ClientDto>
     public ClientType? ClientType { get; set; }
 }
 
-internal class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, ClientDto>
+internal class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, ClientWithAuditDto>
 {
     private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
@@ -36,12 +36,12 @@ internal class CreateClientCommandHandler : IRequestHandler<CreateClientCommand,
         _clientRepository = clientRepository;
     }
 
-    public async Task<ClientDto> Handle(CreateClientCommand request, CancellationToken cancellationToken)
+    public async Task<ClientWithAuditDto> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
         var client = _mapper.Map<Client>(request);
 
         var createdClient = await _clientRepository.AddClient(client, cancellationToken);
 
-        return _mapper.Map<ClientDto>(createdClient);
+        return _mapper.Map<ClientWithAuditDto>(createdClient);
     }
 }

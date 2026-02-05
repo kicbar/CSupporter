@@ -31,12 +31,12 @@ public class ClientController(IMediator mediator) : ApiControllerBase(mediator)
     /// <param name="cancellationToken">Cancellation token for async operation.</param>
     /// <returns>The newly created client.</returns>
     [HttpPost]
-    [ProducesResponseType(typeof(ApiResult<ClientDto>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResult<ClientWithAuditDto>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<ApiResult<ClientDto>>> CreateClient([FromBody] CreateClientCommand createClientCommand, CancellationToken cancellationToken)
+    public async Task<ActionResult<ApiResult<ClientWithAuditDto>>> CreateClient([FromBody] CreateClientCommand createClientCommand, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(createClientCommand, cancellationToken);
         return Created(response);
@@ -53,12 +53,12 @@ public class ClientController(IMediator mediator) : ApiControllerBase(mediator)
     /// <param name="cancellationToken">Cancellation token for async operation.</param>
     /// <returns>List of all clients.</returns>
     [HttpGet]
-    [ProducesResponseType(typeof(ApiResult<IEnumerable<ClientDto>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResult<IEnumerable<ClientWithAuditDto>>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<ApiResult<IEnumerable<ClientDto>>>> GetAllClients(CancellationToken cancellationToken) 
+    public async Task<ActionResult<ApiResult<IEnumerable<ClientWithAuditDto>>>> GetAllClients(CancellationToken cancellationToken) 
     {
         var response = await _mediator.Send(new GetAllClientsQuery(), cancellationToken);
         return Success(response);
@@ -76,12 +76,12 @@ public class ClientController(IMediator mediator) : ApiControllerBase(mediator)
     /// <param name="cancellationToken">Cancellation token for async operation.</param>
     /// <returns>Client with the specified id.</returns>
     [HttpGet("{clientId}")]
-    [ProducesResponseType(typeof(ApiResult<ClientDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResult<ClientWithAuditDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<ApiResult<ClientDto>>> GetClientById(int clientId, CancellationToken cancellationToken)
+    public async Task<ActionResult<ApiResult<ClientWithAuditDto>>> GetClientById(int clientId, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(new GetClientByIdQuery() { ClientId = clientId }, cancellationToken);
         return Success(response);
@@ -105,12 +105,12 @@ public class ClientController(IMediator mediator) : ApiControllerBase(mediator)
     /// <param name="cancellationToken">Cancellation token.</param>
     /// <returns>Updated client.</returns>
     [HttpPut("{clientId}")]
-    [ProducesResponseType(typeof(ApiResult<ClientDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ApiResult<ClientWithAuditDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<ApiResult<ClientDto>>> UpdateClient(int clientId, [FromBody] UpdateClientCommand command, CancellationToken cancellationToken)
+    public async Task<ActionResult<ApiResult<ClientWithAuditDto>>> UpdateClient(int clientId, [FromBody] UpdateClientCommand command, CancellationToken cancellationToken)
     {
         command.ClientId = clientId;
         var response = await _mediator.Send(command, cancellationToken);

@@ -5,12 +5,12 @@ using MediatR;
 
 namespace CSupporter.Application.CQRS.Clients.Queries;
 
-public record GetClientByIdQuery : IRequest<ClientDto>
+public record GetClientByIdQuery : IRequest<ClientWithAuditDto>
 {
     public int ClientId { get; set; }
 }
 
-internal class GetClientByIdQueryHandler : IRequestHandler<GetClientByIdQuery, ClientDto>
+internal class GetClientByIdQueryHandler : IRequestHandler<GetClientByIdQuery, ClientWithAuditDto>
 {
     private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
@@ -21,10 +21,10 @@ internal class GetClientByIdQueryHandler : IRequestHandler<GetClientByIdQuery, C
         _clientRepository = clientRepository;
     }
 
-    public async Task<ClientDto?> Handle(GetClientByIdQuery request, CancellationToken cancellationToken)
+    public async Task<ClientWithAuditDto?> Handle(GetClientByIdQuery request, CancellationToken cancellationToken)
     {
         var client = await _clientRepository.GetClientById(request.ClientId, cancellationToken);
 
-        return _mapper.Map<ClientDto>(client);
+        return _mapper.Map<ClientWithAuditDto>(client);
     }
 }

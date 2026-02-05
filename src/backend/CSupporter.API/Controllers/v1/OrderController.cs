@@ -31,12 +31,12 @@ public class OrderController(IMediator mediator) : ApiControllerBase(mediator)
     /// <param name="cancellationToken">Cancellation token for async operation.</param>
     /// <returns>The newly created order.</returns>
     [HttpPost]
-    [ProducesResponseType(typeof(ApiResult<OrderDto>), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ApiResult<OrderWithAuditDto>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-    public async Task<ActionResult<ApiResult<OrderDto>>> CreateOrder([FromBody] CreateOrderForClientCommand command, CancellationToken cancellationToken)
+    public async Task<ActionResult<ApiResult<OrderWithAuditDto>>> CreateOrder([FromBody] CreateOrderForClientCommand command, CancellationToken cancellationToken)
     {
         var response = await _mediator.Send(command, cancellationToken);
         return Created(response);

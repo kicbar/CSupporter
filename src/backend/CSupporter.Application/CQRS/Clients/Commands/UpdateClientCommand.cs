@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace CSupporter.Application.CQRS.Clients.Commands;
 
-public record UpdateClientCommand : IRequest<ClientDto>
+public record UpdateClientCommand : IRequest<ClientWithAuditDto>
 {
     public int ClientId { get; set; }
 
@@ -20,7 +20,7 @@ public record UpdateClientCommand : IRequest<ClientDto>
     public ClientType? ClientType { get; set; }
 }
 
-internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, ClientDto>
+internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, ClientWithAuditDto>
 {
     private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
@@ -31,7 +31,7 @@ internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand,
         _clientRepository = clientRepository;
     }
 
-    public async Task<ClientDto> Handle(UpdateClientCommand command, CancellationToken cancellationToken)
+    public async Task<ClientWithAuditDto> Handle(UpdateClientCommand command, CancellationToken cancellationToken)
     {
         var client = await _clientRepository.GetClientById(command.ClientId, cancellationToken);
         client.FirstName = command.FirstName;
@@ -41,6 +41,6 @@ internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand,
 
         var updatedClient = await _clientRepository.UpdateClient(client, cancellationToken);
 
-        return _mapper.Map<ClientDto>(updatedClient);
+        return _mapper.Map<ClientWithAuditDto>(updatedClient);
     }
 }

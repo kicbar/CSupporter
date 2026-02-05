@@ -5,9 +5,9 @@ using MediatR;
 
 namespace CSupporter.Application.CQRS.Clients.Queries;
 
-public class GetAllClientsQuery : IRequest<IEnumerable<ClientDto>> { }
+public class GetAllClientsQuery : IRequest<IEnumerable<ClientWithAuditDto>> { }
 
-internal class GetAllClientsQueryHandler : IRequestHandler<GetAllClientsQuery, IEnumerable<ClientDto>>
+internal class GetAllClientsQueryHandler : IRequestHandler<GetAllClientsQuery, IEnumerable<ClientWithAuditDto>>
 {
     private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
@@ -18,10 +18,10 @@ internal class GetAllClientsQueryHandler : IRequestHandler<GetAllClientsQuery, I
         _clientRepository = clientRepository;
     }
 
-    public async Task<IEnumerable<ClientDto>> Handle(GetAllClientsQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ClientWithAuditDto>> Handle(GetAllClientsQuery request, CancellationToken cancellationToken)
     {
         var clients = await _clientRepository.GetAllClients(cancellationToken);
 
-        return _mapper.Map<IEnumerable<ClientDto>>(clients);
+        return _mapper.Map<IEnumerable<ClientWithAuditDto>>(clients);
     }
 }
