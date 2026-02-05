@@ -1,11 +1,12 @@
-﻿using CSupporter.Domain.Common;
+﻿using CSupporter.Domain.Entities;
 using CSupporter.Domain.Enums;
-using System.Text.Json.Serialization;
 
-namespace CSupporter.Domain.Entities;
+namespace CSupporter.Application.Models.DTOs;
 
-public class Client : BaseAuditableEntity<int>
+public class ClientDto
 {
+    public int Id { get; set; }
+
     public string FirstName { get; set; }
 
     public string LastName { get; set; }
@@ -17,6 +18,4 @@ public class Client : BaseAuditableEntity<int>
     public string Email { get; set; }
 
     public ClientType ClientType { get; set; }
-
-    public List<Order> Orders { get; set; }
 }

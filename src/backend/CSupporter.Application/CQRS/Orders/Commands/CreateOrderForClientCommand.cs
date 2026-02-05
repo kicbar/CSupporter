@@ -1,5 +1,7 @@
-﻿using CSupporter.Application.Converters;
+﻿using AutoMapper;
+using CSupporter.Application.Converters;
 using CSupporter.Application.Exceptions;
+using CSupporter.Application.Models.DTOs;
 using CSupporter.Domain.Entities;
 using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
@@ -8,7 +10,7 @@ using System.Text.Json.Serialization;
 
 namespace CSupporter.Application.CQRS.Orders.Commands;
 
-public record CreateOrderForClientCommand : IRequest<Order>
+public record CreateOrderForClientCommand : IRequest<OrderDto>
 {
     public int ClientId { get; set; }
 
@@ -22,18 +24,20 @@ public record CreateOrderForClientCommand : IRequest<Order>
     public string AdditionalInfo { get; set; }
 }
 
-internal class CreateOrderForClientCommandHandler : IRequestHandler<CreateOrderForClientCommand, Order>
+internal class CreateOrderForClientCommandHandler : IRequestHandler<CreateOrderForClientCommand, OrderDto>
 {
+    private readonly IMapper _mapper;
     private readonly IOrderRepository _orderRepository;
     private readonly IClientRepository _clientRepository;
 
-    public CreateOrderForClientCommandHandler(IOrderRepository orderRepository, IClientRepository clientRepository)
+    public CreateOrderForClientCommandHandler(IOrderRepository orderRepository, IClientRepository clientRepository, IMapper mapper)
     {
+        _mapper = mapper;
         _orderRepository = orderRepository;
         _clientRepository = clientRepository;
     }
 
-    public async Task<Order> Handle(CreateOrderForClientCommand request, CancellationToken cancellationToken)
+    public async Task<OrderDto> Handle(CreateOrderForClientCommand request, CancellationToken cancellationToken)
     {
         var client = await _clientRepository.GetClientById(request.ClientId, cancellationToken) 
             ?? throw new EntityNotFoundException(request.ClientId.ToString(), nameof(Client));
@@ -46,7 +50,9 @@ internal class CreateOrderForClientCommandHandler : IRequestHandler<CreateOrderF
             ProducerType = (ProducerType)request.ProducerType,
             AdditionalInfo = request.AdditionalInfo,
         };
-        //return as dto
-        return await _orderRepository.CreateOrderForClient(order, cancellationToken);
+
+        var createdOrder = await _orderRepository.CreateOrderForClient(order, cancellationToken);
+
+        return _mapper.Map<OrderDto>(createdOrder);
     }
 }

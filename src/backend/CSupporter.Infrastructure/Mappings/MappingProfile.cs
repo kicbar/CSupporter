@@ -2,6 +2,7 @@
 using CSupporter.Application.CQRS.Clients.Command;
 using CSupporter.Application.CQRS.Products.Commands;
 using CSupporter.Application.CQRS.Users.Commands;
+using CSupporter.Application.Models.DTOs;
 using CSupporter.Domain.Entities;
 
 namespace CSupporter.Infrastructure.Mappings;
@@ -15,5 +16,9 @@ public class MappingProfile : Profile
         CreateMap<CreateUserCommand, User>();
 
         CreateMap<CreateProductCommand, Product>();
+
+        CreateMap<Order, OrderDto>();
+
+        CreateMap<Client, ClientDto>();
     }
 }

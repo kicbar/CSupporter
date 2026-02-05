@@ -1,6 +1,6 @@
-﻿using CSupporter.Application.Converters;
-using CSupporter.Application.CQRS.Clients.Commands;
-using CSupporter.Domain.Entities;
+﻿using AutoMapper;
+using CSupporter.Application.Converters;
+using CSupporter.Application.Models.DTOs;
 using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
 using MediatR;
@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 
 namespace CSupporter.Application.CQRS.Clients.Commands;
 
-public record UpdateClientCommand : IRequest<Client>
+public record UpdateClientCommand : IRequest<ClientDto>
 {
     public int ClientId { get; set; }
 
@@ -20,16 +20,18 @@ public record UpdateClientCommand : IRequest<Client>
     public ClientType? ClientType { get; set; }
 }
 
-internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, Client>
+internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand, ClientDto>
 {
+    private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
 
-    public UpdateClientCommandHandler(IClientRepository clientRepository)
+    public UpdateClientCommandHandler(IClientRepository clientRepository, IMapper mapper)
     {
+        _mapper = mapper;
         _clientRepository = clientRepository;
     }
 
-    public async Task<Client> Handle(UpdateClientCommand command, CancellationToken cancellationToken)
+    public async Task<ClientDto> Handle(UpdateClientCommand command, CancellationToken cancellationToken)
     {
         var client = await _clientRepository.GetClientById(command.ClientId, cancellationToken);
         client.FirstName = command.FirstName;
@@ -37,6 +39,8 @@ internal class UpdateClientCommandHandler : IRequestHandler<UpdateClientCommand,
         if (command.ClientType is not null)
             client.ClientType = (ClientType)command.ClientType;
 
-        return await _clientRepository.UpdateClient(client, cancellationToken);
+        var updatedClient = await _clientRepository.UpdateClient(client, cancellationToken);
+
+        return _mapper.Map<ClientDto>(updatedClient);
     }
 }

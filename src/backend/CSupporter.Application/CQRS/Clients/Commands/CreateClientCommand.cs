@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CSupporter.Application.Converters;
+using CSupporter.Application.Models.DTOs;
 using CSupporter.Domain.Entities;
 using CSupporter.Domain.Enums;
 using CSupporter.Domain.Interfaces.Repositories;
@@ -8,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace CSupporter.Application.CQRS.Clients.Command;
 
-public record CreateClientCommand : IRequest<Client>
+public record CreateClientCommand : IRequest<ClientDto>
 {
     public string FirstName { get; set; }
 
@@ -24,7 +25,7 @@ public record CreateClientCommand : IRequest<Client>
     public ClientType? ClientType { get; set; }
 }
 
-internal class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, Client>
+internal class CreateClientCommandHandler : IRequestHandler<CreateClientCommand, ClientDto>
 {
     private readonly IMapper _mapper;
     private readonly IClientRepository _clientRepository;
@@ -35,10 +36,12 @@ internal class CreateClientCommandHandler : IRequestHandler<CreateClientCommand,
         _clientRepository = clientRepository;
     }
 
-    public async Task<Client> Handle(CreateClientCommand request, CancellationToken cancellationToken)
+    public async Task<ClientDto> Handle(CreateClientCommand request, CancellationToken cancellationToken)
     {
         var client = _mapper.Map<Client>(request);
 
-        return await _clientRepository.AddClient(client, cancellationToken);
+        var createdClient = await _clientRepository.AddClient(client, cancellationToken);
+
+        return _mapper.Map<ClientDto>(createdClient);
     }
 }
