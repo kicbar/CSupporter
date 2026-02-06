@@ -42,14 +42,8 @@ internal class CreateOrderForClientCommandHandler : IRequestHandler<CreateOrderF
         var client = await _clientRepository.GetClientById(request.ClientId, cancellationToken) 
             ?? throw new EntityNotFoundException(request.ClientId.ToString(), nameof(Client));
 
-        var order = new Order()
-        {
-            ClientId = request.ClientId,
-            OrderNo = request.OrderNo,
-            OrderDate = request.OrderDate,
-            ProducerType = (ProducerType)request.ProducerType,
-            AdditionalInfo = request.AdditionalInfo,
-        };
+        var order = _mapper.Map<Order>(request);
+        order.Client = client;
 
         var createdOrder = await _orderRepository.CreateOrderForClient(order, cancellationToken);
 

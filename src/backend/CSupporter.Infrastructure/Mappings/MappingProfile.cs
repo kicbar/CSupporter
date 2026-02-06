@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CSupporter.Application.CQRS.Clients.Command;
+using CSupporter.Application.CQRS.Orders.Commands;
 using CSupporter.Application.CQRS.Products.Commands;
 using CSupporter.Application.CQRS.Users.Commands;
 using CSupporter.Application.Models.DTOs;
@@ -16,13 +17,20 @@ public class MappingProfile : Profile
         CreateMap<CreateUserCommand, User>();
 
         CreateMap<CreateProductCommand, Product>();
+        
+        CreateMap<CreateOrderForClientCommand, Order>();
 
         CreateMap<Order, OrderDto>();
 
-        CreateMap<Order, OrderWithAuditDto>();
+        CreateMap<Order, OrderForClientDto>();
+
+        CreateMap<Order, OrderWithAuditDto>()
+            .ReverseMap();
 
         CreateMap<Client, ClientDto>();
 
         CreateMap<Client, ClientWithAuditDto>();
+
+        CreateMap<Client, ClientForOrderDto>();
     }
 }
