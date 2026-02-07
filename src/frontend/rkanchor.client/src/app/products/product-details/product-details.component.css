@@ -1,4 +1,4 @@
-.product-details-container {
+.item-details-container {
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -14,7 +14,7 @@
     text-align: center;
   }
   
-  .no-product-message {
+  .no-item-message {
     font-size: 1rem;
     color: #888;
     text-align: center;
