@@ -2,9 +2,9 @@
   Produkt do edycji nie został wybrany
 </p>
 <div *ngIf="product" class="form-container">
-  <h2>Edytuj produkt</h2>
+  <h2 class="dialog-header">Edytuj produkt</h2>
   <form [formGroup]="productForm" (ngSubmit)="onEditSubmit()">
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="fill" class="input-full-width">
       <mat-label>Name</mat-label>
       <input matInput placeholder="Enter product name" formControlName="name" />
       <mat-error *ngIf="productForm.get('name')?.invalid && productForm.get('name')?.touched">
@@ -12,7 +12,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="fill" class="input-full-width">
       <mat-label>Description</mat-label>
       <textarea
         matInput
@@ -25,7 +25,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="fill" class="input-full-width">
       <mat-label>Product Type</mat-label>
       <mat-select formControlName="productType">
         <mat-option *ngFor="let type of productTypes" [value]="type">
@@ -37,7 +37,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="fill" class="input-full-width">
       <mat-label>Product Code</mat-label>
       <input matInput placeholder="Enter product code" formControlName="productCode" />
       <mat-error *ngIf="productForm.get('productCode')?.invalid && productForm.get('productCode')?.touched">
@@ -50,7 +50,7 @@
       color="primary"
       type="submit"
       [disabled]="productForm.invalid || !productForm.dirty"
-      class="full-width"
+      class="input-full-width"
     >
       Zapisz
     </button>
@@ -58,7 +58,7 @@
       mat-raised-button
       color="warn"
       type="button"
-      class="full-width"
+      class="input-full-width"
       (click)="onEditCancel()"
     >
       Anuluj
