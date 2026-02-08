@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductsComponent } from './products/products.component';
-import { ClientsComponent } from './clients/clients.component';
+import { ProductsComponent } from './features/products/products.component';
+import { ClientsComponent } from './features/clients/clients.component';
 import { HomeComponent } from './home/home.component';
-import { ProductAddComponent } from './products/product-add/product-add.component';
-import { ProductEditComponent } from './products/product-edit/product-edit.component';
+import { ProductAddComponent } from './features/products/product-add/product-add.component';
+import { ProductEditComponent } from './features/products/product-edit/product-edit.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
-import { ClientAddComponent } from './clients/client-add/client-add.component';
-import { ClientEditComponent } from './clients/client-edit/client-edit.component';
-import { OrdersComponent } from './orders/orders.component';
-import { OrderAddComponent } from './orders/order-add/order-add.component';
-import { OrderEditComponent } from './orders/order-edit/order-edit.component';
+import { ClientAddComponent } from './features/clients/client-add/client-add.component';
+import { ClientEditComponent } from './features/clients/client-edit/client-edit.component';
+import { OrdersComponent } from './features/orders/orders.component';
+import { OrderAddComponent } from './features/orders/order-add/order-add.component';
+import { OrderEditComponent } from './features/orders/order-edit/order-edit.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
