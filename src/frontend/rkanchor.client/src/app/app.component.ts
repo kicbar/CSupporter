@@ -22,8 +22,11 @@ export class AppComponent implements OnInit {
           case '/clients':
             this.selectedTabIndex = 1;
             break;
-          case '/products':
+          case '/orders':
             this.selectedTabIndex = 2;
+            break;            
+          case '/products':
+            this.selectedTabIndex = 3;            
             break;
         }
       }
@@ -39,8 +42,11 @@ export class AppComponent implements OnInit {
         this.router.navigate(['/clients']);
         break;
       case 2:
-        this.router.navigate(['/products']);
+        this.router.navigate(['/orders']);
         break;
+      case 3:
+        this.router.navigate(['/products']);
+        break;        
     }
   }
 

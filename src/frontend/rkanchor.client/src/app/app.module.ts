@@ -36,6 +36,14 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { ClientListItemComponent } from './clients/clients-list/client-list-item/client-list-item.component';
 import { ClientEditComponent } from './clients/client-edit/client-edit.component';
+import { OrdersComponent } from './orders/orders.component';
+import { OrderAddComponent } from './orders/order-add/order-add.component';
+import { OrderEditComponent } from './orders/order-edit/order-edit.component';
+import { OrdersListComponent } from './orders/orders-list/orders-list.component';
+import { OrderDetailsComponent } from './orders/order-details/order-details.component';
+import { OrderListItemComponent } from './orders/orders-list/order-list-item/order-list-item.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -57,6 +65,12 @@ import { ClientEditComponent } from './clients/client-edit/client-edit.component
     RegisterComponent,
     ClientListItemComponent,
     ClientEditComponent,
+    OrdersComponent,
+    OrderAddComponent,
+    OrderEditComponent,
+    OrdersListComponent,
+    OrderDetailsComponent,
+    OrderListItemComponent
   ],
   imports: [
     BrowserModule, 
@@ -73,6 +87,8 @@ import { ClientEditComponent } from './clients/client-edit/client-edit.component
     MatSnackBarModule,
     MatSelectModule,
     MatOptionModule,
+    MatDatepickerModule,
+    MatNativeDateModule    
   ],
   providers: [
     ProductService,

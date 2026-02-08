@@ -1,0 +1,18 @@
+<div class="item-details-container">
+  <h4 class="details-title">Szczegóły zamówienia</h4>
+  <p *ngIf="!order" class="no-item-message">
+    Wybierz numer zamówienia z listy, aby przeglądać szczegóły
+  </p>
+  <div *ngIf="order" class="details-content">
+    <p><strong>Id:</strong> {{ order.id }}</p>
+    <p><strong>Order Number:</strong> {{ order.orderNo }}</p>
+    <p><strong>Order Date:</strong> {{ order.orderDate }}</p>
+    <p><strong>Producer:</strong> {{ order.producerType }}</p>
+    <p><strong>Additional Info:</strong> {{ order.additionalInfo }}</p>
+    <p><strong>Klient:</strong> {{ order.client.firstName }} {{ order.client.lastName }}</p>    
+    <div class="button-container">
+      <button mat-button class="update-button" (click)="onOrderEdit(order)">Edytuj zamówienie</button>
+      <button mat-button class="delete-button" (click)="onOrderRemove(order)">Usuń zamówienie</button>
+    </div>    
+  </div>
+</div>

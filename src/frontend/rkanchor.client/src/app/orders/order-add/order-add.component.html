@@ -1,0 +1,57 @@
+<div class="form-container">
+    <h2 class="dialog-header">Dodawanie zamówienia</h2>
+    <form [formGroup]="orderForm" (ngSubmit)="onAddSubmit()">
+      <mat-form-field appearance="fill" class="input-full-width">
+        <mat-label>Order number</mat-label>
+        <input matInput placeholder="Enter order order number" formControlName="orderNo" />
+        <mat-error *ngIf="orderForm.get('orderNo')?.invalid && orderForm.get('orderNo')?.touched">
+          Order number is required.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="input-full-width">
+        <mat-label>Order date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="orderDate" placeholder="Choose a date" />      
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>          
+        <mat-error *ngIf="orderForm.get('orderDate')?.invalid && orderForm.get('orderDate')?.touched">
+          Order date is required.
+        </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="input-full-width">
+        <mat-label>Order producer</mat-label>
+        <mat-select formControlName="producerType">
+          <mat-option *ngFor="let type of producerType" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="orderForm.get('producerType')?.invalid && orderForm.get('producerType')?.touched">
+          Order producer is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="input-full-width">
+        <mat-label>Additional information</mat-label>
+        <input matInput placeholder="Enter order additional information" formControlName="additionalInfo" />        
+      </mat-form-field> 
+      
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="orderForm.invalid"
+        class="input-full-width">
+        Zapisz
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        type="button"
+        class="input-full-width"
+        (click)="onAddCancel()">
+      Anuluj
+    </button> 
+    </form>
+  </div>
+  

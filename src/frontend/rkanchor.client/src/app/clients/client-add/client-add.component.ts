@@ -19,7 +19,7 @@ export class ClientAddComponent implements OnInit {
     private clientService: ClientService, private dictionaryService: DictionaryService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this.loadProductTypeDictionary();
+    this.loadClientTypeDictionary();
 
     this.clientForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -31,7 +31,7 @@ export class ClientAddComponent implements OnInit {
     });
   }
 
-  loadProductTypeDictionary(): void {
+  loadClientTypeDictionary(): void {
     this.dictionaryService.getDictionary(DictionaryType.Client).subscribe({
       next: (response) => {
         if (response.isSuccess && response.data) 

@@ -1,0 +1,18 @@
+<div class="search-container">
+  <mat-form-field appearance="fill" class="input-full-width">
+    <mat-label>Wyszukaj zamówienie</mat-label>
+    <input matInput (input)="onSearch($event)" placeholder="Wpisz numer zamówienia" />
+  </mat-form-field>
+</div>
+
+<p *ngIf="!orders" class="loading-text">Ładowanie zamówień...</p>
+
+<div class="list-container">
+  <div class="list-item-container">
+    <app-order-list-item
+      *ngFor="let order of filteredOrders"
+      [order]="order"
+      (click)="onOrderSelected(order)">
+    </app-order-list-item>
+  </div>
+</div>

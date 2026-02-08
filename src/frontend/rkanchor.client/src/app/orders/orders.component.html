@@ -1,0 +1,12 @@
+<div class="item-page-container">
+  <div class="header"></div>
+  <div class="content">
+    <div class="items-list">
+      <app-orders-list></app-orders-list>
+    </div>
+    <div class="item-details">
+      <app-order-details [order]="order"></app-order-details>
+      <button mat-button class="add-item-button" (click)="navigateToOrderAdd()">Dodaj zamówienie</button>
+    </div>
+  </div>
+</div>

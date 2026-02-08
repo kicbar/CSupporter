@@ -1,5 +1,6 @@
 export enum DictionaryType {
     Client = 'Client',
-    Product = 'Product'
+    Product = 'Product',
+    Producer = 'Producer'
   }
   

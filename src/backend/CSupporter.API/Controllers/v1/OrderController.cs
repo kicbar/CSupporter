@@ -25,7 +25,7 @@ public class OrderController(IMediator mediator) : ApiControllerBase(mediator)
         return Created(response);
     }
 
-    [HttpGet("clients/{clientId}")]
+    [HttpGet("client/{clientId}")]
     [ProducesResponseType(typeof(ApiResult<OrderWithAuditDto>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]
@@ -55,7 +55,7 @@ public class OrderController(IMediator mediator) : ApiControllerBase(mediator)
     /// <param name="command">Order creation data.</param>
     /// <param name="cancellationToken">Cancellation token for async operation.</param>
     /// <returns>The newly created order.</returns>
-    [HttpPost("clients/{clientId}")]
+    [HttpPost("client/{clientId}")]
     [ProducesResponseType(typeof(ApiResult<OrderWithAuditDto>), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ApiResult<ProblemDetails>), StatusCodes.Status404NotFound)]

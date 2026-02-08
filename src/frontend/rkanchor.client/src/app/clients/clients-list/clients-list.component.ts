@@ -34,10 +34,10 @@ export class ClientsListComponent {
         }
       },
       error: (error) => {
-        this.notificationService.customErrorMessage(`Podczas pobierania produktów, wystąpił błąd!`);
+        this.notificationService.customErrorMessage(`Podczas pobierania klientów, wystąpił błąd!`);
         const status =  error?.status ? error.status : '';
         const message =  error?.message ? error.message : '';
-        console.log(`Błąd podczas pobierania listy produktów, error: ${error}. Details: ${status}-${message}`);
+        console.log(`Błąd podczas pobierania listy klientów, error: ${error}. Details: ${status}-${message}`);
       }
     });
   }
